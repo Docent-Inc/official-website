@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import ImageSlider from './component/ImageSlider';
+import loadimages from "./function/loadimages";
+
+const images = loadimages();
 
 function App() {
   const [dream, setDream] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const imageKeys = Object.keys(images);
+
+  console.log(imageKeys);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setResult(null);
     setLoading(true);
     try {
       const response = await axios.get(`/api/gpt/${dream}`);
@@ -18,9 +27,9 @@ function App() {
     } finally {
       setLoading(false);
     }
-};
+  };
 
-return (
+    return (
     <div className="App">
       <h1>Dream Interpreter</h1>
       <form onSubmit={handleSubmit}>
@@ -36,6 +45,7 @@ return (
           {loading ? 'Loading...' : 'Submit'}
         </button>
       </form>
+      {loading && <ImageSlider images={imageKeys} interval={5000} />}
       {result && (
           <div>
             <h2>Dream Interpretation</h2>
@@ -45,7 +55,7 @@ return (
           </div>
       )}
     </div>
-);
+    );
 }
 
 export default App;

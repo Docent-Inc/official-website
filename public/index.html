@@ -24,18 +24,35 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <ins class="kakao_ad_area" style="display:none;"
-         data-ad-unit = "DAN-E5x77Mglyjzhhk1G"
-         data-ad-width = "320"
-         data-ad-height = "50"></ins>
-    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9792642642158388"
             crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function callBackFunc(elm) {
+        text = [];
+        text.push('<ins class="adsbygoogle"');
+        text.push('style="display:inline-block;width:250px;height:250px"');
+        text.push('data-ad-client="ca-pub-7893835816116192"');
+        text.push('data-ad-slot="5918517081"></ins>');
+
+        elm.innerHTML = text.join(' ');
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    </script>
+
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <ins class="kakao_ad_area" style="display:none;"
+         data-ad-unit = "DAN-E5x77Mglyjzhhk1G"
+         data-ad-width = "320"
+         data-ad-height = "50"
+         data-ad-onfail = "callBackFunc"></ins>
+    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

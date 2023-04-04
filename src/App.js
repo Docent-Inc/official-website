@@ -51,7 +51,8 @@ function App() {
             <h2>Dream Interpretation</h2>
             <p>{result.dream}</p>
             <p>{result.dream_resolution}</p>
-            <img src={result.image_url} alt="Dream Visualization" />
+            <img src={result.image_url} alt="Dream Visualization"
+                 style={{ maxWidth: '60%', maxHeight: '60%', margin: "2%" }}/>
           </div>
       )}
     </div>

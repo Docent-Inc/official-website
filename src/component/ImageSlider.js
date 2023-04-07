@@ -11,7 +11,7 @@ const ImageSlider = ({ images, interval }) => {
         }, interval);
 
         return () => clearInterval(timer);
-    }, [images, interval]);
+    }, [images, interval]);//
 
     useEffect(() => {
         const totalTime = 80000; // 80초

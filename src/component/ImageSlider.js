@@ -14,7 +14,7 @@ const ImageSlider = ({ images, interval }) => {
     }, [images, interval]);
 
     useEffect(() => {
-        const totalTime = 70000; // 70초
+        const totalTime = 80000; // 80초
         const intervalTime = 1000; // 1초마다 진행바 업데이트
         const increment = (intervalTime / totalTime) * 100;
 
@@ -33,23 +33,26 @@ const ImageSlider = ({ images, interval }) => {
 
     return (
         <div>
+            <h1>꿈 그리는 중...</h1>
+            <ProgressBar progress={progress} />
             <img
                 src={`${process.env.PUBLIC_URL}/img/${images[currentImageIndex]}`}
                 alt={`Image ${currentImageIndex}`}
                 style={{ maxWidth: '60%', maxHeight: '60%', margin: "5%" }}
             />
-            <h1>꿈 그리는 중...</h1>
-            <ProgressBar progress={progress} />
         </div>
     );
 };
 
 const ProgressBar = ({ progress }) => {
     return (
-        <div style={{width: "100%", height: "20px", backgroundColor: "#f3f3f3", borderRadius: "5px"}}>
+        <div style={{marginLeft: "5%", width: "90%", height: "20px", backgroundColor: "#f3f3f3", borderRadius: "5px", border: "1px solid black"}}>
             <div
                 style={{ width: `${progress}%`, height: "100%", backgroundColor: "#4caf50", borderRadius: "5px" }}
             ></div>
+            <div style={{zIndex: 1}}>
+                {`${Math.round(progress)}%`}
+            </div>
         </div>
     );
 };

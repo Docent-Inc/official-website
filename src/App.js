@@ -19,9 +19,10 @@ function App() {
   console.log(imageKeys);
 
   const captureAndDownload = async () => {
+
     if (!captureRef.current) return;
 
-    const canvas = await html2canvas(captureRef.current, { allowTaint: true });
+    const canvas = await html2canvas(captureRef.current, {useCORS: true});
     const imgDataUrl = canvas.toDataURL('image/png');
     const link = document.createElement('a');
 
@@ -30,6 +31,7 @@ function App() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
   };
 
   const handleSubmit = async (e) => {
@@ -41,6 +43,7 @@ function App() {
       setResult(response.data);
     } catch (error) {
       console.error(error);
+      alert("OpenAI 정책에 맞지 않는 내용이 포함되어 있습니다. 다시 입력해주세요.");
     } finally {
       setLoading(false);
     }
@@ -80,9 +83,8 @@ function App() {
                   }}
               />
               <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream}</p>
-              <p style={{ textAlign: 'justify', margin: '2%' }}>
-                {result.dream_resolution}
-              </p>
+              <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream_resolution}</p>
+              <p style={{ textAlign: 'justify', margin: '2%' }}>{result.today_luck}</p>
             </div>
             <button onClick={captureAndDownload} disabled={"True"}>
               화면 캡쳐 및 다운로드

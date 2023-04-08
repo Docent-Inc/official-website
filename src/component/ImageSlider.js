@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ImageSlider = ({ images, interval }) => {
-    const startImageIndex = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+    const startImageIndex = Math.floor(Math.random() * (28 - 1 + 1)) + 1;
     const [currentImageIndex, setCurrentImageIndex] = useState(startImageIndex);
     const [progress, setProgress] = useState(0);
 
@@ -14,7 +14,7 @@ const ImageSlider = ({ images, interval }) => {
     }, [images, interval]);//
 
     useEffect(() => {
-        const totalTime = 80000; // 80초
+        const totalTime = 45000; // 80초
         const intervalTime = 1000; // 1초마다 진행바 업데이트
         const increment = (intervalTime / totalTime) * 100;
 

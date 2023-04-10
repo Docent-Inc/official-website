@@ -27,7 +27,7 @@ function App() {
     setLoading(true);
     try {
       const response = await axios.get(`/api/gpt/${dream}`);
-      setResult(response.data);
+      setResult(response.data.data); // 수정된 부분
     } catch (error) {
       console.error(error);
       alert("OpenAI 정책에 맞지 않는 내용이 포함되어 있습니다. 다시 입력해주세요.");
@@ -78,9 +78,9 @@ function App() {
                       margin: '2%',
                     }}
                 />
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.dream}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.dream_resolution}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.today_luck}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream_resolution}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.today_luck}</p>
               </div>
             </>
         )}

@@ -78,9 +78,9 @@ function App() {
                       margin: '2%',
                     }}
                 />
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream_resolution}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.today_luck}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.dream}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.dream_resolution}</p>
+                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.data.today_luck}</p>
               </div>
             </>
         )}

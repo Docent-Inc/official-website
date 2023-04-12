@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ImageSlider.css';
 
 const ImageSlider = ({ images, interval }) => {
     const startImageIndex = Math.floor(Math.random() * (28 - 1 + 1)) + 1;
@@ -33,7 +34,7 @@ const ImageSlider = ({ images, interval }) => {
 
     return (
         <div>
-            <h1>꿈 그리는 중...</h1>
+            <h1>꿈을 그리고 있어요</h1>
             <ProgressBar progress={progress} />
             <img
                 src={`${process.env.PUBLIC_URL}/img/${images[currentImageIndex]}`}
@@ -46,11 +47,12 @@ const ImageSlider = ({ images, interval }) => {
 
 const ProgressBar = ({ progress }) => {
     return (
-        <div style={{marginLeft: "5%", width: "90%", height: "20px", backgroundColor: "#f3f3f3", borderRadius: "5px", border: "1px solid black"}}>
+        <div className="progress-bar-container">
             <div
-                style={{ width: `${progress}%`, height: "100%", backgroundColor: "#4caf50", borderRadius: "5px" }}
+                className="progress-bar"
+                style={{ width: `${progress}%` }}
             ></div>
-            <div style={{zIndex: 1}}>
+            <div className="progress-bar-text">
                 {`${Math.round(progress)}%`}
             </div>
         </div>

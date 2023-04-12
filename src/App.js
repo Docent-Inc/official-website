@@ -45,7 +45,7 @@ function App() {
 
   const handleSendPhoneNumber = async () => {
     try {
-      await axios.post('/api/gpt/test', { phoneNumber, dreamName: dream });
+      await axios.post('/api/gpt/test', {phoneNumber, dreamName: dream});
       alert('전화번호가 성공적으로 전송되었습니다.');
     } catch (error) {
       console.error(error);
@@ -58,19 +58,20 @@ function App() {
     setCharCount(e.target.value.length);
   };
 
+
   return (
       <div className="App">
-        <h1>비몽사몽</h1>
-        <form onSubmit={handleSubmit} style={{justifyContent: "center"}}>
+        <h1>도슨트</h1>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="dream-input">꿈을 입력해보세요:</label>
           <div className="textarea-container">
-          <textarea
-              id="dream-input"
-              value={dream}
-              onChange={(e) => handleDreamChange(e)}
-              rows="4"
-              cols="50"
-          ></textarea>
+        <textarea
+            id="dream-input"
+            value={dream}
+            onChange={(e) => handleDreamChange(e)}
+            rows="4"
+            cols="50"
+        ></textarea>
             <div className="char-count">{charCount}</div>
           </div>
           <button type="submit" disabled={loading || isDisabled}>
@@ -80,26 +81,19 @@ function App() {
         {loading && <ImageSlider images={imageKeys} interval={5000} />}
         {result && (
             <>
-              <div ref={captureRef} style={{ border: '5px solid #000000', margin: '3%' }}>
+              <div ref={captureRef} className="result-container">
                 <h2>{result.dream_name}</h2>
                 <img
                     src={`${result.image_url}`}
                     alt="Dream Visualization"
-                    style={{
-                      border: '10px solid #000000',
-                      borderRadius: '40px',
-                      maxWidth: '60%',
-                      maxHeight: '60%',
-                      margin: '2%',
-                    }}
                 />
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.dream_resolution}</p>
-                <p style={{ textAlign: 'justify', margin: '2%' }}>{result.today_luck}</p>
+                <p>{result.dream}</p>
+                <p>{result.dream_resolution}</p>
+                <p>{result.today_luck}</p>
               </div>
               <div style={{ margin: '2%' }}>
-                <p>안녕하세요!! 저희는 가천 코코네스쿨 2기 도슨트 팀 입니다. 서비스 출시에 앞서 테스트하기 위해 만들어진 페이지 입니다. 서비스 출시 소식이 궁금하시면 전화번호를 남겨주세요.</p>
-                <label htmlFor="phone-number-input">전화번호를 입력해보세요:</label>
+                <p>안녕하세요!! 저희는 가천대학교 코코네스쿨 2기 도슨트 팀 입니다. 서비스 출시에 앞서 테스트하기 위해 만들어진 페이지 입니다. 전화번호를 남겨주시면 추첨을 통해 스타벅스 커피 쿠폰을 드립니다.</p>
+                <label htmlFor="phone-number-input">전화번호를 입력해주세요:</label>
                 <input
                     id="phone-number-input"
                     type="tel"
@@ -112,10 +106,11 @@ function App() {
                   전화번호 전송
                 </button>
               </div>
-
             </>
         )}
       </div>
   );
+
 }
+
 export default App;

@@ -7,11 +7,18 @@ import loadimages from "./function/loadimages";
 const images = loadimages();
 
 function App() {
+  // 기존 상태 변수
   const [dream, setDream] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [charCount, setCharCount] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  // 설문조사 상태 변수
+  const [gender, setGender] = useState('');
+  const [age, setAge] = useState('');
+  const [mbti, setMbti] = useState('');
+  const [department, setDepartment] = useState('');
 
   const captureRef = useRef(null);
 
@@ -22,12 +29,18 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setResult(null);
-    if (dream.length < 5 || dream.length > 100) {
+    if (dream.length < 5 || dream.length > 100 || !gender || !age || !mbti || !department) {
       return;
     }
     setLoading(true);
     try {
-      const response = await axios.get(`/api/gpt/${dream}`);
+      const response = await axios.post(`/api/gpt`, {
+        dream,
+        gender,
+        age,
+        mbti,
+        department
+      });
       setResult(response.data.data); // 수정된 부분
     } catch (error) {
       console.error(error);
@@ -37,7 +50,10 @@ function App() {
     }
   };
 
-  const isDisabled = dream.length < 5 || dream.length > 100;
+  const handleDreamChange = (e) => {
+    setDream(e.target.value);
+    setCharCount(e.target.value.length);
+  };
 
   const handlePhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
@@ -53,25 +69,61 @@ function App() {
     }
   };
 
-  const handleDreamChange = (e) => {
-    setDream(e.target.value);
-    setCharCount(e.target.value.length);
-  };
+  const isDisabled = dream.length < 5 || dream.length > 100 || !gender || !age || !mbti || !department;
 
+  // 기존 이벤트 핸들러 및 코드 생략
 
   return (
       <div className="App">
         <h1>도슨트</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="dream-input">꿈을 입력해보세요:</label>
+          {/* 설문조사 입력 칸 */}
+          <div>
+            <label htmlFor="gender-input">성별:</label>
+            <input
+                id="gender-input"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                required
+            />
+          </div>
+          <div>
+            <label htmlFor="age-input">나이:</label>
+            <input
+                id="age-input"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                required
+            />
+          </div>
+          <div>
+            <label htmlFor="mbti-input">MBTI:</label>
+            <input
+                id="mbti-input"
+                value={mbti}
+                onChange={(e) => setMbti(e.target.value)}
+                required
+            />
+          </div>
+          <div>
+            <label htmlFor="department-input">학과:</label>
+            <input
+                id="department-input"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                required
+            />
+          </div>
+
+          <label htmlFor="dream-input">꿈을 입력해보세요(5자~100자):</label>
           <div className="textarea-container">
-        <textarea
-            id="dream-input"
-            value={dream}
-            onChange={(e) => handleDreamChange(e)}
-            rows="4"
-            cols="50"
-        ></textarea>
+            <textarea
+                id="dream-input"
+                value={dream}
+                onChange={(e) => handleDreamChange(e)}
+                rows="4"
+                cols="50"
+            ></textarea>
             <div className="char-count">{charCount}</div>
           </div>
           <button type="submit" disabled={loading || isDisabled}>
@@ -110,7 +162,6 @@ function App() {
         )}
       </div>
   );
-
 }
 
 export default App;

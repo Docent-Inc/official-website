@@ -34,7 +34,7 @@ const ImageSlider = ({ images, interval }) => {
 
     return (
         <div>
-            <h1>꿈을 그리고 있어요</h1>
+            <h1>꿈 그리는 중...</h1>
             <ProgressBar progress={progress} />
             <img
                 src={`${process.env.PUBLIC_URL}/img/${images[currentImageIndex]}`}

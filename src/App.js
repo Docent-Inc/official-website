@@ -46,6 +46,7 @@ function App() {
       return;
     }
     setLoading(true);
+
     // try {
     //   const response = await axios.post(`/api/gpt/survey`, {
     //     dream,
@@ -61,6 +62,8 @@ function App() {
     // } finally {
     //   setLoading(false);
     // }
+
+    console.log(JSONSurvey_change);
     axios.post(`/api/gpt/survey`, JSONSurvey_change,{
         withCredentials: true
     }).then((response)=>{

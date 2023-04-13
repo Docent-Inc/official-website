@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect ,useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import ImageSlider from './component/ImageSlider';
@@ -24,7 +24,20 @@ function App() {
 
   const imageKeys = Object.keys(images);
 
+  const JSONSurvey = new Object();
+  const [JSONSurvey_change, setJSONSurvey_change] = useState({});
+
   console.log(imageKeys);
+
+  useEffect(()=>{
+    JSONSurvey.dream = dream;
+    JSONSurvey.gender = gender;
+    JSONSurvey.age = age;
+    JSONSurvey.mbti = mbti;
+    JSONSurvey.department = department;
+
+    setJSONSurvey_change(JSON.stringify(JSONSurvey));
+  },[dream,gender,age,mbti,department])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,21 +46,32 @@ function App() {
       return;
     }
     setLoading(true);
-    try {
-      const response = await axios.post(`/api/gpt/survey`, {
-        dream,
-        gender,
-        age,
-        mbti,
-        department
-      });
-      setResult(response.data.data); // 수정된 부분
-    } catch (error) {
+    // try {
+    //   const response = await axios.post(`/api/gpt/survey`, {
+    //     dream,
+    //     gender,
+    //     age,
+    //     mbti,
+    //     department
+    //   });
+    //   setResult(response.data.data); // 수정된 부분
+    // } catch (error) {
+    //   console.error(error);
+    //   alert("OpenAI 정책에 맞지 않는 내용이 포함되어 있습니다. 다시 입력해주세요.");
+    // } finally {
+    //   setLoading(false);
+    // }
+    axios.post(`/api/gpt/survey`, JSONSurvey_change,{
+        withCredentials: true
+    }).then((response)=>{
+      console.log(response.data.data);
+      setResult(response.data.data);
+    }).catch((error)=>{
       console.error(error);
       alert("OpenAI 정책에 맞지 않는 내용이 포함되어 있습니다. 다시 입력해주세요.");
-    } finally {
-      setLoading(false);
-    }
+    }).finally(()=>{
+        setLoading(false);
+    })
   };
 
   const handleDreamChange = (e) => {

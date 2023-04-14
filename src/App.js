@@ -306,7 +306,7 @@ function App() {
                   <label htmlFor="phone-number-input">아이디를 입력해주세요:</label>
                   <input
                       id="phone-number-input"
-                      type="tel"
+                      type="text"
                       pattern="\d{20}"
                       value={phoneNumber}
                       onChange={handlePhoneNumberChange}

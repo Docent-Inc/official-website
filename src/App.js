@@ -27,6 +27,34 @@ function App() {
 
   const captureRef = useRef(null);
 
+  const scrollToResult = () => {
+    if (result && captureRef.current) {
+      captureRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    if (result) {
+      captureRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [result]);
+  // App.js
+
+  // App.js
+
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 200);
+  };
+
+
+
+
+
   const imageKeys = Object.keys(images);
 
   const JSONSurvey = new Object();
@@ -283,7 +311,7 @@ function App() {
             ></textarea>
                 <div className="char-count">{charCount}</div>
               </div>
-              <button type="submit" disabled={loading || isDisabled}>
+              <button type="submit" onClick={scrollToBottom} disabled={loading || isDisabled}>
                 {loading ? 'Loading...' : '꿈 그리기'}
               </button>
           </div>

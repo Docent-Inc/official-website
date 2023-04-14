@@ -394,7 +394,11 @@ button {
   margin-top: 10px;
 }
 
-
+.sticky-submit-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
 
 
 

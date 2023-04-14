@@ -336,7 +336,7 @@ button {
   margin: auto;
 }
 
-.question-container {
+.question-container1 {
   border: 1px solid #000;
   padding: 20px;
   border-radius: 5px;
@@ -359,11 +359,13 @@ button {
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.question-item label {
+  margin-bottom: 10px;
+}
 .question-item input[type="radio"] {
   margin-right: 10px;
 }

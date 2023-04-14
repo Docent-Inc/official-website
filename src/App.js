@@ -136,7 +136,7 @@ function App() {
   return (
       <div className="App">
         <h1>도슨트</h1>
-        <p>안녕하세요!! 저희는 가천대학교 코코네스쿨<br/>2기 도슨트 팀 입니다<br/> 서비스 출시에 앞서 테스트하기 위해 <br/>만들어진 페이지 입니다<br/> 모든 설문에 응답 해주시면 <br/>꿈을 그려보실 수 있습니다<br/> 참여주셔서 감사합니다 😁</p>
+        <p>안녕하세요!!<br/> 저희는 가천대학교 코코네스쿨 2기 <br/> 도슨트 팀 입니다<br/> 서비스 출시에 앞서 테스트하기 위해 <br/>만들어진 페이지 입니다<br/> 모든 설문에 응답 해주시면 <br/>꿈을 그려보실 수 있습니다<br/> 참여주셔서 감사합니다 😁</p>
         <form onSubmit={handleSubmit} style={{ border: '1px solid #000', padding: '20px', borderRadius: '5px' }}>
 
           {/* 설문조사 입력 칸 */}
@@ -199,7 +199,7 @@ function App() {
           </div>
 
 
-              <div className="question-container" >
+              <div className="question-container1" >
             <div className="question-item">
               <label htmlFor="platform-input">* 플랫폼을 기록 목적으로 이용하나요?<br/>(네이버 블로그, 인스타, 일기어플 등)</label>
               <div>
@@ -271,7 +271,7 @@ function App() {
             </div>
           </div>
 
-          <div className="question-container" >
+          <div className="question-container1" >
               <label htmlFor="dream-input">* 꿈을 입력해보세요(5자~100자)</label>
               <div className="textarea-container">
             <textarea className='dreamText'

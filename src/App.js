@@ -27,6 +27,10 @@ function App() {
   const JSONSurvey = new Object();
   const [JSONSurvey_change, setJSONSurvey_change] = useState({});
 
+  const [isPlatformUsed, setIsPlatformUsed] = useState(false);
+  const [isMale, setIsMale] = useState(false);
+  const [platformUsage, setPlatformUsage] = useState('');
+
   console.log(imageKeys);
 
   useEffect(()=>{
@@ -47,24 +51,8 @@ function App() {
     }
     setLoading(true);
 
-    // try {
-    //   const response = await axios.post(`/api/gpt/survey`, {
-    //     dream,
-    //     gender,
-    //     age,
-    //     mbti,
-    //     department
-    //   });
-    //   setResult(response.data.data); // 수정된 부분
-    // } catch (error) {
-    //   console.error(error);
-    //   alert("OpenAI 정책에 맞지 않는 내용이 포함되어 있습니다. 다시 입력해주세요.");
-    // } finally {
-    //   setLoading(false);
-    // }
-
     console.log(JSONSurvey_change);
-    axios.post(`/api/gpt/survey`, JSONSurvey_change,{
+    axios.post(`/api/gpt/survey`, {dream, gender, age, mbti, department},{
         withCredentials: true
     }).then((response)=>{
       console.log(response.data.data);
@@ -106,23 +94,56 @@ function App() {
         <form onSubmit={handleSubmit}>
           {/* 설문조사 입력 칸 */}
           <div>
-            <label htmlFor="gender-input">성별:</label>
-            <input
-                id="gender-input"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                required
-            />
+            <label htmlFor="platform-input">플랫폼을 기록 목적으로 이용하나요? (네이버 블로그, 인스타, 일기어플 등):</label>
+            <div>
+              <input
+                  type="radio"
+                  id="yes"
+                  name="platform"
+                  value="네"
+                  checked={platformUsage === "네"}
+                  onChange={(e) => setPlatformUsage(e.target.value)}
+              />
+              <label htmlFor="yes">네</label>
+            </div>
+            <div>
+              <input
+                  type="radio"
+                  id="no"
+                  name="platform"
+                  value="아니요"
+                  checked={platformUsage === "아니요"}
+                  onChange={(e) => setPlatformUsage(e.target.value)}
+              />
+              <label htmlFor="no">아니요</label>
+            </div>
           </div>
           <div>
-            <label htmlFor="age-input">나이:</label>
-            <input
-                id="age-input"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                required
-            />
+            <label htmlFor="gender-input">성별:</label>
+            <div>
+              <input
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="남성"
+                  checked={gender === "남성"}
+                  onChange={(e) => setGender(e.target.value)}
+              />
+              <label htmlFor="male">남성</label>
+            </div>
+            <div>
+              <input
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="여성"
+                  checked={gender === "여성"}
+                  onChange={(e) => setGender(e.target.value)}
+              />
+              <label htmlFor="female">여성</label>
+            </div>
           </div>
+
           <div>
             <label htmlFor="mbti-input">MBTI:</label>
             <input
@@ -144,13 +165,13 @@ function App() {
 
           <label htmlFor="dream-input">꿈을 입력해보세요(5자~100자):</label>
           <div className="textarea-container">
-            <textarea
-                id="dream-input"
-                value={dream}
-                onChange={(e) => handleDreamChange(e)}
-                rows="4"
-                cols="50"
-            ></textarea>
+        <textarea
+            id="dream-input"
+            value={dream}
+            onChange={(e) => handleDreamChange(e)}
+            rows="4"
+            cols="50"
+        ></textarea>
             <div className="char-count">{charCount}</div>
           </div>
           <button type="submit" disabled={loading || isDisabled}>
@@ -190,5 +211,4 @@ function App() {
       </div>
   );
 }
-
 export default App;

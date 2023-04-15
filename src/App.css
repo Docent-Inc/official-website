@@ -367,6 +367,8 @@ button {
   margin-bottom: 10px;
 }
 .question-item input[type="radio"] {
+  width: 20px; /* 원하는 크기로 조정 */
+  height: 20px; /* 원하는 크기로 조정 */
   margin-right: 10px;
 }
 
@@ -387,8 +389,8 @@ button {
 }
 
 .question-container1 .question-item div input[type="radio"] {
-  width: auto;
-  height: auto;
+  width: 23px; /* 원하는 크기로 조정 */
+  height: 23px; /* 원하는 크기로 조정 */
 }
 .dreamText{
   margin-top: 10px;

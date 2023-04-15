@@ -140,10 +140,10 @@ function App() {
   const handleSendPhoneNumber = async () => {
     try {
       await axios.post('/api/gpt/test', {phoneNumber, dreamName: dream});
-      alert('전화번호가 성공적으로 전송되었습니다.');
+      alert('성공적으로 전송되었습니다.');
     } catch (error) {
       console.error(error);
-      alert('전화번호 전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+      alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
@@ -157,9 +157,6 @@ function App() {
       !gender ||
       !mbti ||
       !department;
-
-
-  // 기존 이벤트 핸들러 및 코드 생략
 
   return (
       <div className="App">
@@ -340,7 +337,7 @@ function App() {
                       onChange={handlePhoneNumberChange}
                       required
                   />
-                  <button onClick={handleSendPhoneNumber} disabled={!phoneNumber || phoneNumber.length < 1 || phoneNumber.length > 11}>
+                  <button onClick={handleSendPhoneNumber} disabled={!phoneNumber || phoneNumber.length < 1}>
                     전송
                   </button>
                 </div>

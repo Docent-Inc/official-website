@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ImageSlider.css';
 
 const ImageSlider = ({ images, interval }) => {
-    const startImageIndex = Math.floor(Math.random() * (28 - 1 + 1)) + 1;
+    const startImageIndex = Math.floor(Math.random() * (39 - 1)) + 1;
     const [currentImageIndex, setCurrentImageIndex] = useState(startImageIndex);
     const [progress, setProgress] = useState(0);
 

@@ -34,8 +34,10 @@ function App() {
   };
 
   useEffect(() => {
-    if (result) {
-      captureRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (result && captureRef.current) {
+      setTimeout(() => {
+        captureRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 500); // 0.3초(300 밀리초) 뒤에 스크롤 이동
     }
   }, [result]);
   // App.js
@@ -161,7 +163,7 @@ function App() {
   return (
       <div className="App">
         <h1>도슨트</h1>
-        <p>안녕하세요!!<br/> 저희는 가천대학교 코코네스쿨 2기 <br/> 도슨트 팀 입니다<br/> 서비스 출시에 앞서 테스트하기 위해 <br/>만들어진 페이지 입니다<br/> 모든 설문에 응답 해주시면 <br/>꿈을 그려보실 수 있습니다<br/> 참여주셔서 감사합니다 😁</p>
+        <p>안녕하세요!!<br/> 저희는 가천대학교 코코네스쿨 2기 <br/> 도슨트 팀 입니다<br/> 서비스 출시에 앞서 테스트하기 위해 <br/>만들어진 페이지 입니다<br/> 모든 설문에 응답 해주시면 <br/>꿈을 그려보실 수 있습니다<br/> 참여주셔서 감사합니다 😁<br/>*잘 때 꾸는 꿈</p>
         <form onSubmit={handleSubmit} style={{ border: '1px solid #000', padding: '20px', borderRadius: '5px' }}>
 
           {/* 설문조사 입력 칸 */}

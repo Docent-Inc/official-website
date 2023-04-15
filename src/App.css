@@ -18,6 +18,7 @@ h1 {
 p {
   text-align: justify;
   margin: 2%;
+  font-size: 20px;
 }
 .App-header {
   background-color: #282c34;
@@ -365,6 +366,7 @@ button {
 
 .question-item label {
   margin-bottom: 10px;
+  font-size: 20px;
 }
 .question-item input[type="radio"] {
   width: 20px; /* 원하는 크기로 조정 */

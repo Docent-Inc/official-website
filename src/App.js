@@ -135,6 +135,15 @@ function App() {
     setCharCount(e.target.value.length);
   };
 
+  const copyToClipboard = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.textContent = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  };
+
   const handlePhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
   };
@@ -147,6 +156,20 @@ function App() {
       console.error(error);
       alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
+  };
+  const handleCopyUrl = () => {
+    const clipboard = new Clipboard('.copy-button', {
+      text: () => 'https://bmongsmong.com',
+    });
+
+    clipboard.on('success', (e) => {
+      alert('복사되었습니다!');
+      e.clearSelection();
+    });
+
+    clipboard.on('error', (e) => {
+      console.error('복사 실패:', e);
+    });
   };
 
   const isDisabled =
@@ -341,6 +364,9 @@ function App() {
                   />
                   <button onClick={handleSendPhoneNumber} disabled={!phoneNumber || phoneNumber.length < 1}>
                     전송
+                  </button>
+                  <button className="copy-button" onClick={handleCopyUrl}>
+                    URL 복사
                   </button>
                 </div>
               </>

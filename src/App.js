@@ -2,6 +2,7 @@ import React, { useState, useEffect ,useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import ImageSlider from './component/ImageSlider';
+import Clipboard from 'clipboard';
 import loadimages from "./function/loadimages";
 
 const images = loadimages();

@@ -353,7 +353,7 @@ function App() {
                   <p>{result.today_luck}</p>
                 </div>
                 <div style={{ margin: '2%' }}>
-                  <p>인스타그램 아이디를 남겨주시면 추첨을 통해 스타벅스 커피 쿠폰을 드립니다.</p>
+                  <p>인스타그램 아이디를 남겨주시면 추첨을 통해 스타벅스 커피 쿠폰을 드립니다.<br/><br/>공식 인스타그램 아이디 : _docent_official</p>
                   <label htmlFor="phone-number-input">아이디를 입력해주세요:</label>
                   <input
                       id="phone-number-input"

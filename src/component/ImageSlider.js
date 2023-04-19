@@ -15,7 +15,7 @@ const ImageSlider = ({ images, interval }) => {
     }, [images, interval]);//
 
     useEffect(() => {
-        const totalTime = 50000; //
+        const totalTime = 60000; //
         const intervalTime = 1000; // 1초마다 진행바 업데이트
         const increment = (intervalTime / totalTime) * 100;
 

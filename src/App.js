@@ -14,6 +14,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [charCount, setCharCount] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [submitDisabled, setSubmitDisabled] = useState(false);
+
 
   // 설문조사 상태 변수
   const [gender, setGender] = useState('');
@@ -150,14 +152,24 @@ function App() {
   };
 
   const handleSendPhoneNumber = async () => {
+    // 전송 중일 때 버튼을 비활성화합니다.
+    setSubmitDisabled(true);
+
     try {
-      await axios.post('/api/gpt/test', {phoneNumber, dreamName: dream});
+      await axios.post('/api/gpt/test', { phoneNumber, dreamName: dream });
       alert('성공적으로 전송되었습니다.');
+
+      // 전송이 성공적으로 완료되면 phoneNumber 상태를 초기화합니다.
+      setPhoneNumber('');
     } catch (error) {
       console.error(error);
       alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      // 전송이 완료된 후 버튼을 다시 활성화합니다.
+      setSubmitDisabled(false);
     }
   };
+
   const handleCopyUrl = () => {
     const clipboard = new Clipboard('.copy-button', {
       text: () => 'https://bmongsmong.com',
@@ -363,7 +375,7 @@ function App() {
                       onChange={handlePhoneNumberChange}
                       required
                   />
-                  <button onClick={handleSendPhoneNumber} disabled={!phoneNumber || phoneNumber.length < 1}>
+                  <button onClick={handleSendPhoneNumber} disabled={!phoneNumber || phoneNumber.length < 1 || submitDisabled}>
                     전송
                   </button>
                   <button className="copy-button" onClick={handleCopyUrl}>

@@ -206,7 +206,7 @@ function App() {
         <p>인스타그램 아이디를 팔로우하시면 서비스 출시 소식을 가장 먼저 접하실 수 있습니다.</p>
         <p>공식 인스타그램 아이디 : <a href="https://www.instagram.com/_docent_official" target="_blank" rel="noopener noreferrer">@_docent_official</a></p>
       </div>
-    );
+  );
     }
     export default App;
 

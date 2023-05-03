@@ -34,4 +34,21 @@ export async function registerUser(email, username, nickname, password) {
     return response.json();
 }
 
+export const getDiaryList = async (page) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/diary/list?page=${page}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching diary list:', error);
+    }
+};
+
+
 // Add other API functions here

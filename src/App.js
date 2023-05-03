@@ -13,8 +13,7 @@ function App() {
                 <Route exact path="/" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route
-                    path="/diary-list"
-                    element={isAuthenticated ? <DiaryList /> : <Navigate to="/" />}
+                    path="/diary-list" element={<DiaryList />}
                 />
             </Routes>
         </Router>

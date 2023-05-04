@@ -8,7 +8,12 @@ function Callback() {
     useEffect(() => {
         const fetchAccessToken = async () => {
             const url = new URL(window.location.href);
-            alert(url);
+            const code = url.searchParams.get("code");
+            const result = await kakaoRedirect(code);
+            if (result.success) {
+                alert("로그인에 성공했습니다.");
+                alert(result.data);
+            }
             // 나머지 로직을 여기에 추가하세요.
         };
 

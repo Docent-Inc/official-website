@@ -24,6 +24,27 @@ export async function loginUser(username, password) {
     }
 }
 
+export async function kakaoLogin() {
+    try {
+        const response = await fetch("/api/auth/kakao", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data; // 로그인 성공 시 반환된 데이터 반환
+        } else {
+            throw new Error("Login failed"); // 로그인 실패 시 오류 발생
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 export async function registerUser(email, username, nickname, password) {
     const response = await fetch(`/api/auth/signup`, {
         method: "POST",

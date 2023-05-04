@@ -3,8 +3,6 @@ import {getAccessToken, kakaoLogin, kakaoRedirect} from "../services/apiService"
 import { useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 import "../css/LoginPage.css";
-import {fetchData} from "./fetchData";
-
 
 function LoginPage() {
     const navigate = useNavigate();

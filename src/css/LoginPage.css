@@ -1,0 +1,39 @@
+.kakao-login-button {
+    background-color: #FFEB00;
+    color: #3C1E1E;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.kakao-login-button:hover {
+    background-color: #FFD600;
+}
+
+.kakao-login-button img {
+    width: 20px;
+    height: 20px;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.logo {
+    width: 180px; /* 로고 크기를 조절하려면 이 값을 변경하세요 */
+    margin-bottom: 30px; /* 로고와 로그인 버튼 사이의 간격을 조절하려면 이 값을 변경하세요 */
+}
+

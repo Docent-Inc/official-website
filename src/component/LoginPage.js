@@ -3,6 +3,7 @@ import {getAccessToken, kakaoLogin, kakaoRedirect} from "../services/apiService"
 import { useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 import "../css/LoginPage.css";
+import {fetchData} from "./fetchData";
 
 
 function LoginPage() {
@@ -13,7 +14,6 @@ function LoginPage() {
             const result = await kakaoLogin();
             if (result.success) {
                 window.location.href = result.data.url;
-
             } else {
                 alert("로그인에 실패했습니다.");
             }
@@ -21,6 +21,7 @@ function LoginPage() {
             console.error(error);
         }
     };
+
 
     return (
         <div className="login-container">

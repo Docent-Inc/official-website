@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAccessToken } from "../services/apiService";
+import "../css/Callback.css";
 
 function Callback() {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function Callback() {
                 // 로그인 성공
                 localStorage.setItem("access_token", result.access_token);
                 localStorage.setItem("refresh_token", result.refresh_token);
+                localStorage.setItem("user_email", result.user_email);
                 navigate("/main");
             } else {
                 // 로그인 실패
@@ -32,8 +34,14 @@ function Callback() {
     }, []);
 
     return (
-        <div>
-            <h1>로그인 처리 중...</h1>
+        <div className={"processing-container"}>
+            <span className={"processing-text"}>
+                로그인 처리 중
+                <span className={"dot"}>.</span>
+                <span className={"dot"}>.</span>
+                <span className={"dot"}>.</span>
+            </span>
+
         </div>
     );
 }

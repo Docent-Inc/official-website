@@ -32,7 +32,9 @@ export async function getAccessToken(code) {
 
         if (response.ok) {
             const data = await response.json();
+            console.log("data :",data);
             return data; // 로그인 성공 시 반환된 데이터 반환
+
         } else {
             throw new Error("Login failed"); // 로그인 실패 시 오류 발생
         }
@@ -45,7 +47,6 @@ export async function getAccessToken(code) {
 export const getDiaryList = async (page) => {
     try {
         const accessToken = localStorage.getItem("accessToken");
-        console.log(accessToken);
 
         const response = await fetch(`/api/diary/list?page=${page}`, {
             headers: {

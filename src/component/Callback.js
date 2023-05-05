@@ -13,9 +13,14 @@ function Callback() {
             const result = await getAccessToken(code);
             if (result && result.success) {
                 // 로그인 성공
-                localStorage.setItem("access_token", result.access_token);
-                localStorage.setItem("refresh_token", result.refresh_token);
-                localStorage.setItem("user_email", result.user_email);
+                console.log('result:', result);
+                // localStorage.setItem("access_token", result.access_token);
+                // localStorage.setItem("refresh_token", result.refresh_token);
+                // localStorage.setItem("user_email", result.user_email);
+                //
+                // const token = localStorage.getItem("access_token");
+                //
+                // console.log('callbacktoken:', token);
                 navigate("/main");
             } else {
                 // 로그인 실패

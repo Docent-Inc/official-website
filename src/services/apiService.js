@@ -19,7 +19,7 @@ export async function kakaoLogin() {
     }
 }
 
-// 카카오 로그인 후 리다이렉트 url에서 code를 추출후 서버로 로그인을 요청하는 함수
+
 export async function getAccessToken(code) {
     try {
         console.log("code: ", code);
@@ -31,9 +31,20 @@ export async function getAccessToken(code) {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            console.log("data :",data);
-            return data; // 로그인 성공 시 반환된 데이터 반환
+            const result = await response.json();
+            console.log("result :", result);
+
+            // 로컬 스토리지에 데이터 저장
+            localStorage.setItem("access_token", result.data.access_token);
+            localStorage.setItem("refresh_token", result.data.refresh_token);
+            localStorage.setItem("user_email", result.data.user_email);
+
+            // 로컬 스토리지에 저장된 데이터 확인
+            console.log("Stored access_token: ", localStorage.getItem("access_token"));
+            console.log("Stored refresh_token: ", localStorage.getItem("refresh_token"));
+            console.log("Stored user_email: ", localStorage.getItem("user_email"));
+
+            return result; // 로그인 성공 시 반환된 데이터 반환
 
         } else {
             throw new Error("Login failed"); // 로그인 실패 시 오류 발생
@@ -43,11 +54,11 @@ export async function getAccessToken(code) {
     }
 }
 
-// 다이어리 데이터 목록을 서버로부터 받아오는 함수
+
+
 export const getDiaryList = async (page) => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
-
+        const accessToken = localStorage.getItem('access_token');
         const response = await fetch(`/api/diary/list?page=${page}`, {
             headers: {
                 'Accept': 'application/json',
@@ -60,3 +71,4 @@ export const getDiaryList = async (page) => {
         console.error('Error fetching diary list:', error);
     }
 };
+

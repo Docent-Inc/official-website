@@ -19,7 +19,7 @@ export async function kakaoLogin() {
     }
 }
 
-
+// 토큰 가져오기
 export async function getAccessToken(code) {
     try {
         console.log("code: ", code);
@@ -54,8 +54,7 @@ export async function getAccessToken(code) {
     }
 }
 
-
-
+//다이어리 목록 불러오기
 export const getDiaryList = async (page) => {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -72,3 +71,30 @@ export const getDiaryList = async (page) => {
     }
 };
 
+// -- 다이어리 좋아요 --
+// 다이어리 좋아요
+export async function likeDiary(accessToken, diaryId) {
+    const response = await fetch(`/api/diary/like?diary_id=${diaryId}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'diary-id': diaryId
+        },
+    });
+
+    const result = await response.json();
+    return result;
+}
+// 다이어리 좋아요 취소
+export async function unlikeDiary(accessToken, diaryId) {
+    const response = await fetch(`/api/diary/unlike?diary_id=${diaryId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'diary-id': diaryId
+        },
+    });
+
+    const result = await response.json();
+    return result;
+}

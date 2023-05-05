@@ -72,3 +72,20 @@ export const getDiaryList = async (page) => {
     }
 };
 
+export const getMyDiaryList = async (page) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/diary/list/mydiary/${page}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching diary list:', error);
+    }
+};
+

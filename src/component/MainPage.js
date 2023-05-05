@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getDiaryList } from "../services/apiService";
+import { useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 import "../css/MainPage.css";
 
 function MainPage() {
+    const navigate = useNavigate();
     const [diaryList, setDiaryList] = useState([]);
+    const handleButtonClick = () => {
+        navigate("/mypage");
+    };
 
     useEffect(() => {
         const fetchDiaryList = async () => {
@@ -48,7 +53,7 @@ function MainPage() {
             <div className="footer">
                 <button>🏠</button>
                 <button>➕</button>
-                <button>👤</button>
+                <button onClick={handleButtonClick}>👤</button>
             </div>
         </div>
     );

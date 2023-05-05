@@ -26,13 +26,15 @@ body {
 }
 
 
+/* 변경된 코드 */
 .container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 70px;
-    padding: 0 5px;
+    padding-bottom: 50px; /* 푸터의 높이보다 약간 더 큰 값 */
 }
+
 
 
 .diary-list-item {
@@ -79,13 +81,20 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 40px;
+    height: 70px; /* 높이를 더 높게 변경 */
     background-color: white;
     position: fixed;
-    margin-bottom: 30px;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 100;
     box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer button {
+    background: none; /* 버튼의 배경을 없애줍니다 */
+    border: none; /* 버튼의 테두리를 없애줍니다 */
+    font-size: 24px; /* 아이콘 크기를 원하는 크기로 조절합니다 */
+    cursor: pointer; /* 마우스 오버 시 포인터 커서가 나타나도록 설정합니다 */
+    margin-top: -15px; /* 버튼들의 위치를 위로 옮깁니다 */
 }

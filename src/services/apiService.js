@@ -19,7 +19,7 @@ export async function kakaoLogin() {
     }
 }
 
-
+// 토큰 가져오기
 export async function getAccessToken(code) {
     try {
         console.log("code: ", code);
@@ -54,8 +54,7 @@ export async function getAccessToken(code) {
     }
 }
 
-
-
+//다이어리 목록 불러오기
 export const getDiaryList = async (page) => {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -72,3 +71,141 @@ export const getDiaryList = async (page) => {
     }
 };
 
+// -- 다이어리 좋아요 --
+// 다이어리 좋아요
+export async function likeDiary(accessToken, diaryId) {
+    const response = await fetch(`/api/diary/like?diary_id=${diaryId}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+    });
+
+    const result = await response.json();
+    return result;
+}
+// 다이어리 좋아요 취소
+export async function unlikeDiary(accessToken, diaryId) {
+    const response = await fetch(`/api/diary/unlike?diary_id=${diaryId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+    });
+
+    const result = await response.json();
+    return result;
+}
+
+
+
+// 꿈 일기 생성
+export async function createDream(dText) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/generate/dream?text=${dText}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+
+        const Dream = await response.json();
+        console.log("dream:",Dream);
+        return Dream;
+    } catch (error) {
+        console.error('Error fetching Dream content:', error);
+    }
+};
+export async function addDreamImage(textId) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/generate/image?textId=${textId}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const addImage = await response.json();
+        return addImage;
+    } catch (error) {
+        console.error('Error fetching Dream Image:', error);
+    }
+};
+export async function dreamChecklist(id) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/generate/checklist?textId=${id}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const checklist = await response.json();
+        return checklist;
+    } catch (error) {
+        console.error('Error fetching Dream checklist:', error);
+    }
+};
+export async function createDiary(dreamData) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch('/api/diary/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(dreamData)
+        });
+
+        const result = await response.json();
+        console.log("result:",result);
+        if (response.ok) {
+            return result;
+        } else {
+            throw new Error(result.message);
+        }
+    } catch (error) {
+        console.error('Error creating diary:', error);
+    }
+}
+// mypage
+export const getMyDiaryList = async (page) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/diary/list/mydiary/${page}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching mydiary list:', error);
+    }
+};
+// Diary Read
+export const getDiary = async (diaryId) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:",accessToken);
+        const response = await fetch(`/api/diary/read?diary_id=${diaryId}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const data = await response.json();
+        console.log("data:",data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Read:', error);
+    }
+}

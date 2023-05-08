@@ -1,4 +1,4 @@
-/* 모바일 전용 설정 */
+ 모바일 전용 설정
 body {
     margin: 0;
     padding: 0;
@@ -21,32 +21,37 @@ body {
 }
 
 .logo {
-    margin-top: 30px;
     width: 150px;
 }
 
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-top: 70px;
-    padding: 0 5px;
-}
+/* 변경된 코드 */
+ .main_container {
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: 10px;
+     width: 100%;
+     margin-top: 90px;
+     margin-bottom: 80px;
+     align-items: center;
+     justify-items: center;
+ }
 
 
-.diary-list-item {
+
+.main-list-item {
+    width: 100%;
     display: flex;
     flex-direction: column;
     border: 1px solid #f0f0f0;
-    padding: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 
-.diary-list-item img {
+.main-list-item img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -54,7 +59,7 @@ body {
     margin-bottom: 10px;
 }
 
-.diary-list-item button {
+.main-list-item button {
     font-size: 18px;
     background: none;
     border: none;
@@ -65,27 +70,13 @@ body {
     margin-bottom: 5px;
 }
 
-.diary-list-item button {
+.main-list-item button {
     font-size: 18px;
     background: none;
     border: none;
     margin-right: 5px;
 }
-.diary-list-item p {
+.main-list-item p {
     margin: 0;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 40px;
-    background-color: white;
-    position: fixed;
-    margin-bottom: 30px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }

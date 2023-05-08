@@ -13,6 +13,7 @@ function LoginPage() {
             const result = await kakaoLogin();
             if (result.success) {
                 window.location.href = result.data.url;
+                console.log('result:', result);
             } else {
                 alert("로그인에 실패했습니다.");
             }

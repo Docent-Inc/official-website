@@ -2,7 +2,7 @@
 export async function kakaoLogin() {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
-        const response = await fetch("/api/auth/kakao", {
+        const response = await fetch("/api/auth/kakao/test", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -25,7 +25,7 @@ export async function getAccessToken(code) {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
-        const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
+        const response = await fetch(`/api/auth/kakao/callback/test?code=${code}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -228,5 +228,28 @@ export const getDiary = async (diaryId) => {
         return data;
     } catch (error) {
         console.error('Error fetching Diary Read:', error);
+    }
+}
+
+// 공개 여부 수정
+export async function updatePublicStatus(diaryId, isPublic) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/diary/update/ispublic?diary_id=${diaryId}&is_public=${isPublic}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            return result;
+        } else {
+            throw new Error(result.message);
+        }
+    } catch (error) {
+        console.error('Error updating public status:', error);
     }
 }

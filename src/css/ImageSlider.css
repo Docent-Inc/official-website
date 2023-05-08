@@ -1,0 +1,38 @@
+.image-slider {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.slider-image {
+    position: absolute;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+.slider-image img {
+    width: 100%;
+    height: auto;
+}
+
+.image-index {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.image-index .separator {
+    margin: 0 5px;
+}

@@ -1,39 +1,63 @@
-.kakao-login-button {
-    background-color: #FFEB00;
-    color: #3C1E1E;
-    font-weight: bold;
-    font-size: 16px;
-    border: none;
-    border-radius: 3px;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-.kakao-login-button:hover {
-    background-color: #FFD600;
-}
-
-.kakao-login-button img {
-    width: 20px;
-    height: 20px;
-}
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 16px;
+    height: 100vh;
+    background-color: #ffffff;
+    max-width: 100%;
 }
 
-.logo {
-    width: 180px; /* 로고 크기를 조절하려면 이 값을 변경하세요 */
-    margin-bottom: 30px; /* 로고와 로그인 버튼 사이의 간격을 조절하려면 이 값을 변경하세요 */
+.login-container .logo {
+    width: 80%;
+    height: auto;
+    margin-top: 10%;
 }
 
+h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.kakao-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.kakao-login-button img {
+    margin-top: 50%;
+    width: 5%;
+    height: auto;
+}
+
+.kakao-login-button:focus {
+    outline: none;
+}
+
+/* 반응형 웹페이지 설정 */
+@media (max-width: 767px) {
+    .login-container .logo {
+        width: 80%;
+        margin-top: 40%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .kakao-login-button img {
+        margin-top: 60%;
+        width: 50%;
+    }
+}

@@ -4,6 +4,8 @@ import LoginPage from './component/LoginPage';
 import MainPage from "./component/MainPage";
 import Callback from "./component/Callback";
 import MyPage from "./component/MyPage";
+import CreateDream from "./component/CreateDream";
+import DiaryRead from "./component/DiaryRead";
 
 function App() {
     return (
@@ -13,6 +15,8 @@ function App() {
                 <Route path="/kakao" element={<Callback />} />
                 <Route path="/main" element={<MainPage /> } />
                 <Route path="/mypage" element={<MyPage /> } />
+                <Route path="/createdream" element={<CreateDream /> } />
+                <Route path="/diaryread/:diaryId" element={<DiaryRead /> } />
             </Routes>
         </Router>
     );

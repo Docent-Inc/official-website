@@ -1,48 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { getMyDiaryList } from "../services/apiService";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/MyPage.css";
+import Footer from "./Footer";
 
 function MyPage() {
-    const [diaries, setDiaries] = useState([]);
     const navigate = useNavigate();
+    const [diaryList, setDiaryList] = useState([]);
+    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false)
+    const [hasMore, setHasMore] = useState(true);
 
-    const handleGetMyDiaryList = async () => {
-        try {
-            const result = await getMyDiaryList(1);
-            if (result.success) {
-                setDiaries(result.data);
+
+    const fetchMyDiaryList = useCallback(async () => {
+        if (!isLoading && hasMore) {
+            setIsLoading(true);
+            const diary = await getMyDiaryList(page);
+
+            if (diary.success) {
+                console.log('diary:',diary.data);
+                if (diary.data.length > 0) {
+                    setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
+                    setPage((prevPage) => prevPage + 1);
+                } else {
+                    setIsLoading(false);
+                    setHasMore(false);
+                }
             } else {
-                alert("일기 목록을 가져오는데 실패했습니다.");
+                setIsLoading(false);
             }
-        } catch (error) {
-            console.error(error);
+        }
+    }, [isLoading, hasMore, page]);
+
+    const handleScroll = () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollHeight = document.documentElement.scrollHeight;
+
+        if (scrollTop + clientHeight >= scrollHeight - 50) {
+            fetchMyDiaryList();
         }
     };
 
-    useEffect(() => {
-        handleGetMyDiaryList();
-    }, []);
 
-    const handleButtonClick = () => {
-        navigate("/mypage");
-    };
+    useEffect(() => {
+        fetchMyDiaryList();
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [fetchMyDiaryList]);
 
     return (
-        <div className="mypage-container">
-            <h1>MyPage</h1>
-            <div className="image-grid">
-                {diaries.map((diary) => (
-                    <div key={diary.id} className="image-item">
-                        <img src={diary.image_url} alt={diary.dream_name} />
+        <div className="mypage">
+            <header className="mypage-header">
+                <h2>내 꿈 목록</h2>
+            </header>
+            <div className="mypage-container">
+                {diaryList.map((diary) => (
+                    <div key={diary.id} className="mypage-list-item">
+                        {/* Wrap the img element with Link */}
+                        <Link to={`/diaryread/${diary.id}`}>
+                            <img src={diary.image_url} alt={diary.dream_name} />
+                        </Link>
+                        <div className="item-info">
+                            <p>{diary.dream_name}</p>
+                            <div className="item-stats">
+                                <span>👁️ {diary.view_count}</span>
+                                <span>❤️ {diary.like_count}</span>
+                                <span>💬 {diary.comment_count}</span>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
-            <div className="footer">
-                <button>🏠</button>
-                <button>➕</button>
-                <button onClick={handleButtonClick}>👤</button>
-            </div>
+            <Footer />
         </div>
     );
 }

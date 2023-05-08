@@ -1,15 +1,56 @@
+
 import React, { useEffect, useState } from "react";
 import { getDiaryList, likeDiary, unlikeDiary } from "../services/apiService";
 import { useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
+import Footer from "./Footer";
 import "../css/MainPage.css";
 
 function MainPage() {
     const navigate = useNavigate();
     const [diaryList, setDiaryList] = useState([]);
-    const handleButtonClick = () => {
+    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const mypageMove = () => {
         navigate("/mypage");
     };
+    const createDreamMove = () => {
+        navigate("/createdream");
+    };
+    const mainPageMove = () => {
+        navigate("/main");
+    };
+    const fetchDiaryList = async () => {
+        if (!isLoading) {
+            setIsLoading(true);
+            const diary = await getDiaryList(page);
+            console.log("Fetched diary list:", diary);
+
+            if (diary.success) {
+                setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
+                setPage((prevPage) => prevPage + 1);
+            }
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchDiaryList();
+    }, []);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (
+                window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+                diaryList.length > 1 &&
+                !isLoading
+            ) {
+                fetchDiaryList();
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [diaryList, isLoading]);
 
     useEffect(() => {
         const fetchDiaryList = async () => {
@@ -19,10 +60,7 @@ function MainPage() {
             if (diary.success) {
                 setDiaryList(diary.data);
             }
-
-
         };
-        // console.log("diaryID:", diary.id);
         fetchDiaryList();
     }, []);
 
@@ -40,51 +78,44 @@ function MainPage() {
         if (diary.success) {
             setDiaryList(diary.data);
         }
-        if (diary.success) {
-            const updatedDiaryList = diary.data.map((item) => {
-                return { ...item, isLiked: item.is_liked };
-            });
-            setDiaryList(updatedDiaryList);
-        }
     };
 
     return (
-
         <div>
             <header className="header">
                 <img src={logo} alt="DOCENT Logo" className="logo" />
             </header>
-            <div className="container">
+            <div className="main_container">
                 {diaryList.map((diary) => (
-                    <div key={diary.id} className="diary-list-item">
+                    <div key={diary.id} className="main-list-item">
                         <img
                             src={diary.image_url}
                             alt={diary.dream_name}
+                            onClick={() => navigate(`/diaryread/${diary.id}`)}
                         />
+
                         <div className={"buttons-container"}>
                             <button
-                                onClick={() => {
-                                    handleLikeClick(diary.id, diary.isLiked);
-                                }}
+                                onClick={() => handleLikeClick(diary.id, diary.is_liked)}
                             >
-                                {diary.isLiked ? "❤️" : "🤍"} {diary.like_count}
+                                {diary.is_liked ? "❤️" : "🤍"} {diary.like_count}
                             </button>
-
                             <button>💬 {diary.comment_count}</button>
                         </div>
 
                         <p>{diary.dream_name}</p>
-
                     </div>
                 ))}
             </div>
 
             <div className="footer">
-                <button>🏠</button>
-                <button>➕</button>
-                <button onClick={handleButtonClick}>👤</button>
+                <button onClick={mainPageMove}>🏠</button>
+                <button onClick={createDreamMove}>➕</button>
+                <button onClick={mypageMove}>👤</button>
             </div>
+            <Footer />
         </div>
+
     );
 }
 

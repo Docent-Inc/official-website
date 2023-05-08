@@ -4,6 +4,7 @@ import "../css/CreateDream.css";
 import Footer from "./Footer";
 import ImageSlider from "./ImageSlider";
 import { FaRedo } from "react-icons/fa";
+import annyang from "annyang";
 
 function CreateDreamPage() {
     const [dreamText, setDreamText] = useState("");
@@ -15,6 +16,7 @@ function CreateDreamPage() {
     const [imageRefreshCount, setImageRefreshCount] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isPublic, setIsPublic] = useState(true);
+    const [isRecording, setIsRecording] = useState(false);
 
     const handleDreamTextChange = (event) => {
         setDreamText(event.target.value);
@@ -27,6 +29,37 @@ function CreateDreamPage() {
         setIsLoading(false);
         console.log("dreamData:", dreamData);
     };
+
+    const handleVoiceRecording = () => {
+        if (!isRecording) {
+            if (annyang) {
+                // 언어 설정을 추가
+                annyang.setLanguage('ko');
+
+                // 음성 명령 설정
+                var commands = {
+                    "*text": function (text) {
+                        console.log("인식된 음성 텍스트:", text);
+                        setDreamText(dreamText + " " + text);
+                    },
+                };
+
+                // 명령 추가
+                annyang.addCommands(commands);
+
+                // 음성 인식 시작
+                annyang.start();
+            }
+        } else {
+            // 음성 인식 종료
+            if (annyang) {
+                annyang.abort();
+            }
+        }
+
+        setIsRecording(!isRecording);
+    };
+
     const renderChecklistItems = (checklist) => {
         const items = checklist.split('\n');
         return items.map((item, index) => (
@@ -93,14 +126,17 @@ function CreateDreamPage() {
                                 <h2>환영합니다. 꿈을 말씀해주세요.</h2>
                             </header>
                             <div className="container">
-                                <textarea
-                                    className="dream-input"
-                                    value={dreamText}
-                                    onChange={handleDreamTextChange}
-                                    placeholder="꿈을 텍스트로 작성해주세요."
-                                ></textarea>
+                            <textarea
+                                className="dream-input"
+                                value={dreamText}
+                                onChange={handleDreamTextChange}
+                                placeholder="꿈을 텍스트로 작성해주세요."
+                            ></textarea>
                                 <button className="draw-button" onClick={handleDrawButtonClick}>
                                     그리기
+                                </button>
+                                <button className="voice-record-button" onClick={handleVoiceRecording}>
+                                    {isRecording ? "녹음 중지" : "음성으로 그리기"}
                                 </button>
                             </div>
                         </>

@@ -1,6 +1,7 @@
 // 로그인 데이터를 서버로 전송하는 함수
 export async function kakaoLogin() {
     try {
+        // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         const response = await fetch("/api/auth/kakao", {
             method: "POST",
             headers: {
@@ -22,6 +23,7 @@ export async function kakaoLogin() {
 // 토큰 가져오기
 export async function getAccessToken(code) {
     try {
+        // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
         const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
             method: "GET",

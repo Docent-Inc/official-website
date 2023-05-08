@@ -136,11 +136,28 @@ export async function addDreamImage(textId) {
         console.error('Error fetching Dream Image:', error);
     }
 };
-export async function dreamChecklist(id) {
+export async function dreamResolution(id) {
     try {
         const accessToken = localStorage.getItem('access_token');
-        const response = await fetch(`/api/generate/checklist?textId=${id}`, {
-            method: "GET",
+        const response = await fetch(`/api/generate/resolution?textId=${id}`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const resolution = await response.json();
+        return resolution;
+    } catch (error) {
+        console.error('Error fetching Dream resolution', error);
+    }
+};
+
+export async function dreamChecklist(text, id) {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        const response = await fetch(`/api/generate/checklist?text=${text}&textId=${id}`, {
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${accessToken}`,
@@ -151,7 +168,9 @@ export async function dreamChecklist(id) {
     } catch (error) {
         console.error('Error fetching Dream checklist:', error);
     }
-};
+}
+
+
 export async function createDiary(dreamData) {
     try {
         const accessToken = localStorage.getItem('access_token');

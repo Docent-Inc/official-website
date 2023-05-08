@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createDream, dreamChecklist, addDreamImage, createDiary } from "../services/apiService";
+import { createDream, dreamChecklist, addDreamImage, createDiary,dreamResolution } from "../services/apiService";
 import "../css/CreateDream.css";
 import Footer from "./Footer";
 import ImageSlider from "./ImageSlider";
@@ -10,6 +10,7 @@ function CreateDreamPage() {
     const [dreamText, setDreamText] = useState("");
     const [dreamData, setDreamData] = useState(null);
     const [checklistData, setChecklistData] = useState(null);
+    const [resolutionData, setResolutionData] = useState(null); // 이 부분을 추가하세요
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingChecklist, setIsLoadingChecklist] = useState(false);
     const [additionalImages, setAdditionalImages] = useState([]);
@@ -17,6 +18,8 @@ function CreateDreamPage() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isPublic, setIsPublic] = useState(true);
     const [isRecording, setIsRecording] = useState(false);
+    const [isLoadingResolution, setIsLoadingResolution] = useState(false);
+
 
     const handleDreamTextChange = (event) => {
         setDreamText(event.target.value);
@@ -63,19 +66,17 @@ function CreateDreamPage() {
     const renderChecklistItems = (checklist) => {
         const items = checklist.split('\n');
         return items.map((item, index) => (
-            <li key={index}>
-                <input type="checkbox" id={`checklist-item-${index}`} />
-                <label htmlFor={`checklist-item-${index}`}>{item}</label>
-            </li>
+            <li key={index}>{item}</li>
         ));
     };
+
     const handleSaveButtonClick = async () => {
         if (dreamData && checklistData) {
             const diaryData = {
                 dream_name: dreamData.data.dream_name,
                 dream: dreamData.data.dream,
                 image_url: currentImageIndex === 0 ? dreamData.data.image_url : additionalImages[currentImageIndex - 1],
-                resolution: checklistData.data.dream_resolution,
+                resolution: resolutionData.data.dream_resolution,
                 checklist: checklistData.data.today_checklist,
                 is_public: isPublic,
             };
@@ -101,20 +102,47 @@ function CreateDreamPage() {
         setIsPublic(event.target.checked);
     };
 
+    const fetchResolutionAndChecklist = async () => {
+        console.log("dreamData:", dreamData);
+
+        setIsLoadingResolution(true);
+        const resolution = await dreamResolution(dreamData.data.id);
+        console.log("resolution:", resolution);
+        setIsLoadingResolution(false);
+        setResolutionData(resolution); // 이 부분을 추가하세요
+
+        setIsLoadingChecklist(true);
+        const checklist = await dreamChecklist(resolution.data.text, dreamData.data.id);
+        console.log("checklist:", checklist);
+
+        setChecklistData(checklist);
+        setIsLoadingChecklist(false);
+    };
+
+
     useEffect(() => {
         if (dreamData) {
-            const fetchChecklist = async () => {
+            const fetchResolutionAndChecklist = async () => {
                 console.log("dreamData:", dreamData);
+                setIsLoadingResolution(true);
                 setIsLoadingChecklist(true);
-                const checklist = await dreamChecklist(dreamData.data.id);
+                const resolution = await dreamResolution(dreamData.data.id);
+                console.log("resolution:", resolution);
+                setResolutionData(resolution); // 이 부분을 추가하세요
+                setIsLoadingResolution(false);
+
+                const checklist = await dreamChecklist(resolution.data.dream_resolution, dreamData.data.id);
                 console.log("checklist:", checklist);
+
                 setChecklistData(checklist);
+
                 setIsLoadingChecklist(false);
-                console.log("checklist:", checklist);
             };
-            fetchChecklist();
+            setResolutionData(null);
+            fetchResolutionAndChecklist();
         }
     }, [dreamData]);
+
 
     return (
         <div className="create-dream-page">
@@ -167,30 +195,41 @@ function CreateDreamPage() {
                     <div className="dream-content">
                         <p>{dreamData.data.dream}</p>
                     </div>
-                    {isLoadingChecklist ? (
+
+                    {isLoadingResolution ? (
                         <p>해몽 중...</p>
                     ) : (
-                        checklistData && (
+                        resolutionData && (
                             <>
                                 <div className="dream-resolution">
-                                    <p>{checklistData.data.dream_resolution}</p>
+                                    <p>{resolutionData.data.dream_resolution}</p>
                                 </div>
-                                <div className="today-checklist">
-                                    <ul>{renderChecklistItems(checklistData.data.today_checklist)}</ul>
-                                </div>
+                                {isLoadingChecklist ? (
+                                    <p>체크리스트 생성 중...</p>
+                                ) : (
+                                    checklistData && (
+                                        <>
+                                            <div className="today-checklist">
+                                                <ul>{renderChecklistItems(checklistData.data.today_checklist)}</ul>
+                                            </div>
+                                            <div className="public-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    id="is-public-checkbox"
+                                                    checked={isPublic}
+                                                    onChange={handlePublicCheckboxChange}
+                                                />
+                                                <label htmlFor="is-public-checkbox">공개</label>
+                                            </div>
+                                            <button onClick={handleSaveButtonClick}>저장</button>
+                                        </>
+                                    )
+                                )}
                             </>
                         )
                     )}
-                    <div className="public-checkbox">
-                        <input
-                            type="checkbox"
-                            id="is-public-checkbox"
-                            checked={isPublic}
-                            onChange={handlePublicCheckboxChange}
-                        />
-                        <label htmlFor="is-public-checkbox">공개</label>
-                    </div>
-                    <button onClick={handleSaveButtonClick}>저장</button>
+
+
                 </div>
             )}
             <Footer />

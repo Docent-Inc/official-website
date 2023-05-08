@@ -156,7 +156,8 @@ export async function dreamResolution(id) {
 export async function dreamChecklist(text, id) {
     try {
         const accessToken = localStorage.getItem('access_token');
-        const response = await fetch(`/api/generate/checklist?text=${text}&textId=${id}`, {
+        console.log('text:', text);
+        const response = await fetch(`/api/generate/checklist?resolution=${text}&textId=${id}`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

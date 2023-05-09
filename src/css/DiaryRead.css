@@ -9,7 +9,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    position: relative;
+    height: 80px;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -26,6 +27,7 @@ body {
     padding: 0;
     font-size: 24px;
     font-weight: bold;
+    top: 60%;
 }
 
 hr {
@@ -35,7 +37,7 @@ hr {
 
 .image-container {
     position: relative;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 .image-container img {
@@ -58,6 +60,9 @@ hr {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+.view {
+    margin-right: 10px;
 }
 
 .content {
@@ -88,14 +93,17 @@ hr {
 
 .public-status-container {
     position: absolute;
-    top: 410px;
-    right: 10px;
     display: flex;
+    left : 68%;
+    margin-top: 3px;
     align-items: center;
     gap: 5px;
     font-size: 14px;
     color: #666;
-}
+}.
+
+
+
 
 .public-status-button {
     background-color: #4CAF50;
@@ -173,13 +181,75 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-
-.public-status-container {
+.edit-button {
     position: absolute;
-    top: 410px;
-    right: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    left: 10px;
+    top: 10px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+form {
+    margin-bottom: 20px;
 }
 
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+form button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+.edit-button {
+    position: absolute;
+    left: 85%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em; /* 크기를 조절하고 싶다면 이 값을 변경하세요. */
+    color: #606060; /* 색상을 변경하고 싶다면 이 값을 변경하세요. */
+
+}
+.save-button{
+    position: absolute;
+    left: 85%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em; /* 크기를 조절하고 싶다면 이 값을 변경하세요. */
+    color: #606060;
+}
+
+.edit-input  {
+    width: 80%;
+    height: 20px;
+    text-align: center;
+    margin: 50px;
+}
+.save-input {
+    width: 80%;
+    height: 50px;
+    margin-left:28px;
+}

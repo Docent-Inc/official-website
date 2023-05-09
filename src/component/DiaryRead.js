@@ -60,6 +60,7 @@ function DiaryRead() {
                         <span className="view">👁️ {diaryData.data.view_count}</span>
                     </div>
                     <div className="content">
+                        {!isPublic && <p className="private-diary">비공개 게시물 입니다.</p>}
                         <p className="dream">{diaryData.data.dream}</p>
                         <p className="resolution">{diaryData.data.resolution}</p>
                         <ol className="checklist">

@@ -11,6 +11,7 @@ function MainPage() {
     const [diaryList, setDiaryList] = useState([]);
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLiking, setIsLiking] = useState(false);
 
     const mypageMove = () => {
         navigate("/mypage");
@@ -67,16 +68,24 @@ function MainPage() {
     const accessToken = localStorage.getItem("access_token");
 
     const handleLikeClick = async (diaryId, isLiked) => {
-        if (isLiked) {
-            await unlikeDiary(accessToken, diaryId);
-        } else {
-            await likeDiary(accessToken, diaryId);
-        }
+        // 요청이 진행 중이 아닐 때만 API 호출 실행
+        if (!isLiking) {
+            setIsLiking(true);
 
-        // 좋아요 상태 변경 후 게시물 목록 다시 불러오기
-        const diary = await getDiaryList(1);
-        if (diary.success) {
-            setDiaryList(diary.data);
+            if (isLiked) {
+                await unlikeDiary(accessToken, diaryId);
+            } else {
+                await likeDiary(accessToken, diaryId);
+            }
+
+            // 좋아요 상태 변경 후 게시물 목록 다시 불러오기
+            const diary = await getDiaryList(1);
+            if (diary.success) {
+                setDiaryList(diary.data);
+            }
+
+            // API 호출 완료 후 isLiking 상태를 다시 false로 설정
+            setIsLiking(false);
         }
     };
 
@@ -97,6 +106,8 @@ function MainPage() {
                         <div className={"buttons-container"}>
                             <button
                                 onClick={() => handleLikeClick(diary.id, diary.is_liked)}
+                                // 요청이 진행 중일 때 버튼을 비활성화
+                                disabled={isLiking}
                             >
                                 {diary.is_liked ? "❤️" : "🤍"} {diary.like_count}
                             </button>

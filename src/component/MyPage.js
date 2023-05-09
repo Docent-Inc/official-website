@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../css/MyPage.css";
 import Footer from "./Footer";
+import { throttle } from 'lodash';
 
 function MyPage() {
     const navigate = useNavigate();
@@ -12,28 +13,26 @@ function MyPage() {
     const [isLoading, setIsLoading] = useState(false)
     const [hasMore, setHasMore] = useState(true);
 
-
     const fetchMyDiaryList = useCallback(async () => {
-        if (!isLoading && hasMore) {
-            setIsLoading(true);
-            const diary = await getMyDiaryList(page);
+        if (isLoading || !hasMore) return;
 
-            if (diary.success) {
-                console.log('diary:',diary.data);
-                if (diary.data.length > 0) {
-                    setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
-                    setPage((prevPage) => prevPage + 1);
-                } else {
-                    setIsLoading(false);
-                    setHasMore(false);
-                }
+        setIsLoading(true);
+        const diary = await getMyDiaryList(page);
+
+        if (diary.success) {
+            console.log('diary:',diary.data);
+            if (diary.data.length > 0) {
+                setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
+                setPage((prevPage) => prevPage + 1);
             } else {
-                setIsLoading(false);
+                setHasMore(false);
             }
         }
+        setIsLoading(false);
     }, [isLoading, hasMore, page]);
 
-    const handleScroll = () => {
+
+    const handleScroll = throttle(() => {
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         const scrollHeight = document.documentElement.scrollHeight;
@@ -41,7 +40,7 @@ function MyPage() {
         if (scrollTop + clientHeight >= scrollHeight - 50) {
             fetchMyDiaryList();
         }
-    };
+    }, 500);
 
 
     useEffect(() => {

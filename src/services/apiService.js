@@ -120,6 +120,7 @@ export async function createDream(dText) {
         console.error('Error fetching Dream content:', error);
     }
 };
+// 이미지 추가
 export async function addDreamImage(textId) {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -136,6 +137,7 @@ export async function addDreamImage(textId) {
         console.error('Error fetching Dream Image:', error);
     }
 };
+// 꿈 해몽
 export async function dreamResolution(id) {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -152,7 +154,7 @@ export async function dreamResolution(id) {
         console.error('Error fetching Dream resolution', error);
     }
 };
-
+// 꿈 체크리스트
 export async function dreamChecklist(text, id) {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -171,7 +173,7 @@ export async function dreamChecklist(text, id) {
     }
 }
 
-
+// 다이어리 생성
 export async function createDiary(dreamData) {
     try {
         const accessToken = localStorage.getItem('access_token');
@@ -195,6 +197,7 @@ export async function createDiary(dreamData) {
         console.error('Error creating diary:', error);
     }
 }
+
 // mypage
 export const getMyDiaryList = async (page) => {
     try {
@@ -252,5 +255,48 @@ export async function updatePublicStatus(diaryId, isPublic) {
         }
     } catch (error) {
         console.error('Error updating public status:', error);
+    }
+}
+// 다이어리 편집
+export const editDiary = async (diaryId,editData) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:",accessToken);
+        console.log("editData:",editData);
+        const response = await fetch(`/api/diary/update?diary_id=${diaryId}`,  {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(editData)
+        });
+
+
+        const data = await response.json();
+        console.log("data:",data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}
+// 다이어리 삭제
+export const deleteDiary = async (diaryId,editData) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:",accessToken);
+        const response = await fetch(`/api/diary/delete?diary_id=${diaryId}`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(editData)
+        });
+        const data = await response.json();
+        console.log("data:",data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
     }
 }

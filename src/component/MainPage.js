@@ -111,6 +111,7 @@ function MainPage() {
                             >
                                 {diary.is_liked ? "❤️" : "🤍"} {diary.like_count}
                             </button>
+                            <button>👁️ {diary.view_count}</button>
                             <button>💬 {diary.comment_count}</button>
                         </div>
 

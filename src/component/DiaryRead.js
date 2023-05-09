@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDiary } from "../services/apiService";
+import { getDiary, updatePublicStatus } from "../services/apiService";
 import Footer from "./Footer";
 import "../css/DiaryRead.css";
 
 function DiaryRead() {
     const [diaryData, setDiaryData] = useState(null);
+    const [isPublic, setIsPublic] = useState(false);
     const { diaryId } = useParams();
 
     useEffect(() => {
@@ -13,9 +14,17 @@ function DiaryRead() {
             const data = await getDiary(diaryId);
             console.log("Fetched diary:", data);
             setDiaryData(data);
+            setIsPublic(data.data.is_public);
         };
         fetchDiary();
     }, [diaryId]);
+
+    const handlePublicStatusChange = async () => {
+        const newPublicStatus = !isPublic;
+        setIsPublic(newPublicStatus);
+
+        await updatePublicStatus(diaryId, newPublicStatus);
+    };
 
     const getChecklistItems = (checklistStr) => {
         return checklistStr.split('\n');
@@ -31,10 +40,20 @@ function DiaryRead() {
                     </div>
                     <div className="image-container">
                         <img src={diaryData.data.image_url} alt={diaryData.data.dream_name} />
-                        <div className="public-checkbox-container">
-                            <input type="checkbox" className="public-checkbox" checked={diaryData.data.is_public} readOnly />
-                            <label>공개</label>
-                        </div>
+                        {diaryData.data.is_owner && (
+                            <div className="public-status-container">
+                                <label className="switch">
+                                    <input
+                                        type="checkbox"
+                                        className="public-checkbox"
+                                        checked={isPublic}
+                                        onChange={handlePublicStatusChange}
+                                    />
+                                    <span className="slider round"></span>
+                                </label>
+                                <label>{isPublic ? "공개됨" : "비공개됨"}</label>
+                            </div>
+                        )}
                     </div>
                     <div className="icons">
                         <span className="like">❤️ {diaryData.data.like_count}</span>

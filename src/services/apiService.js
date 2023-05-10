@@ -2,7 +2,7 @@
 export async function kakaoLogin() {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
-        const response = await fetch("/api/auth/kakao/test", {
+        const response = await fetch("/api/auth/kakao", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -25,7 +25,7 @@ export async function getAccessToken(code) {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
-        const response = await fetch(`/api/auth/kakao/callback/test?code=${code}`, {
+        const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",

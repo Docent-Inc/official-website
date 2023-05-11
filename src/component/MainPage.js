@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { getDiaryList, likeDiary, unlikeDiary } from "../services/apiService";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ function MainPage() {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [isLiking, setIsLiking] = useState(false);
+    const [isLastPage, setIsLastPage] = useState(false);
 
     const mypageMove = () => {
         navigate("/mypage");
@@ -22,48 +22,50 @@ function MainPage() {
     const mainPageMove = () => {
         navigate("/main");
     };
+
     const fetchDiaryList = async () => {
-        if (!isLoading) {
+        if (!isLoading && !isLastPage) {
             setIsLoading(true);
+
             const diary = await getDiaryList(page);
             console.log("Fetched diary list:", diary);
 
             if (diary.success) {
+                if (diary.data.length === 0) {
+                    setIsLastPage(true);
+                    setIsLoading(false);
+                    return;
+                }
+
                 setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
                 setPage((prevPage) => prevPage + 1);
             }
+
             setIsLoading(false);
         }
     };
+
     useEffect(() => {
-        fetchDiaryList();
-    }, []);
+        fetchDiaryList(); // 초기 데이터 로드
+    }, []); // 의존성 배열을 빈 배열로 변경
+
     useEffect(() => {
-        const handleScroll = () => {
+        const handleScroll = async () => {
+            const buffer = 200;
             if (
-                window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-                diaryList.length > 1 &&
-                !isLoading
+                window.innerHeight + window.scrollY >=
+                document.body.offsetHeight - buffer &&
+                !isLoading &&
+                !isLastPage
             ) {
-                fetchDiaryList();
+                await fetchDiaryList(); // 스크롤 이벤트에서 비동기 함수 호출
             }
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [diaryList, isLoading]);
+    }, [isLoading, isLastPage]);
 
-    useEffect(() => {
-        const fetchDiaryList = async () => {
-            const diary = await getDiaryList(1);
-            console.log("Fetched diary list:", diary);
-
-            if (diary.success) {
-                setDiaryList(diary.data);
-            }
-        };
-        fetchDiaryList();
-    }, []);
 
     const accessToken = localStorage.getItem("access_token");
 
@@ -91,7 +93,7 @@ function MainPage() {
 
     return (
         <div>
-            <header className="mainHeader">
+            <header className="header">
                 <img src={logo} alt="DOCENT Logo" className="logo" />
             </header>
             <div className="main_container">

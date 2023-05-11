@@ -12,6 +12,7 @@ function DiaryRead() {
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState([]);
     const [pageNum, setPageNum] = useState(1);
+    const [more, setMore] = useState(true);
 
     const { diaryId } = useParams();
 
@@ -36,23 +37,17 @@ function DiaryRead() {
             const commentData = await getCommentList(diaryId, pageNum);
             console.log("Fetched comments:", commentData);
 
-            // if commentData is an object containing the comments array
-            if (commentData.comments && Array.isArray(commentData.comments)) {
-                setComments(prevComments => [...prevComments, ...commentData.comments]);
+            if (commentData.data.length === 0) {
+                setMore(false);
             }
-            // if commentData is a single comment object
-            else if (typeof commentData === "object") {
-                setComments(prevComments => [...prevComments, commentData]);
-            }
-            // if commentData is already an array
-            else if (Array.isArray(commentData)) {
-                setComments(prevComments => [...prevComments, ...commentData]);
-            }
+            setComments(prevComments => [...prevComments, ...commentData.data])
 
+            console.log(comments);
             window.addEventListener('scroll', handleScroll);
         };
-
-        fetchDiaryAndComments();
+        if (more){
+            fetchDiaryAndComments();
+        }
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -162,7 +157,7 @@ function DiaryRead() {
                 <h3>Comments</h3>
                 <ul>
                     {comments.map((comment, index) => (
-                        <li key={index}>{comment}</li>
+                        <li key={index}>{comment.comment}</li>
                     ))}
                 </ul>
                 <div className="add-comment">

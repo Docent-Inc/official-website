@@ -86,8 +86,10 @@ function DiaryRead() {
 
     const handleAddComment = async () => {
         const newComment = await addComment(diaryId, { comment: comment });
-        setComments([...comments, newComment]);
-        setComment('');
+        if(newComment.success){
+            setComments(prevComments => [...prevComments, { comment: comment }]);
+            setComment('');
+        }
     };
 
     return (

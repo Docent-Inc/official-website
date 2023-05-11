@@ -300,3 +300,68 @@ export const deleteDiary = async (diaryId,editData) => {
         console.error('Error fetching Diary Edit:', error);
     }
 }
+// 댓글 추가
+export const addComment = async (diaryId,comment) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:", accessToken);
+        console.log("comment:", comment);
+        const response = await fetch(`/api/diary/comment?diary_id=${diaryId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(comment)
+        });
+
+
+        const data = await response.json();
+        console.log("data:", data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}
+// 댓글 목록 불러오기
+export const getCommentList = async (diaryId,pageNum) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("pageNum:", pageNum);
+        const response = await fetch(`/api/diary/list/comment/${diaryId}/${pageNum}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+
+
+        const data = await response.json();
+        console.log("data:", data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}
+
+// 댓글 삭제
+export const deleteComment = async (diaryId, commentId) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:", accessToken);
+        const response = await fetch(`/api/diary/uncomment?diary_id=${diaryId}&comment_id=${commentId}`, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+        const data = await response.json();
+        console.log("data:", data);
+        return data;
+    }
+    catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}

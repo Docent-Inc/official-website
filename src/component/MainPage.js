@@ -93,7 +93,7 @@ function MainPage() {
 
     return (
         <div>
-            <header className="header">
+            <header className="mainHeader">
                 <img src={logo} alt="DOCENT Logo" className="logo" />
             </header>
             <div className="main_container">

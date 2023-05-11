@@ -1,33 +1,71 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getDiary, updatePublicStatus, editDiary } from "../services/apiService";
-import { AiFillEdit, AiFillSave } from "react-icons/ai"; // Importing icons from react-icons
-import Footer from "./Footer";
+import React, { useEffect, useState, useCallback } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+    getDiary,
+    updatePublicStatus,
+    editDiary,
+    addComment,
+    getCommentList,
+    deleteComment
+} from "../services/apiService";
+import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import "../css/DiaryRead.css";
-
 
 function DiaryRead() {
     const [diaryData, setDiaryData] = useState(null);
     const [isPublic, setIsPublic] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ dream_name: "", dream: "" });
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
+    const [pageNum, setPageNum] = useState(1);
+    const [more, setMore] = useState(true);
+
     const { diaryId } = useParams();
 
+    const handleScroll = useCallback(() => {
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollHeight = document.documentElement.scrollHeight;
+
+        if (scrollTop + clientHeight >= scrollHeight && more) {
+            setPageNum(prevPageNum => prevPageNum + 1);
+        }
+    }, [more]);
+
+
     useEffect(() => {
-        const fetchDiary = async () => {
-            const data = await getDiary(diaryId);
-            console.log("Fetched diary:", data);
-            setDiaryData(data);
-            setIsPublic(data.data.is_public);
-            setEditData({ dream_name: data.data.dream_name, dream: data.data.dream });
+        const fetchDiaryAndComments = async () => {
+            const diaryData = await getDiary(diaryId);
+            console.log("Fetched diary:", diaryData);
+            setDiaryData(diaryData);
+            setIsPublic(diaryData.data.is_public);
+            setEditData({ dream_name: diaryData.data.dream_name, dream: diaryData.data.dream });
+
+            const commentData = await getCommentList(diaryId, pageNum);
+            console.log("Fetched comments:", commentData);
+
+            if (commentData.data.length === 0) {
+                setMore(false);
+            }
+            setComments(prevComments => [...prevComments, ...commentData.data])
+
+            console.log(comments);
+            window.addEventListener('scroll', handleScroll);
         };
-        fetchDiary();
-    }, [diaryId]);
+        if (more){
+            fetchDiaryAndComments();
+        }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [diaryId, pageNum, handleScroll]);
+
 
     const handlePublicStatusChange = async () => {
         const newPublicStatus = !isPublic;
         setIsPublic(newPublicStatus);
-
         await updatePublicStatus(diaryId, newPublicStatus);
     };
 
@@ -38,12 +76,9 @@ function DiaryRead() {
     const handleSaveClick = async () => {
         setEditMode(false);
         await editDiary(diaryId, editData);
-
-        // 수정된 다이어리를 다시 불러옵니다.
         const updatedDiary = await getDiary(diaryId);
         setDiaryData(updatedDiary);
     };
-
 
     const handleChange = (e) => {
         setEditData({...editData, [e.target.name]: e.target.value});
@@ -53,11 +88,33 @@ function DiaryRead() {
         return checklistStr.split('\n');
     };
 
+    const handleCommentChange = (e) => {
+        setComment(e.target.value);
+    };
+
+    const handleAddComment = async () => {
+        const newComment = await addComment(diaryId, { comment: comment });
+        if(newComment.success){
+            setComments(prevComments => [...prevComments, newComment.data]);
+            setComment('');
+        }
+    };
+
+    async function handleDeleteComment(diary_id, comment_id) {
+        console.log(diary_id, comment_id);
+        const data = await deleteComment(diary_id, comment_id);
+        console.log(data);
+        if(data.success){
+            setComments(prevComments => prevComments.filter(comment => comment.id !== comment_id));
+        }
+    }
+
     return (
         <div className="diary-read">
             {diaryData ? (
                 <>
                     <div className="header">
+                        <Link to="/main" className="back-button">⬅</Link>
                         {diaryData.data.is_owner && (
                             <button className="edit-button" onClick={editMode ? handleSaveClick : handleEditClick}>
                                 {editMode ? < AiFillSave /> : <AiFillEdit />}
@@ -116,7 +173,33 @@ function DiaryRead() {
                     <AiFillSave /> Save
                 </button>
             )}
-            <Footer />
+            <div className="comment-section">
+                <h3>Comments</h3>
+                <ul>
+                    {comments.map((comment, index) => (
+                        <li key={index} className="comment-item">
+                            <span className="comment-text">{comment.comment}</span>
+                            <span className="comment-date">
+                {`${comment.create_date.slice(0, 4)}-${comment.create_date.slice(4, 6)}-${comment.create_date.slice(6, 8)} ${comment.create_date.slice(8, 10)}:${comment.create_date.slice(10, 12)}`}
+            </span>
+                            {comment.isMine && (
+                                <button className="delete-comment-button" onClick={() => handleDeleteComment(diaryData.data.id, comment.id)}>
+                                    삭제
+                                </button>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+                <div className="add-comment">
+                    <input
+                        type="text"
+                        value={comment}
+                        onChange={handleCommentChange}
+                        placeholder="Add a comment..."
+                    />
+                    <button onClick={handleAddComment}>Post Comment</button>
+                </div>
+            </div>
         </div>
     );
 }

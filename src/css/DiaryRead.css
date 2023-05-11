@@ -220,18 +220,6 @@ form button {
     font-size: 16px;
 }
 
-
-
-.edit-button {
-    position: absolute;
-    left: 85%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em; /* 크기를 조절하고 싶다면 이 값을 변경하세요. */
-    color: #606060; /* 색상을 변경하고 싶다면 이 값을 변경하세요. */
-
-}
 .save-button{
     position: absolute;
     left: 85%;
@@ -297,5 +285,49 @@ form button {
     border-radius: 5px;
     background-color: #3897f0;
     color: white;
+    cursor: pointer;
+}
+
+.edit-button {
+    position: absolute;
+    left: 85%;
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #606060;
+}
+
+.back-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 15px;
+    font-size: 1.7em;
+    color: #606060;
+    text-decoration: none;
+}
+
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-text {
+    flex-grow: 1;
+}
+
+.comment-date {
+    margin-right: 10px;
+    color: #888;
+    font-size: 0.8em;
+}
+
+.delete-comment-button {
+    background: none;
+    border: none;
+    color: #f00;
     cursor: pointer;
 }

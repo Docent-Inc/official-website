@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { getDiary, updatePublicStatus, editDiary, addComment, getCommentList } from "../services/apiService";
+import { useParams, Link } from "react-router-dom";
+import {
+    getDiary,
+    updatePublicStatus,
+    editDiary,
+    addComment,
+    getCommentList,
+    deleteComment
+} from "../services/apiService";
 import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import "../css/DiaryRead.css";
 
@@ -21,10 +28,11 @@ function DiaryRead() {
         const clientHeight = document.documentElement.clientHeight;
         const scrollHeight = document.documentElement.scrollHeight;
 
-        if (scrollTop + clientHeight >= scrollHeight) {
+        if (scrollTop + clientHeight >= scrollHeight && more) {
             setPageNum(prevPageNum => prevPageNum + 1);
         }
-    }, []);
+    }, [more]);
+
 
     useEffect(() => {
         const fetchDiaryAndComments = async () => {
@@ -87,16 +95,26 @@ function DiaryRead() {
     const handleAddComment = async () => {
         const newComment = await addComment(diaryId, { comment: comment });
         if(newComment.success){
-            setComments(prevComments => [...prevComments, { comment: comment }]);
+            setComments(prevComments => [...prevComments, newComment.data]);
             setComment('');
         }
     };
+
+    async function handleDeleteComment(diary_id, comment_id) {
+        console.log(diary_id, comment_id);
+        const data = await deleteComment(diary_id, comment_id);
+        console.log(data);
+        if(data.success){
+            setComments(prevComments => prevComments.filter(comment => comment.id !== comment_id));
+        }
+    }
 
     return (
         <div className="diary-read">
             {diaryData ? (
                 <>
                     <div className="header">
+                        <Link to="/main" className="back-button">⬅</Link>
                         {diaryData.data.is_owner && (
                             <button className="edit-button" onClick={editMode ? handleSaveClick : handleEditClick}>
                                 {editMode ? < AiFillSave /> : <AiFillEdit />}
@@ -159,7 +177,17 @@ function DiaryRead() {
                 <h3>Comments</h3>
                 <ul>
                     {comments.map((comment, index) => (
-                        <li key={index}>{comment.comment}</li>
+                        <li key={index} className="comment-item">
+                            <span className="comment-text">{comment.comment}</span>
+                            <span className="comment-date">
+                {`${comment.create_date.slice(0, 4)}-${comment.create_date.slice(4, 6)}-${comment.create_date.slice(6, 8)} ${comment.create_date.slice(8, 10)}:${comment.create_date.slice(10, 12)}`}
+            </span>
+                            {comment.isMine && (
+                                <button className="delete-comment-button" onClick={() => handleDeleteComment(diaryData.data.id, comment.id)}>
+                                    삭제
+                                </button>
+                            )}
+                        </li>
                     ))}
                 </ul>
                 <div className="add-comment">
@@ -173,7 +201,6 @@ function DiaryRead() {
                 </div>
             </div>
         </div>
-
     );
 }
 

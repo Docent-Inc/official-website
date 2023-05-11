@@ -44,6 +44,8 @@ function MyPage() {
 
 
     useEffect(() => {
+        fetchMyDiaryList();
+
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);

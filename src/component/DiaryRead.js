@@ -1,33 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { getDiary, updatePublicStatus, editDiary } from "../services/apiService";
-import { AiFillEdit, AiFillSave } from "react-icons/ai"; // Importing icons from react-icons
-import Footer from "./Footer";
+import { getDiary, updatePublicStatus, editDiary, addComment, getCommentList } from "../services/apiService";
+import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import "../css/DiaryRead.css";
-
 
 function DiaryRead() {
     const [diaryData, setDiaryData] = useState(null);
     const [isPublic, setIsPublic] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ dream_name: "", dream: "" });
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
+    const [pageNum, setPageNum] = useState(1);
+
     const { diaryId } = useParams();
 
+    const handleScroll = useCallback(() => {
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollHeight = document.documentElement.scrollHeight;
+
+        if (scrollTop + clientHeight >= scrollHeight) {
+            setPageNum(prevPageNum => prevPageNum + 1);
+        }
+    }, []);
+
     useEffect(() => {
-        const fetchDiary = async () => {
-            const data = await getDiary(diaryId);
-            console.log("Fetched diary:", data);
-            setDiaryData(data);
-            setIsPublic(data.data.is_public);
-            setEditData({ dream_name: data.data.dream_name, dream: data.data.dream });
+        const fetchDiaryAndComments = async () => {
+            const diaryData = await getDiary(diaryId);
+            console.log("Fetched diary:", diaryData);
+            setDiaryData(diaryData);
+            setIsPublic(diaryData.data.is_public);
+            setEditData({ dream_name: diaryData.data.dream_name, dream: diaryData.data.dream });
+
+            const commentData = await getCommentList(diaryId, pageNum);
+            console.log("Fetched comments:", commentData);
+
+            // if commentData is an object containing the comments array
+            if (commentData.comments && Array.isArray(commentData.comments)) {
+                setComments(prevComments => [...prevComments, ...commentData.comments]);
+            }
+            // if commentData is a single comment object
+            else if (typeof commentData === "object") {
+                setComments(prevComments => [...prevComments, commentData]);
+            }
+            // if commentData is already an array
+            else if (Array.isArray(commentData)) {
+                setComments(prevComments => [...prevComments, ...commentData]);
+            }
+
+            window.addEventListener('scroll', handleScroll);
         };
-        fetchDiary();
-    }, [diaryId]);
+
+        fetchDiaryAndComments();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [diaryId, pageNum, handleScroll]);
+
 
     const handlePublicStatusChange = async () => {
         const newPublicStatus = !isPublic;
         setIsPublic(newPublicStatus);
-
         await updatePublicStatus(diaryId, newPublicStatus);
     };
 
@@ -38,12 +73,9 @@ function DiaryRead() {
     const handleSaveClick = async () => {
         setEditMode(false);
         await editDiary(diaryId, editData);
-
-        // 수정된 다이어리를 다시 불러옵니다.
         const updatedDiary = await getDiary(diaryId);
         setDiaryData(updatedDiary);
     };
-
 
     const handleChange = (e) => {
         setEditData({...editData, [e.target.name]: e.target.value});
@@ -51,6 +83,16 @@ function DiaryRead() {
 
     const getChecklistItems = (checklistStr) => {
         return checklistStr.split('\n');
+    };
+
+    const handleCommentChange = (e) => {
+        setComment(e.target.value);
+    };
+
+    const handleAddComment = async () => {
+        const newComment = await addComment(diaryId, { comment: comment });
+        setComments([...comments, newComment]);
+        setComment('');
     };
 
     return (
@@ -116,8 +158,25 @@ function DiaryRead() {
                     <AiFillSave /> Save
                 </button>
             )}
-            <Footer />
+            <div className="comment-section">
+                <h3>Comments</h3>
+                <ul>
+                    {comments.map((comment, index) => (
+                        <li key={index}>{comment}</li>
+                    ))}
+                </ul>
+                <div className="add-comment">
+                    <input
+                        type="text"
+                        value={comment}
+                        onChange={handleCommentChange}
+                        placeholder="Add a comment..."
+                    />
+                    <button onClick={handleAddComment}>Post Comment</button>
+                </div>
+            </div>
         </div>
+
     );
 }
 

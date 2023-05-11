@@ -2,7 +2,7 @@
 export async function kakaoLogin() {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
-        const response = await fetch("/api/auth/kakao", {
+        const response = await fetch("/api/auth/kakao/test", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -25,7 +25,7 @@ export async function getAccessToken(code) {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
-        const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
+        const response = await fetch(`/api/auth/kakao/callback/test?code=${code}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -295,6 +295,50 @@ export const deleteDiary = async (diaryId,editData) => {
         });
         const data = await response.json();
         console.log("data:",data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}
+// 댓글 추가
+export const addComment = async (diaryId,comment) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken:", accessToken);
+        console.log("comment:", comment);
+        const response = await fetch(`/api/diary/comment?diary_id=${diaryId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(comment)
+        });
+
+
+        const data = await response.json();
+        console.log("data:", data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching Diary Edit:', error);
+    }
+}
+// 댓글 목록 불러오기
+export const getCommentList = async (diaryId,pageNum) => {
+    try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("pageNum:", pageNum);
+        const response = await fetch(`/api/diary/list/comment/${diaryId}/${pageNum}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+
+
+        const data = await response.json();
+        console.log("data:", data);
         return data;
     } catch (error) {
         console.error('Error fetching Diary Edit:', error);

@@ -2,7 +2,7 @@
 export async function kakaoLogin() {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
-        const response = await fetch("/api/auth/kakao", {
+        const response = await fetch("/api/auth/kakao/test", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -25,7 +25,7 @@ export async function getAccessToken(code) {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
-        const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
+        const response = await fetch(`/api/auth/kakao/callback/test?code=${code}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -281,17 +281,16 @@ export const editDiary = async (diaryId,editData) => {
     }
 }
 // 다이어리 삭제
-export const deleteDiary = async (diaryId,editData) => {
+export const deleteDiary = async (diaryId) => {
     try {
         const accessToken = localStorage.getItem('access_token');
         console.log("accessToken:",accessToken);
         const response = await fetch(`/api/diary/delete?diary_id=${diaryId}`, {
-            method: "POST",
+            method: "DELETE",
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(editData)
         });
         const data = await response.json();
         console.log("data:",data);

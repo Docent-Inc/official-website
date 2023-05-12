@@ -9,7 +9,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     height: 120px;
     background-color: #fff;
     position: fixed;
@@ -290,13 +289,24 @@ form button {
 
 .edit-button {
     position: absolute;
-    left: 85%;
+    left: 310px;  /* Adjust this value to move the edit button left or right. */
+    top: 14px;
     background: none;
     border: none;
-    padding: 6px;
     cursor: pointer;
     font-size: 1.5em;
     color: #606060;
+}
+
+.delete-button {
+    position: absolute;
+    right: 10px;  /* This positions the delete button at the far right. */
+    top: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #f00;
 }
 
 .back-button {
@@ -331,3 +341,4 @@ form button {
     color: #f00;
     cursor: pointer;
 }
+

@@ -17,12 +17,12 @@ function MyPage() {
         if (isLoading || !hasMore) return;
 
         setIsLoading(true);
+
         const diary = await getMyDiaryList(page);
 
         if (diary.success) {
-            console.log('diary:',diary.data);
             if (diary.data.length > 0) {
-                setDiaryList((prevDiaryList) => [...prevDiaryList, ...diary.data]);
+                setDiaryList((prevDiaryList) => [...new Set([...prevDiaryList, ...diary.data])]);
                 setPage((prevPage) => prevPage + 1);
             } else {
                 setHasMore(false);
@@ -31,16 +31,16 @@ function MyPage() {
         setIsLoading(false);
     }, [isLoading, hasMore, page]);
 
-
     const handleScroll = throttle(() => {
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         const scrollHeight = document.documentElement.scrollHeight;
 
         if (scrollTop + clientHeight >= scrollHeight - 50) {
-            fetchMyDiaryList();
+            if (!isLoading) fetchMyDiaryList();
         }
     }, 500);
+
 
 
     useEffect(() => {

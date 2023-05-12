@@ -281,17 +281,16 @@ export const editDiary = async (diaryId,editData) => {
     }
 }
 // 다이어리 삭제
-export const deleteDiary = async (diaryId,editData) => {
+export const deleteDiary = async (diaryId) => {
     try {
         const accessToken = localStorage.getItem('access_token');
         console.log("accessToken:",accessToken);
         const response = await fetch(`/api/diary/delete?diary_id=${diaryId}`, {
-            method: "POST",
+            method: "DELETE",
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(editData)
         });
         const data = await response.json();
         console.log("data:",data);

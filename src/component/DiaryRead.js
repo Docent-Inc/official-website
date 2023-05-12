@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
     getDiary,
     updatePublicStatus,
     editDiary,
     addComment,
     getCommentList,
-    deleteComment
+    deleteComment,
+    deleteDiary,
 } from "../services/apiService";
-import { AiFillEdit, AiFillSave } from "react-icons/ai";
+import { AiFillEdit, AiFillSave, AiFillDelete } from "react-icons/ai";
 import "../css/DiaryRead.css";
 
 function DiaryRead() {
@@ -22,6 +23,7 @@ function DiaryRead() {
     const [more, setMore] = useState(true);
 
     const { diaryId } = useParams();
+    const navigate = useNavigate();
 
     const handleScroll = useCallback(() => {
         const scrollTop = window.scrollY || window.pageYOffset;
@@ -32,6 +34,17 @@ function DiaryRead() {
             setPageNum(prevPageNum => prevPageNum + 1);
         }
     }, [more]);
+
+    const handleDeleteDiary = async () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this diary?");
+        if (confirmDelete) {
+            const result = await deleteDiary(diaryId);
+            if (result.success) {
+                navigate("/main");  // or wherever you want to redirect after deleting a diary
+            }
+        }
+    };
+
 
 
     useEffect(() => {
@@ -116,9 +129,14 @@ function DiaryRead() {
                     <div className="header">
                         <Link to="/main" className="back-button">⬅</Link>
                         {diaryData.data.is_owner && (
-                            <button className="edit-button" onClick={editMode ? handleSaveClick : handleEditClick}>
-                                {editMode ? < AiFillSave /> : <AiFillEdit />}
-                            </button>
+                            <>
+                                <button className="edit-button" onClick={editMode ? handleSaveClick : handleEditClick}>
+                                    {editMode ? < AiFillSave /> : <AiFillEdit />}
+                                </button>
+                                <button className="delete-button" onClick={handleDeleteDiary}>
+                                    <AiFillDelete />
+                                </button>
+                            </>
                         )}
                         {editMode ? (
                             <input type="text" name="dream_name" className="edit-input" value={editData.dream_name} onChange={handleChange} />

@@ -1,0 +1,29 @@
+.createDream {
+    background-color: #9FBDD0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 300px;
+    margin-top: 50px;
+}
+
+.input-field {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.record-btn, .draw-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.draw-btn img {
+    width: 100%;
+    height: 100%;
+}

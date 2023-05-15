@@ -8,6 +8,7 @@ export async function createDream(dText) {
             }
         });
         const Dream = await response.json();
+        console.log('Dream:', Dream);
         if (response.ok) {
             return Dream.data;
         } else {
@@ -18,15 +19,16 @@ export async function createDream(dText) {
     }
 };
 // 꿈 해몽
-export async function dreamResolution(id) {
+export async function dreamResolution(text) {
     try {
-        const response = await fetch(`/api/mvp/resolution?textId=${id}`, {
+        const response = await fetch(`/api/mvp/resolution?text=${text}`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
             }
         });
         const resolution = await response.json();
+        console.log('resolution:', resolution);
         if (response.ok) {
             return resolution.data;
         }
@@ -38,16 +40,17 @@ export async function dreamResolution(id) {
     }
 };
 // 꿈 체크리스트
-export async function dreamChecklist(text, id) {
+export async function dreamChecklist(dreamSolution, id) {
     try {
-        console.log('text:', text);
-        const response = await fetch(`/api/mvp/checklist?resolution=${text}&textId=${id}`, {
+        console.log('text:', dreamSolution);
+        const response = await fetch(`/api/mvp/checklist?resolution=${dreamSolution}&textId=${id}`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
             }
         });
         const checklist = await response.json();
+        console.log('checklist:', checklist);
         if (response.ok) {
             return checklist.data;
         }
@@ -62,7 +65,7 @@ export async function dreamChecklist(text, id) {
 // 다이어리 생성
 export async function createDiary(dreamData) {
     try {
-        const response = await fetch('/api/save', {
+        const response = await fetch('/api/mvp/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,6 +73,7 @@ export async function createDiary(dreamData) {
             body: JSON.stringify(dreamData)
         });
         const result = await response.json();
+        console.log('result:', result);
         if (response.ok) {
             return result.data;
         } else {
@@ -82,6 +86,7 @@ export async function createDiary(dreamData) {
 // Diary Read, 공유 링크
 export const getDiary = async (diaryId) => {
     try {
+        console.log('diaryId:', diaryId);
         const response = await fetch(`/api/mvp/read?diary_id=${diaryId}`, {
             method: "GET",
             headers: {
@@ -89,6 +94,7 @@ export const getDiary = async (diaryId) => {
             }
         });
         const data = await response.json();
+        console.log('data:', data);
         if (response.ok) {
             return data.data;
         }

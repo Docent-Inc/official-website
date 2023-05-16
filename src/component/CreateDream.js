@@ -176,6 +176,7 @@ const CreateDream = () => {
                                 </textarea>
                                 <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
                             </div>
+                            <p>음성으로 기록 가능합니다.</p>
                             <img
                                 src={isRecording ? mikeRecordingBtn : mikeBtn}
                                 alt="record"

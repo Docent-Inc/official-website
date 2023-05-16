@@ -1,0 +1,73 @@
+
+.diary-read {
+    height: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color:#000000 ;
+    color: white; /* 모든 글씨를 흰색으로 바꿈 */
+}
+.logo3 {
+    width: 300px;
+    margin-top: 50px;
+}
+.diary-read-image img {
+    width: 100%; /* 그림 크기를 줄임 (이 값은 적절히 조절 가능) */
+    height: auto;
+    box-shadow: 0px 0px 90px #FFF72C; /* 그림에 Drop shadow를 추가 */
+    margin-bottom: 50px;
+}
+.diary-read-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.toggle{
+    margin-bottom: 30px;
+    width: 30%;
+    height: 30px;
+    margin-top: 5px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+}
+
+.diary-read-title {
+    font-size: 1.6em; /* 조절하고 싶은 크기로 변경 */
+}
+
+.diary-read-text p {
+    font-size: 1em;
+}
+.diary-read-text.open {
+    display: block; /* 토글이 켜졌을 때 텍스트를 보여줌 */
+}
+.diary-read-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    width: 100%;
+}
+.nvi-draw{
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+    margin-right: 10px;
+}
+.share{
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+}

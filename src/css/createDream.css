@@ -7,25 +7,26 @@
 }
 
 .logo {
-    width: 300px;
-    margin-top: 50px;
+    width: 260px;
+    margin-top: 60px;
 }
 .text {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 80px;
+    margin-top: 30px;
     margin-bottom: 15px;
 
 }
 .input-field {
     margin-top: 40px;
-    margin-bottom: 100px;
-    width: 88%;
+    margin-bottom: 80px;
+    width: 80%;
     height: 220px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     border-color: white;
     position: relative;
+    font-size: 18px;
     overflow-wrap: break-word;
     resize: none; /* 사용자가 텍스트 영역의 크기를 변경하는 것을 방지합니다 */
     padding: 10px; /* 텍스트가 상단에서 시작하도록 패딩을 추가합니다 */
@@ -49,6 +50,7 @@
     background-color: #388DD5;
     border-radius: 5px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+    color: black;
 }
 .dream-result {
     display: flex;
@@ -173,8 +175,8 @@
 }
 .textNum {
     position: absolute; /* textNum에 absolute position을 추가 */
-    bottom: 30%; /* textarea의 하단에서 10px 위로 이동 */
-    right: 5%; /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
+    bottom: 25%; /* textarea의 하단에서 10px 위로 이동 */
+    right: 10%; /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
     background: white; /* 배경색을 white로 설정하여 textarea의 내용을 덮지 않게 함 */
     padding: 0 5px; /* 패딩 추가 */
     z-index: 100;

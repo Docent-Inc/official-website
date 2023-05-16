@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../image/logo.jpeg';  // 로고 이미지 파일 경로에 맞게 수정해주세요
 import buttonImage from '../image/background.jpeg';  // 버튼 이미지 파일 경로에 맞게 수정해주세요
@@ -9,6 +9,10 @@ const HomePage = () => {
     const handleButtonClick = () => {
         navigate("/createDream");  // 다른 페이지의 경로를 적절하게 수정해주세요
     };
+    useEffect(() => {
+        const ad = document.querySelector('.kakao_ad_area');
+        if (ad) ad.style.display = 'block';
+    }, []);
 
     return (
         <div

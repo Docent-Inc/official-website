@@ -161,13 +161,15 @@ const CreateDream = () => {
                 ) : ( // 초기 상태
                     <>
                         <p className="text">태몽을 입력해주세요</p>
-                        <textarea type="text" className="input-field" value={dreamText} onChange={handleInputChange} />
-                        <img
-                            src={isRecording ? mikeRecordingBtn : mikeBtn}
-                            alt="record"
-                            className="mike-btn"
-                            onClick={handleVoiceRecording}
-                        />
+                        <div className="container">
+                            <textarea type="text" className="input-field" value={dreamText} onChange={handleInputChange} />
+                            <img
+                                src={isRecording ? mikeRecordingBtn : mikeBtn}
+                                alt="record"
+                                className="mike-btn"
+                                onClick={handleVoiceRecording}
+                            />
+                        </div>
                         <button onClick={handleButtonClick} className="draw-btn">꿈 그리기</button>
                     </>
                 )

@@ -1,5 +1,5 @@
 .createDream {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +36,7 @@
     height: 60px;
     margin-top: 10px;
     background-color: #388DD5;
-    border-radius: 40px;
+    border-radius: 5px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
     color: black;
 }
@@ -44,9 +44,10 @@
 {
     width: 200px;
     height: 60px;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     background-color: #388DD5;
-    border-radius: 40px;
+    border-radius: 5px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
 }
 .dream-result {
@@ -160,6 +161,23 @@
     justify-content: space-between;
     height: 50%; /* 필요에 따라 조정 */
     width: 100%; /* 필요에 따라 조정 */
+}
+.text_field{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 50%; /* 필요에 따라 조정 */
+    width: 100%; /* 필요에 따라 조정 */
+}
+.textNum {
+    position: absolute; /* textNum에 absolute position을 추가 */
+    bottom: 30%; /* textarea의 하단에서 10px 위로 이동 */
+    right: 5%; /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
+    background: white; /* 배경색을 white로 설정하여 textarea의 내용을 덮지 않게 함 */
+    padding: 0 5px; /* 패딩 추가 */
+    z-index: 100;
 }
 
 .mike-btn {

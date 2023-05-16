@@ -1,12 +1,9 @@
-
-
 .createDream {
-    height: 1300px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #95C5E7;
-    padding: 20px;
 }
 
 .logo {

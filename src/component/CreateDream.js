@@ -101,7 +101,7 @@ const CreateDream = () => {
         // 6초마다 새로운 사실을 선택
         const interval = setInterval(() => {
             setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
-        }, 6000);
+        }, 8000);
 
         // 컴포넌트 unmount시에 interval clear
         return () => clearInterval(interval);

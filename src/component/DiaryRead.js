@@ -24,11 +24,26 @@ function DiaryRead() {
         fetchDiary();
     }, [id]);
 
+    useEffect(() => {
+        // 컴포넌트가 렌더링될 때 광고를 제거
+        const ad = document.querySelector('.kakao_ad_area');
+        if (ad) ad.style.display = 'none';
+
+        return () => {
+            // 컴포넌트가 언마운트될 때 광고를 다시 추가
+            if (ad) ad.style.display = 'block';
+        };
+    }, []);
+
     const handleShare = useCallback(() => {
-        const shareLink = window.location.origin + location.pathname;
-        navigator.clipboard.writeText(shareLink);
-        alert("공유 링크가 복사되었습니다!");
-    }, [location]);
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => {
+                alert("공유 링크가 복사되었습니다!");
+            })
+            .catch(err => {
+                console.error('Error copying URL: ', err);
+            });
+    }, []);
 
     const handleToggle = () => {
         setIsOpen(!isOpen); // 토글 상태 변경

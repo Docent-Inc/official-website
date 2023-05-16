@@ -74,6 +74,11 @@ function DiaryRead() {
 
                 </div>
             </div>
+            <div>
+                <p>인스타 공유 시 도슨트 공식 계정을</p>
+                <p>태그해 주시면 추첨을 통해 선물을 드립니다.</p>
+                <p>@_docent_official</p>
+            </div>
             <footer>
                 <div className="diary-read-footer">
                     <button className="nvi-draw" onClick={() => navigate('/')}>꿈 그리기</button>

@@ -78,6 +78,9 @@ function DiaryRead() {
                 <div className="diary-read-footer">
                     <button className="nvi-draw" onClick={() => navigate('/')}>꿈 그리기</button>
                     <button className="share" onClick={handleShare}>공유하기</button>
+                    <a href="https://forms.gle/GKb1wDpY83v7GWZ59" target="_blank" rel="noopener noreferrer">
+                        <button className="download-app">앱 다운받기</button>
+                    </a>
                 </div>
             </footer>
         </div>

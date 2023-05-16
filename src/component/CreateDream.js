@@ -33,6 +33,7 @@ const CreateDream = () => {
 
 
 
+
     const handleGoToGallery = async () => {
         if (dreamData && dreamResolutionData && checklistData) {
             const dreamDataToSave = {
@@ -51,6 +52,7 @@ const CreateDream = () => {
         }
     };
 
+
     const handleButtonClick = async () => {
         navigate("/createDream");
         setLoading(true);
@@ -62,7 +64,7 @@ const CreateDream = () => {
     };
 
     const handleInputChange = (event) => {
-        setDreamText(event.target.value); // 입력 필드가 변경될 때마다 상태를 업데이트
+        setDreamText(event.target.value.slice(0, 200)); // 입력 필드가 변경될 때마다 상태를 업데이트
     };
 
     const handleVoiceRecording = () => {
@@ -162,7 +164,18 @@ const CreateDream = () => {
                     <>
                         <p className="text">태몽을 입력해주세요</p>
                         <div className="container">
-                            <textarea type="text" className="input-field" value={dreamText} onChange={handleInputChange} />
+                            <div className="text_field">
+                                 <textarea
+                                    type="text"
+                                    className="input-field"
+                                    value={dreamText}
+                                    onChange={handleInputChange}
+                                    minLength={10}
+                                    maxLength={200} // 글자 수를 300자로 제한
+                                >
+                                </textarea>
+                                <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
+                            </div>
                             <img
                                 src={isRecording ? mikeRecordingBtn : mikeBtn}
                                 alt="record"

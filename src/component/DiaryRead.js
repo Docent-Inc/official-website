@@ -65,29 +65,29 @@ function DiaryRead() {
                             <>
                                 <p>{diary.dream}</p>
                                 <p>{diary.resolution}</p>
-                                {diary.checklist.split('\n').map((item, index) => (
-                                    <p key={index}>{item}</p>
-                                ))}
                             </>
                         )}
                     </div>
 
                 </div>
             </div>
-            <div>
-                <p>인스타 공유 시 도슨트 공식 계정을</p>
-                <p>태그해 주시면 추첨을 통해 선물을 드립니다.</p>
+            <div className="pText">
+                <p>인스타 공유 후 도슨트 공식 계정에</p>
+                <p>DM을 보내주시면 추첨을 통해</p>
+                <p>선물을 드립니다🎁</p>
                 <p>@_docent_official</p>
+                <p>이 서비스가 궁금하시다면</p>
+                <p>"설문" 버튼을 클릭 해주세요🙏</p>
             </div>
             <footer>
                 <div className="diary-read-footer">
                     <button className="nvi-draw" onClick={() => navigate('/')}>꿈 그리기</button>
-                    <button className="share" onClick={handleShare}>공유하기</button>
-                    <a href="https://forms.gle/GKb1wDpY83v7GWZ59" target="_blank" rel="noopener noreferrer">
-                        <button className="download-app">앱 다운받기</button>
-                    </a>
+                    <button className="share" onClick={handleShare}>인스타 공유하기</button>
                 </div>
             </footer>
+            <a className="" href="https://forms.gle/GKb1wDpY83v7GWZ59" target="_blank" rel="noopener noreferrer">
+                <button className="download-app">서비스 투자 설문</button>
+            </a>
         </div>
     );
 }

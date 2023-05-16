@@ -33,26 +33,6 @@ const CreateDream = () => {
 
 
 
-
-    const handleGoToGallery = async () => {
-        if (dreamData && dreamResolutionData && checklistData) {
-            const dreamDataToSave = {
-                dream_name: dreamData.dream_name,
-                dream: dreamData.dream,
-                image_url: dreamData.image_url,
-                resolution: dreamResolutionData.dream_resolution,
-                checklist: checklistData.today_checklist,
-                is_public: true
-            };
-            console.log('dreamDataToSave:',dreamDataToSave);
-            const response = await createDiary(dreamDataToSave);
-            if (response && response.id) {
-                navigate(`/diary/${response.id}`, { state: { id: response.id } });
-            }
-        }
-    };
-
-
     const handleButtonClick = async () => {
         navigate("/createDream");
         setLoading(true);
@@ -61,7 +41,35 @@ const CreateDream = () => {
         const resolutionResult = await dreamResolution(dreamText); // 꿈 해몽 API 호출
         setDreamResolutionData(resolutionResult); // 결과 저장
         setLoading(false);
+
+        // checklist에 "checklist" 문자열을 넣어줍니다.
+        setChecklistData({ today_checklist: "checklist" });
     };
+
+    useEffect(() => {
+        // 모든 데이터가 도착하면 createDiary를 호출합니다.
+        if (dreamData && dreamResolutionData && checklistData) {
+            handleGoToGallery();
+        }
+    }, [dreamData, dreamResolutionData, checklistData]);
+
+    const handleGoToGallery = async () => {
+        const dreamDataToSave = {
+            dream_name: dreamData.dream_name,
+            dream: dreamData.dream,
+            image_url: dreamData.image_url,
+            resolution: dreamResolutionData.dream_resolution,
+            checklist: checklistData.today_checklist,
+            is_public: true
+        };
+        console.log('dreamDataToSave:', dreamDataToSave);
+        const response = await createDiary(dreamDataToSave);
+        if (response && response.id) {
+            // DiaryRead 페이지로 이동하면서 id를 전달합니다.
+            navigate(`/diary/${response.id}`, { state: { id: response.id } });
+        }
+    };
+
 
     const handleInputChange = (event) => {
         setDreamText(event.target.value.slice(0, 200)); // 입력 필드가 변경될 때마다 상태를 업데이트
@@ -109,26 +117,6 @@ const CreateDream = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // 해몽 데이터가 변경될 때 체크리스트 데이터를 가져오는 effect
-    useEffect(() => {
-        const fetchChecklist = async () => {
-            if (dreamResolutionData && dreamData) {
-                setIsChecklistLoading(true); // 체크리스트 로딩 상태 시작
-                console.log('dreamResolutionData:', dreamResolutionData);
-                console.log('dreamData:', dreamData.id);
-                const checklistResult = await dreamChecklist(dreamResolutionData.dream_resolution, dreamData.id); // 체크리스트 함수 호출
-                setChecklistData(checklistResult); // 체크리스트 데이터 저장
-                setIsChecklistLoading(false); // 체크리스트 로딩 상태 종료
-            }
-        };
-        fetchChecklist();
-    }, [dreamResolutionData, dreamData]);
-
-    useEffect(() => {
-        if (checklistData) {
-            endOfPageRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [checklistData]);
 
 
 
@@ -144,21 +132,10 @@ const CreateDream = () => {
             ) : (
                 dreamData ? ( // 데이터가 도착한 경우
                     <div className="dream-result">
-                        <h2 className="dream-title">{dreamData.dream_name}</h2>
-                        <img src={dreamData.image_url} alt="Dream" className="dream-image" />
-                        <p className="dream-description">{dreamData.dream}</p>
-                        {dreamResolutionData && <p className="dream-resolution">{dreamResolutionData.dream_resolution}</p>}
-                        {isChecklistLoading ? (
-                            <p className="loading_text">해몽에 대한 체크리스트를 작성하는 중<span className="loading-dots">...</span></p>
-                        ) : (
-                            checklistData &&
-                            <div className="today-checklist">
-                                {checklistData.today_checklist.split('\n').map((item, index) => (
-                                    <p key={index}>{item}</p>
-                                ))}
-                            </div>
-
-                        )}
+                        {/*<h2 className="dream-title">{dreamData.dream_name}</h2>*/}
+                        {/*<img src={dreamData.image_url} alt="Dream" className="dream-image" />*/}
+                        {/*<p className="dream-description">{dreamData.dream}</p>*/}
+                        {/*{dreamResolutionData && <p className="dream-resolution">{dreamResolutionData.dream_resolution}</p>}*/}
                     </div>
                 ) : ( // 초기 상태
                     <>
@@ -176,7 +153,9 @@ const CreateDream = () => {
                                 </textarea>
                                 <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
                             </div>
-                            <p>음성으로 기록 가능합니다.</p>
+                            <p className="voice">음성으로 기록 가능합니다.</p>
+                            <p className="voice">빨간 마이크일  말씀하시고 기다리시면 됩니다.</p>
+                            <p className="voice">음성 기록 완료 후 다시끄기!!</p>
                             <img
                                 src={isRecording ? mikeRecordingBtn : mikeBtn}
                                 alt="record"
@@ -188,11 +167,11 @@ const CreateDream = () => {
                     </>
                 )
             )}
-            {checklistData && (
-                <div ref={endOfPageRef}> {/* 참조를 페이지 하단에 위치시킵니다. */}
-                    <button onClick={handleGoToGallery} className="gallery-btn">꿈 전시관 가기</button>
-                </div>
-            )}
+            {/*{dreamResolutionData && (*/}
+            {/*    <div ref={endOfPageRef}> /!* 참조를 페이지 하단에 위치시킵니다. *!/*/}
+            {/*        <button onClick={handleGoToGallery} className="gallery-btn">꿈 전시관 가기</button>*/}
+            {/*    </div>*/}
+            {/*)}*/}
         </div>
     );
 };

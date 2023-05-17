@@ -86,7 +86,7 @@ function DiaryRead() {
                 </div>
             </footer>
             <a className="" href="https://forms.gle/GKb1wDpY83v7GWZ59" target="_blank" rel="noopener noreferrer">
-                <button className="download-app">서비스 투자 설문</button>
+                <button className="download-app">앱 다운받기</button>
             </a>
         </div>
     );

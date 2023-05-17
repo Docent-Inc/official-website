@@ -154,7 +154,7 @@ const CreateDream = () => {
                                 <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
                             </div>
                             <p className="voice">음성으로 기록 가능합니다.</p>
-                            <p className="voice">빨간 마이크일  말씀하시고 기다리시면 됩니다.</p>
+                            <p className="voice">빨간 마이크일 때 말씀하시고 기다리시면 됩니다.</p>
                             <p className="voice">음성 기록 완료 후 다시끄기!!</p>
                             <img
                                 src={isRecording ? mikeRecordingBtn : mikeBtn}

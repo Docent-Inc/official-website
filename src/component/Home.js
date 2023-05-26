@@ -7,6 +7,7 @@ import '../css/Home.css';
 import flow1 from '../image/flow1.gif';
 import flow2 from '../image/flow2.gif';
 import flow3 from '../image/flow3.gif';
+import main from '../image/mainimage.png';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -22,30 +23,31 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="main">
             <header className="header">
                 <img src={logo} alt="Logo" className="logo"/>
                 <div className="button-group">
                     <button className="button" onClick={() => handleButtonClick("/preRegister")}>
                         사전등록하기
                     </button>
-                    <button className="button" onClick={() => handleButtonClick("/experience")}>
-                        체험하기
-                    </button>
                 </div>
             </header>
             <div className="content">
-                <img src={flow1} alt="Flow 1" data-aos="fade-up"/>
-                <img src={flow3} alt="Flow 2" data-aos="fade-up"/>
-                <img src={flow2} alt="Flow 3" data-aos="fade-up"/>
                 <div className="section" id="introduction">
                     <p>"꿈은 무의식의 창이다."</p>
                     <p>당신의 아침을 함께할 어플, 도슨트입니다.</p>
                     <p>오늘 꾼 꿈을 잊어버리지 않게</p>
                     <p>음성을 통해 기록하고, 꿈을 해몽하고, 그림을 그려보세요.</p>
                 </div>
+                <img src={main} alt="main" data-aos="fade-up"/>
+                <button className="button" onClick={() => handleButtonClick("/experience")}>
+                    체험하기
+                </button>
+                <img src={flow1} alt="Flow 1" data-aos="fade-up"/>
+                <img src={flow2} alt="Flow 2" data-aos="fade-up"/>
+                <img src={flow3} alt="Flow 3" data-aos="fade-up"/>
                 <div className="section" id="ourTeam">
-                    <p>우리 팀은 창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</p>
+                    <p>저희 창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</p>
                     <p>개인의 창의성이 중요해지는 현대 사회,</p>
                     <p>우리는 문득 이런 생각을 했습니다.</p>
                     <p>"재미있는 꿈을 오래오래 기억할 수는 없을까?"</p>

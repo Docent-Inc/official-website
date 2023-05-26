@@ -1,39 +1,36 @@
-.header {
+.main .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* 로고와 버튼을 양쪽으로 정렬 */
     position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 5px 10%;  /* 패딩을 줄여서 네비게이션 바의 높이를 줄입니다 */
-    box-sizing: border-box;
+    padding: 0 2%;
     background-color: white;
-    z-index: 100; /* header가 항상 위에 위치하도록 z-index를 설정 */
+    z-index: 100;
 }
 
-.logo {
-    width: 60px;  /* 로고의 너비를 줄입니다 */
-    height: auto;  /* 높이를 자동으로 설정해서 비율을 유지합니다 */
+.main .logo {
+    height: 60px;
+    width: auto;
+    margin: 0; /* 상단 마진 제거 */
 }
 
 .button-group {
     display: flex;
-    justify-content: space-between;
-    width: 100px;
+    align-items: center; /* 버튼을 중앙에 정렬 */
 }
 
 .button {
-    min-width: 100px; /* 버튼의 최소 너비를 설정합니다. */
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    background-color: rgb(170, 202, 164);
+    border-radius: 50px; /* 버튼의 모서리를 둥글게 만듭니다 */
+    background-color: #12B886;
+    font-size: 11px;
     color: white;
     cursor: pointer;
+    margin-left: 2px;
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #0AA378;
 }
 
 .content {
@@ -47,4 +44,22 @@ img {
 
 body {
     overflow-x: hidden;
+}
+
+.section {
+    padding: 20px; /* 섹션 주위에 공간을 만들어 줍니다 */
+    text-align: center; /* 텍스트를 중앙에 위치시킵니다 */
+    margin-bottom: 40px; /* 섹션 사이에 여유 공간을 만들어 줍니다 */
+}
+
+.section p:first-child {
+    font-size: 1.2em; /* 첫 번째 문단의 글자 크기를 늘립니다 */
+    font-weight: bold; /* 첫 번째 문단을 굵게 만들어 강조 효과를 줍니다 */
+}
+
+.section p {
+    margin-bottom: 15px; /* 문단 사이에 여유 공간을 만들어 줍니다 */
+    line-height: 1.5; /* 문단의 줄 간격을 조정합니다 */
+    color: #333; /* 문단의 글자 색상을 어둡게 만들어 줍니다 */
+    font-size: 1em; /* 문단의 글자 크기를 설정합니다 */
 }

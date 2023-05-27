@@ -8,6 +8,9 @@ import flow1 from '../image/flow1.gif';
 import flow2 from '../image/flow2.gif';
 import flow3 from '../image/flow3.gif';
 import main from '../image/mainimage.png';
+import intro from '../image/introduce.png';
+import outtro from '../image/outtro.png';
+import image1 from '../image/1327.png';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -33,14 +36,13 @@ const HomePage = () => {
                 </div>
             </header>
             <div className="content">
-                <div className="section" id="introduction">
+                <div className="section" id="introduction" data-aos="fade-up">
                     <p className="p">꿈 기록을 쉽고 재밌게</p>
                     <p className="p">당신의 아침을 함께할,</p>
                     <p className="p">도슨트입니다.</p>
                     <button className="button" onClick={() => handleButtonClick("/createDream")}>
                         체험하기
                     </button>
-
                     {/*<div className="background-video">*/}
                     {/*    <video className="video" autoPlay loop muted>*/}
                     {/*        <source src="../image/jellyVideo.mp4" type="video/mp4"/>*/}
@@ -51,32 +53,35 @@ const HomePage = () => {
                 <img src={flow1} alt="Flow 1" data-aos="fade-up"/>
                 <img src={flow2} alt="Flow 2" data-aos="fade-up"/>
                 <img src={flow3} alt="Flow 3" data-aos="fade-up"/>
-                <div className="section1" id="ourTeam">
-                    <p>저희 창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</p>
-                    <p>개인의 창의성이 중요해지는 현대 사회,</p>
-                    <p>우리는 문득 이런 생각을 했습니다.</p>
-                    <p>"재미있는 꿈을 오래오래 기억할 수는 없을까?"</p>
-                    <p>"꿈 속 장면이 그림으로 그려지면 좋겠다"</p>
+                <div className="section1" id="ourTeam" data-aos="fade-up">
+                    <p>
+                        저희는 <strong>창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</strong>
+                    </p>
+                    <p>개인의 창의성이 중요해지는 현대 사회, 우리는 문득 이런 생각을 했습니다.</p>
+                    <div className="centered-text">
+                        <p><strong>"재미있는 꿈을 오래오래 기억할 수는 없을까?"</strong></p>
+                    </div>
+                    <p> </p>
+                    <div className="centered-text">
+                        <h6><strong>"꿈 속 장면이 그림으로 그려지면 좋겠다"</strong></h6>
+                    </div>
                 </div>
-                <div className="section2" id="ourService">
-                    <p>도슨트는 당신의 꿈을 음성으로 기록해주고,</p>
-                    <p>그 꿈을 해몽해드립니다.</p>
-                    <p>당신이 무엇을 상상하고 있는지,</p>
-                    <p>그 꿈이 당신에게 무엇을 말해주고 있는지 알려드리며,</p>
-                    <p>하루의 운세를 제공해드립니다.</p>
-                    <p>더불어 당신의 꿈을 그려볼 수 있는 도구인</p>
-                    <p>그림을 제공합니다.</p>
+                <img className="introImage" src={intro} alt="intro" data-aos="fade-up"/>
+                <div className="section2" id="ourService" data-aos="fade-up">
+                    <p>
+                        도슨트는 <strong>당신의 꿈을 음성으로 기록해주고, 그 꿈을 해몽해드립니다.</strong> 당신이 무엇을 상상하고 있는지, 그 꿈이 당신에게 무엇을 말해주고 있는지 알려드리며, 하루의 운세를 제공해드립니다.
+                    </p>
                 </div>
-                <div className="section2" id="ourVision">
-                    <p>도슨트는 당신의 이야기를 그림으로 그려드릴게요.</p>
-                    <p>자신만의 방식으로 꿈을 기록하고 기억해보세요.</p>
-                    <p>기록이 누적 될수록 자신의 내면에 더 가까워 질 수 있습니다.</p>
-                    <p>사용자들이 일어날 때 기분 좋은 수면 시간, 아침마다 느끼는 감정과 꾸는 꿈</p>
-                    <p>데이터를 모아 좀 더 행복한 아침을 만들 수 있는 방법을 제공합니다.</p>
-                    <p>도슨트와 함께하는 꿈의 세계는 언제나 특별하고,</p>
-                    <p>현실과 차별화된 즐거움을 선사합니다.</p>
-                    <p>꿈을 통해 하루를 성찰하고 의미있게 남겨보세요.</p>
+                <img className="image1" src={image1} alt="image1" data-aos="fade-up"/>
+                <div className="section2" id="ourVision" data-aos="fade-up">
+                    <p>
+                        도슨트는 <strong>당신의 이야기를 그림으로 그려드릴게요.</strong>
+                    </p>
+                    <p>
+                        도슨트와 함께하는 꿈의 세계는 언제나 특별하고, 현실과 차별화된 즐거움을 선사합니다. <strong>꿈을 통해 하루를 성찰하고 의미있게 남겨보세요.</strong>
+                    </p>
                 </div>
+                <img className="outroImage" src={outtro} alt="outtro" data-aos="fade-up"/>
             </div>
         </div>
     );

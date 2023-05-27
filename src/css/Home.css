@@ -141,3 +141,30 @@ body {
         min-height: 100%; /* 비디오의 최소 높이를 설정합니다. */
     }
 }
+.section1, .section2 {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.p {
+    margin-top: 0;
+    font-size: 24px; /* Increase the font size */
+    font-weight: 500; /* Make the font semi-bold */
+    line-height: 1.6; /* Increase the line-height */
+}
+
+.mainImage, .introImage, .image1, .outroImage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+strong {
+    font-weight: 700; /* Make the strong text bold */
+}
+
+.centered-text {
+    text-align: center;
+}

@@ -52,19 +52,20 @@
     padding: 10px; /* 텍스트가 상단에서 시작하도록 패딩을 추가합니다 */
 }
 
-.draw-btn {
+.createDream .draw-btn {
+    padding: 15px 40px;
     margin-top: 100px;
-    width: 60%;
-    height: 60px;
     align-items: center;
-    background-color: rgb(170, 202, 164);
-    border-color: rgba(255, 255, 255, 0);
-    border-radius: 5px;
-    color: black;
+    background-color: rgb(114, 189, 114);
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+}
+.voice{
+    margin-top: 100px
 }
 .mike-btn{
     width: 80px;
-    margin: 10px;
 }
 
 .fun-fact {
@@ -135,15 +136,14 @@
     justify-content: space-between;
     height: 50%; /* 필요에 따라 조정 */
     width: 100%; /* 필요에 따라 조정 */
+    margin-top: 40px;
 }
 .textNum {
-    position: absolute; /* textNum에 absolute position을 추가 */
-    bottom: 25%; /* textarea의 하단에서 10px 위로 이동 */
-    right: 10%; /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
+    position: absolute; /* textNum에 absolute position을 추가 */ /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
     background: white; /* 배경색을 white로 설정하여 textarea의 내용을 덮지 않게 함 */
-    padding: 0 5px; /* 패딩 추가 */
+    padding: 5px 10px; /* 패딩 추가 */
     z-index: 100;
 }
-.createDream .voice {
-    margin : 3px;
+.createDream .draw-btn:disabled {
+    background-color: grey;
 }

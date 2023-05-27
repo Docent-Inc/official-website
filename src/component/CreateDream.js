@@ -30,8 +30,12 @@ const CreateDream = () => {
     const [funFact, setFunFact] = useState('');
     const [isFirstLayoutVisible, setIsFirstLayoutVisible] = useState(true);
     const [showContainer, setShowContainer] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 비활성화 상태를 관리할 새로운 state
 
     const handleButtonClick = async () => {
+        if (dreamText.length < 10) { // 꿈의 텍스트가 10자 미만인 경우 반환하여 API 호출을 막습니다.
+            return;
+        }
         navigate("/createDream");
         setLoading(true);
         const result = await createDream(dreamText);
@@ -50,7 +54,9 @@ const CreateDream = () => {
             handleGoToGallery();
         }
     }, [dreamData, dreamResolutionData, checklistData]);
-
+    useEffect(() => {
+        setIsButtonDisabled(dreamText.length < 10); // 꿈의 텍스트가 10자 미만이면 버튼을 비활성화합니다.
+    }, [dreamText]);
     const handleFirstLayoutClick = () => {
         setIsFirstLayoutVisible(false);
         setShowContainer(true); // 첫 번째 레이아웃 클릭시 container 표시
@@ -122,53 +128,47 @@ const CreateDream = () => {
 
     return (
         <div className="createDream">
-            {isFirstLayoutVisible && ( // firstLayout의 visibility에 따라 렌더링 여부 결정
-                <div className="firstLayout" onClick={handleFirstLayoutClick}>
-                    <img src={logo2} alt="logo" className="logo" />
+
+            {loading ? ( // 로딩 중인 경우
+                <div className="loading-effect">
+                    <p className="dream_load_text">꿈을 그리는 중<span className="loading-dots">...</span></p>
+                    <p className="fun-fact">{funFact}</p>
                 </div>
-            )}
-            {showContainer && ( // container의 표시 여부에 따라 렌더링
-                <>
-                    {loading ? ( // 로딩 중인 경우
-                        <div className="loading-effect">
-                            <p className="dream_load_text">꿈을 그리는 중<span className="loading-dots">...</span></p>
-                            <p className="fun-fact">{funFact}</p>
-                        </div>
-                    ) : (
-                        dreamData ? ( // 데이터가 도착한 경우
-                            <div className="dream-result">
-                            </div>
-                        ) : ( // 초기 상태
-                            <>
-                                <div className="container">
-                                    <img className="logo" src={logo2} alt="logo" />
+            ) : (
+                dreamData ? ( // 데이터가 도착한 경우
+                    <div className="dream-result">
+                    </div>
+                ) : ( // 초기 상태
+                    <>
+                        <div className="container">
+                            <img className="logo" src={logo2} alt="logo" />
 
-                                    <div className="text_field">
-                                         <textarea
-                                             type="text"
-                                             className="input-field"
-                                             value={dreamText}
-                                             onChange={handleInputChange}
-                                             minLength={10}
-                                             maxLength={200} // 글자 수를 300자로 제한
-                                         >
-                                        </textarea>
-                                        <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
-                                        <p className="voice">음성 기록 버튼</p>
-                                        <img
-                                            src={ voiceJelly}
-                                            alt="record"
-                                            className="mike-btn"
-                                            onClick={handleVoiceRecording}
-                                        />
-                                    </div>
-
-                                    <button onClick={handleButtonClick} className="draw-btn">꿈 그리기</button>
+                            <div className="text_field">
+                                 <textarea
+                                     type="text"
+                                     className="input-field"
+                                     value={dreamText}
+                                     onChange={handleInputChange}
+                                     minLength={10}
+                                     maxLength={200} // 글자 수를 300자로 제한
+                                 >
+                                </textarea>
+                                <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
+                                <div className="voice">
+                                    <p>음성 기록 버튼</p>
+                                    <img
+                                        src={ voiceJelly }
+                                        alt="record"
+                                        className="mike-btn"
+                                        onClick={handleVoiceRecording}
+                                    />
                                 </div>
-                            </>
-                        )
-                    )}
-                </>
+                            </div>
+
+                            <button onClick={handleButtonClick} className="draw-btn" disabled={isButtonDisabled}>꿈 그리기</button>
+                        </div>
+                    </>
+                )
             )}
         </div>
     );

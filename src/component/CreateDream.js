@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createDream, dreamChecklist, createDiary, dreamResolution } from "../services/apiService";
 import logo2 from '../image/newLogo.png';
 import voiceJelly from '../image/voiceJelly.png';
-import mikeRecordingBtn from '../image/voiceJelly.png';
+import mikeRecordingBtn from '../image/jellyVideo.gif';
 
 import '../css/createDream.css';
 import annyang from "annyang";
@@ -31,6 +31,7 @@ const CreateDream = () => {
     const [isFirstLayoutVisible, setIsFirstLayoutVisible] = useState(true);
     const [showContainer, setShowContainer] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 비활성화 상태를 관리할 새로운 state
+    const [isPromptVisible, setIsPromptVisible] = useState(false);
 
     const handleButtonClick = async () => {
         if (dreamText.length < 10) { // 꿈의 텍스트가 10자 미만인 경우 반환하여 API 호출을 막습니다.
@@ -54,9 +55,11 @@ const CreateDream = () => {
             handleGoToGallery();
         }
     }, [dreamData, dreamResolutionData, checklistData]);
+
     useEffect(() => {
         setIsButtonDisabled(dreamText.length < 10); // 꿈의 텍스트가 10자 미만이면 버튼을 비활성화합니다.
     }, [dreamText]);
+
     const handleFirstLayoutClick = () => {
         setIsFirstLayoutVisible(false);
         setShowContainer(true); // 첫 번째 레이아웃 클릭시 container 표시
@@ -111,6 +114,7 @@ const CreateDream = () => {
         }
 
         setIsRecording(!isRecording);
+        setIsPromptVisible(!isPromptVisible);
     };
 
     useEffect(() => {
@@ -128,9 +132,12 @@ const CreateDream = () => {
 
     return (
         <div className="createDream">
-
             {loading ? ( // 로딩 중인 경우
+
                 <div className="loading-effect">
+                    <div className="header">
+                        <img className="logo" src={logo2} alt="logo" />
+                    </div>
                     <p className="dream_load_text">꿈을 그리는 중<span className="loading-dots">...</span></p>
                     <p className="fun-fact">{funFact}</p>
                 </div>
@@ -141,31 +148,56 @@ const CreateDream = () => {
                 ) : ( // 초기 상태
                     <>
                         <div className="container">
-                            <img className="logo" src={logo2} alt="logo" />
+                            <div className="header">
+                                <img className="logo" src={logo2} alt="logo" />
+                            </div>
+                            <div className="main">
+                                <div className="text_field">
+                                    <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
+                                     <textarea
+                                         type="text"
+                                         className="input-field"
+                                         value={dreamText}
+                                         onChange={handleInputChange}
+                                         minLength={10}
+                                         maxLength={200} // 글자 수를 300자로 제한
+                                         placeholder="10자 이상 작성해주시면 그리기 버튼이 활성화 됩니다.
+                                         아래의 젤리를 누르면 음성으로 기록이 가능합니다."
+                                     >
+                                    </textarea>
 
-                            <div className="text_field">
-                                 <textarea
-                                     type="text"
-                                     className="input-field"
-                                     value={dreamText}
-                                     onChange={handleInputChange}
-                                     minLength={10}
-                                     maxLength={200} // 글자 수를 300자로 제한
-                                 >
-                                </textarea>
-                                <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
-                                <div className="voice">
-                                    <p>음성 기록 버튼</p>
-                                    <img
-                                        src={ voiceJelly }
-                                        alt="record"
-                                        className="mike-btn"
-                                        onClick={handleVoiceRecording}
-                                    />
                                 </div>
+
+                                <div className="voice">
+
+                                    {isRecording ?
+                                        <img
+                                            src={mikeRecordingBtn}
+                                            alt="recording"
+                                            className="recording"
+                                            onClick={handleVoiceRecording}
+                                        /> :
+                                        <img
+                                            src={voiceJelly}
+                                            alt="not recording"
+                                            className="n_recording"
+                                            onClick={handleVoiceRecording}
+                                        />
+                                    }
+                                    {isPromptVisible && <p>꿈을 말씀해주세요</p>}
+                                </div>
+
+                                <button
+                                    onClick={handleButtonClick}
+                                    className={`draw-btn ${isButtonDisabled ? 'disabled' : 'enabled'}`}
+                                    disabled={isButtonDisabled}
+                                >
+                                    꿈 그리기
+                                </button>
                             </div>
 
-                            <button onClick={handleButtonClick} className="draw-btn" disabled={isButtonDisabled}>꿈 그리기</button>
+
+
                         </div>
                     </>
                 )

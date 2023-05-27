@@ -5,17 +5,17 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color:#000000 ;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(237, 253, 227, 1) 100%);
     color: white; /* 모든 글씨를 흰색으로 바꿈 */
 }
 .logo3 {
-    width: 300px;
-    margin-top: 50px;
+    width: 280px;
+    margin-top: 5px;
 }
 .diary-read-image img {
     width: 100%; /* 그림 크기를 줄임 (이 값은 적절히 조절 가능) */
     height: auto;
-    box-shadow: 0px 0px 90px #FFF72C; /* 그림에 Drop shadow를 추가 */
+    box-shadow: 0px 0px 90px  rgb(114, 189, 114); /* 그림에 Drop shadow를 추가 */
     margin-bottom: 30px;
 }
 .diary-read-container {
@@ -26,12 +26,13 @@
     text-align: center;
     font-size: 16px;
     color: #333;
-    width: 290px;
+    width: 310px;
     padding: 15px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-bottom: 10px;
 
 }
 .toggle{
@@ -39,7 +40,8 @@
     width: 150px;
     height: 30px;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 30px;
+    border: 1px solid #72bd72;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
 }
 
@@ -66,8 +68,9 @@
     width: 150px;
     height: 40px;
     margin-top: 10px;
+    border: 1px solid #72bd72;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 30px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
     margin-right: 10px;
 }
@@ -77,23 +80,14 @@
     height: 40px;
     margin-top: 10px;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-right: 10px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
-}
-.download-app {
-    margin-bottom: 10px;
-    width: 200px;
-    height: 40px;
-    margin-top: 10px;
-    background-color: #fff72c;
-    border-radius: 5px;
+    border: 1px solid #72bd72;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
 }
 .pText{
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
     flex-direction: column;
     text-align: center;
     font-size: 18px;

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { getDiary } from "../services/apiService";
-import logo3 from "../image/docentLogo3.png";
+import logo3 from "../image/newLogo.png";
 import '../css/DiaryRead.css';
 
 function DiaryRead() {
@@ -72,12 +72,10 @@ function DiaryRead() {
                 </div>
             </div>
             <div className="pText">
-                <p>인스타 공유 후 도슨트 공식 계정에</p>
-                <p>DM을 보내주시면 추첨을 통해</p>
-                <p>선물을 드립니다🎁</p>
+                <p>재밌으셨다면 인스타에 공유 해주세요!!</p>
                 <p>@_docent_official</p>
-                <p>이 서비스가 궁금하시다면</p>
-                <p>"설문" 버튼을 클릭 해주세요🙏</p>
+                <p>향후 이 서비스가 기대가 되신다면</p>
+                <p>"사전 등록" 버튼을 클릭 해주세요🙏</p>
             </div>
             <footer>
                 <div className="diary-read-footer">
@@ -85,9 +83,7 @@ function DiaryRead() {
                     <button className="share" onClick={handleShare}>인스타 공유하기</button>
                 </div>
             </footer>
-            <a className="" href="https://forms.gle/GKb1wDpY83v7GWZ59" target="_blank" rel="noopener noreferrer">
-                <button className="download-app">앱 다운받기</button>
-            </a>
+
         </div>
     );
 }

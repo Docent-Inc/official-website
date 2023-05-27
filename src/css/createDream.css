@@ -1,109 +1,73 @@
+.createDream .firstLayout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgba(108, 90, 120, 1) 0%, rgba(108, 90, 120, 1) 75%, rgba(142, 149, 142, 1) 100%);
+}
+
 .createDream {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: #95C5E7;
+    flex-direction: column;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(237, 253, 227, 1) 100%);
 }
 
-.logo {
-    width: 260px;
-    margin-top: 60px;
+.createDream .firstLayout .logo {
+    width: 200px;
+    margin-top: 20px;
+    left: 30%;
+    float: left;
+    margin-left: 10px;
+}
+.createDream .logo {
+    width: 100px;
+    margin-top: 20px;
+    left: 30%;
+    float: left;
+    margin-left: 10px;
 }
 .text {
     font-size: 18px;
     font-weight: bold;
     margin-top: 30px;
-    margin-bottom: 15px;
+    float: left;
 
 }
 .input-field {
     margin-top: 40px;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     width: 80%;
     height: 220px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-    border-color: white;
+    border-color: rgba(255, 255, 255, 0);
     position: relative;
     font-size: 18px;
-    overflow-wrap: break-word;
+    /*overflow-wrap: break-word;*/
     resize: none; /* 사용자가 텍스트 영역의 크기를 변경하는 것을 방지합니다 */
     padding: 10px; /* 텍스트가 상단에서 시작하도록 패딩을 추가합니다 */
 }
 
-.draw-btn {
-    width: 60%;
-    height: 60px;
-    margin-top: 10px;
-    background-color: #388DD5;
-    border-radius: 5px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
-    color: black;
-}
-.gallery-btn
-{
-    width: 200px;
-    height: 60px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    background-color: #388DD5;
-    border-radius: 5px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
-    color: black;
-}
-.dream-result {
-    display: flex;
-    flex-direction: column;
+.createDream .draw-btn {
+    padding: 15px 40px;
+    margin-top: 100px;
     align-items: center;
+    background-color: rgb(114, 189, 114);
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+}
+.voice{
+    margin-top: 100px
+}
+.mike-btn{
+    width: 80px;
 }
 
-.dream-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin: 10px 0;
-}
-
-.dream-image {
-    width: 300px;
-    height: auto;
-    margin: 10px 0;
-}
-
-.dream-description {
-    font-size: 18px;
-    color: #333;
-    margin: 15px 0;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    width: 290px;
-}
-
-.dream-resolution {
-    font-size: 18px;
-    color: #333;
-    width: 290px;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-.today-checklist{
-    font-size: 18px;
-    color: #333;
-    width: 290px;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    margin-top: 15px;
-}
 .fun-fact {
     font-size: 18px;
     color: #333;
@@ -172,19 +136,14 @@
     justify-content: space-between;
     height: 50%; /* 필요에 따라 조정 */
     width: 100%; /* 필요에 따라 조정 */
+    margin-top: 40px;
 }
 .textNum {
-    position: absolute; /* textNum에 absolute position을 추가 */
-    bottom: 25%; /* textarea의 하단에서 10px 위로 이동 */
-    right: 10%; /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
+    position: absolute; /* textNum에 absolute position을 추가 */ /* textarea의 오른쪽 끝에서 10px 왼쪽으로 이동 */
     background: white; /* 배경색을 white로 설정하여 textarea의 내용을 덮지 않게 함 */
-    padding: 0 5px; /* 패딩 추가 */
+    padding: 5px 10px; /* 패딩 추가 */
     z-index: 100;
 }
-.createDream .voice {
-    margin : 3px;
-}
-.mike-btn {
-    width: 50px; /* 원하는 너비로 조정 */
-    height: 50px; /* 원하는 높이로 조정 */
+.createDream .draw-btn:disabled {
+    background-color: grey;
 }

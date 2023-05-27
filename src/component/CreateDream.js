@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createDream, dreamChecklist, createDiary, dreamResolution } from "../services/apiService";
-import logo2 from '../image/logo2.png';
-import mikeBtn from '../image/mike.png';
-import mikeRecordingBtn from '../image/mike_recording.png';
+import logo2 from '../image/newLogo.png';
+import voiceJelly from '../image/voiceJelly.png';
+import mikeRecordingBtn from '../image/voiceJelly.png';
+
 import '../css/createDream.css';
 import annyang from "annyang";
-
 
 const funFacts = [
     '꿈은 REM 수면 단계에서 주로 일어난다. REM 수면은 Rapid Eye Movement의 약자로, 빠른 눈동자 움직임이 특징인 수면 단계입니다.',
@@ -27,13 +27,15 @@ const CreateDream = () => {
     const [loading, setLoading] = useState(false);
     const [isRecording, setIsRecording] = useState(false);
     const [checklistData, setChecklistData] = useState(null); // 체크리스트 데이터를 저장할 state
-    const [isChecklistLoading, setIsChecklistLoading] = useState(false); // 체크리스트 로딩 상태를 관리하는 state
     const [funFact, setFunFact] = useState('');
-    const endOfPageRef = useRef(null);
-
-
+    const [isFirstLayoutVisible, setIsFirstLayoutVisible] = useState(true);
+    const [showContainer, setShowContainer] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 비활성화 상태를 관리할 새로운 state
 
     const handleButtonClick = async () => {
+        if (dreamText.length < 10) { // 꿈의 텍스트가 10자 미만인 경우 반환하여 API 호출을 막습니다.
+            return;
+        }
         navigate("/createDream");
         setLoading(true);
         const result = await createDream(dreamText);
@@ -52,6 +54,13 @@ const CreateDream = () => {
             handleGoToGallery();
         }
     }, [dreamData, dreamResolutionData, checklistData]);
+    useEffect(() => {
+        setIsButtonDisabled(dreamText.length < 10); // 꿈의 텍스트가 10자 미만이면 버튼을 비활성화합니다.
+    }, [dreamText]);
+    const handleFirstLayoutClick = () => {
+        setIsFirstLayoutVisible(false);
+        setShowContainer(true); // 첫 번째 레이아웃 클릭시 container 표시
+    };
 
     const handleGoToGallery = async () => {
         const dreamDataToSave = {
@@ -69,7 +78,6 @@ const CreateDream = () => {
             navigate(`/diary/${response.id}`, { state: { id: response.id } });
         }
     };
-
 
     const handleInputChange = (event) => {
         setDreamText(event.target.value.slice(0, 200)); // 입력 필드가 변경될 때마다 상태를 업데이트
@@ -104,6 +112,7 @@ const CreateDream = () => {
 
         setIsRecording(!isRecording);
     };
+
     useEffect(() => {
         // 첫 번째 재미있는 사실을 선택
         setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
@@ -117,12 +126,8 @@ const CreateDream = () => {
         return () => clearInterval(interval);
     }, []);
 
-
-
-
     return (
         <div className="createDream">
-            <img className="logo" src={logo2} alt="logo" />
 
             {loading ? ( // 로딩 중인 경우
                 <div className="loading-effect">
@@ -132,46 +137,39 @@ const CreateDream = () => {
             ) : (
                 dreamData ? ( // 데이터가 도착한 경우
                     <div className="dream-result">
-                        {/*<h2 className="dream-title">{dreamData.dream_name}</h2>*/}
-                        {/*<img src={dreamData.image_url} alt="Dream" className="dream-image" />*/}
-                        {/*<p className="dream-description">{dreamData.dream}</p>*/}
-                        {/*{dreamResolutionData && <p className="dream-resolution">{dreamResolutionData.dream_resolution}</p>}*/}
                     </div>
                 ) : ( // 초기 상태
                     <>
-                        <p className="text">태몽을 입력해주세요</p>
                         <div className="container">
+                            <img className="logo" src={logo2} alt="logo" />
+
                             <div className="text_field">
                                  <textarea
-                                    type="text"
-                                    className="input-field"
-                                    value={dreamText}
-                                    onChange={handleInputChange}
-                                    minLength={10}
-                                    maxLength={200} // 글자 수를 300자로 제한
-                                >
+                                     type="text"
+                                     className="input-field"
+                                     value={dreamText}
+                                     onChange={handleInputChange}
+                                     minLength={10}
+                                     maxLength={200} // 글자 수를 300자로 제한
+                                 >
                                 </textarea>
                                 <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
+                                <div className="voice">
+                                    <p>음성 기록 버튼</p>
+                                    <img
+                                        src={ voiceJelly }
+                                        alt="record"
+                                        className="mike-btn"
+                                        onClick={handleVoiceRecording}
+                                    />
+                                </div>
                             </div>
-                            <p className="voice">음성으로 기록 가능합니다.</p>
-                            <p className="voice">빨간 마이크일 때 말씀하시고 기다리시면 됩니다.</p>
-                            <p className="voice">음성 기록 완료 후 다시끄기!!</p>
-                            <img
-                                src={isRecording ? mikeRecordingBtn : mikeBtn}
-                                alt="record"
-                                className="mike-btn"
-                                onClick={handleVoiceRecording}
-                            />
+
+                            <button onClick={handleButtonClick} className="draw-btn" disabled={isButtonDisabled}>꿈 그리기</button>
                         </div>
-                        <button onClick={handleButtonClick} className="draw-btn">꿈 그리기</button>
                     </>
                 )
             )}
-            {/*{dreamResolutionData && (*/}
-            {/*    <div ref={endOfPageRef}> /!* 참조를 페이지 하단에 위치시킵니다. *!/*/}
-            {/*        <button onClick={handleGoToGallery} className="gallery-btn">꿈 전시관 가기</button>*/}
-            {/*    </div>*/}
-            {/*)}*/}
         </div>
     );
 };

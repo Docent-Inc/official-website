@@ -38,9 +38,11 @@ const HomePage = () => {
             <header className="header">
                 <img src={logo} alt="Logo" className="logo"/>
                 <div className="button-group">
-                    <button className="button_register" onClick={() => handleButtonClick("/preRegister")}>
-                        사전 등록
-                    </button>
+                    <a className={""} href="https://docs.google.com/forms/d/e/1FAIpQLSeLgNnhMPEcFo07G9eVjVUlpNcU9JZglnFGNGvgH5jIj9VnQg/viewform" target="_blank">
+                        <button className="button_register">
+                            사전 등록
+                        </button>
+                    </a>
                 </div>
             </header>
             <div className="content">

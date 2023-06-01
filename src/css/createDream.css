@@ -6,8 +6,9 @@ body {
 
 .createDream {
     height: 100vh;
-    max-width: 1500px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(237, 253, 227, 1) 100%);
 }
 
@@ -16,6 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     height: 100vh; /* 필요에 따라 조정 */
+    max-width: 500px;
     margin: 0px 0px;
     padding: 0px 0px;
 }
@@ -137,6 +139,17 @@ body {
 
 @media screen and (min-width: 768px) {
     /* 화면 크기가 768px 이상일 때 적용될 스타일 */
+    .createDream .draw-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 40px;
+        margin: 50px auto;
+        background-color: rgb(114, 189, 114);
+        border-radius: 3px;
+        border: none;
+        color: #ffffff;
+    }
     .createDream .logo {
         width: 200px;
     }

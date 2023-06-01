@@ -82,7 +82,8 @@ const HomePage = () => {
                     <img className="introImage" src={intro} alt="intro" data-aos="fade-up"/>
 
                     <div className="section2" id="ourService" data-aos="fade-up">
-                        <p>도슨트는 <strong>당신의 꿈을 음성으로 기록해주고,그 꿈을 해몽해드립니다.</strong></p>
+                        <p>도슨트는 <strong>당신의 꿈을 음성으로 기록해주고,</strong></p>
+                        <p><strong>그 꿈을 해몽해드립니다.</strong></p>
                         <p> 당신이 무엇을 상상하고 있는지, </p>
                         <p>그 꿈이 당신에게 무엇을 말해주고 있는지 알려드리며,</p>
                         <p><strong>하루의 운세를 제공해드립니다.</strong></p>

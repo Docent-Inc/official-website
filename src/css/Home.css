@@ -150,6 +150,29 @@ strong {
 
 @media (min-width: 768px) and (max-width: 1300px){
     /* 여기에 태블릿 및 데스크톱 디바이스에 적용할 CSS를 작성합니다. */
+    .main .button_register {
+        padding:10px 15px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(114, 189, 114);
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-left: 2px;
+    }
+    .main .content .section .button{
+        padding: 15px 45px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(114, 189, 114);
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
     .main .header {
         padding: 2vw; /* 헤더의 패딩을 늘립니다. */
     }
@@ -200,6 +223,29 @@ strong {
 
 }
 @media (min-width: 1301px){
+    .main .button_register {
+        padding:10px 15px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(114, 189, 114);
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-left: 2px;
+    }
+    .main .content .section .button{
+        padding: 15px 45px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(114, 189, 114);
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
     .main .header {
         padding: 26px; /* 헤더의 패딩을 고정합니다. */
     }

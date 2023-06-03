@@ -40,7 +40,7 @@ const HomePage = () => {
                 <div className="button-group">
                     <a className={""} href="https://docs.google.com/forms/d/e/1FAIpQLSeLgNnhMPEcFo07G9eVjVUlpNcU9JZglnFGNGvgH5jIj9VnQg/viewform" target="_blank">
                         <button className="button_register">
-                            사전 등록
+                            사전등록
                         </button>
                     </a>
                 </div>
@@ -55,6 +55,11 @@ const HomePage = () => {
                     <button className="button" onClick={() => handleButtonClick("/createDream")}>
                         체험하기
                     </button>
+                    <a className="" href="https://tumblbug.com/docent_official" target="_blank">
+                        <button className="button">
+                            후원하기
+                        </button>
+                    </a>
                     <img className="jelly" src={jelly} alt="jelly" data-aos="fade-up"/>
                     <div id="scroll-arrow" onClick={handleScrollClick}>
                         <i className="arrow down"></i>

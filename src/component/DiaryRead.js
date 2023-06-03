@@ -74,12 +74,14 @@ function DiaryRead() {
             <div className="pText">
                 <p>재밌으셨다면 인스타에 공유 해주세요!!</p>
                 <p>@_docent_official</p>
-                <p>향후 이 서비스가 기대가 되신다면</p>
-                <p>"사전 등록" 버튼을 클릭 해주세요🙏</p>
+                <a className={""} href="https://tumblbug.com/docent_official" target="_blank">
+                    <button className="share" onClick={handleShare}>후원하기</button>
+                </a>
+
             </div>
             <footer>
                 <div className="diary-read-footer">
-                    <button className="nvi-draw" onClick={() => navigate('/')}>꿈 그리기</button>
+                    <button className="nvi-draw" onClick={() => navigate('/')}>HOME</button>
                     <button className="share" onClick={handleShare}>인스타 공유하기</button>
                 </div>
             </footer>

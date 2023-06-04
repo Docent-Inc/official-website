@@ -12,12 +12,18 @@ export async function createDream(dText) {
         if (response.ok) {
             return Dream.data;
         } else {
+            if (response.status === 400) {
+                alert('OpenAI 정책에 맞지 않는 내용입니다. 내용을 수정해주세요.');
+            } else if (response.status === 500) {
+                alert('오류가 발생했습니다. 다시 시도하거나 오류가 계속되면 문의 주세요(문의 : @_docent_official)');
+            }
             throw new Error(Dream.error);
         }
     } catch (error) {
         console.error('Error fetching Dream content:', error);
     }
 };
+
 // 꿈 해몽
 export async function dreamResolution(text) {
     try {
@@ -31,14 +37,19 @@ export async function dreamResolution(text) {
         console.log('resolution:', resolution);
         if (response.ok) {
             return resolution.data;
-        }
-        else {
+        } else {
+            if (response.status === 400) {
+                alert('OpenAI 정책에 맞지 않는 내용입니다. 내용을 수정해주세요.');
+            } else if (response.status === 500) {
+                alert('오류가 발생했습니다. 다시 시도하거나 오류가 계속되면 문의 주세요(문의 : @_docent_official)');
+            }
             throw new Error(resolution.error);
         }
     } catch (error) {
-        console.error('Error fetching Dream resolution', error);
+        console.error('Error fetching Dream resolution:', error);
     }
 };
+
 // 꿈 체크리스트
 export async function dreamChecklist(dreamSolution, id) {
     try {

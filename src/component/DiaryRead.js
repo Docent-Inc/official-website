@@ -87,7 +87,7 @@ function DiaryRead() {
                 <p>재밌으셨다면 인스타에 공유 해주세요!!</p>
                 <p>@_docent_official</p>
                 <a className={""} href="https://tumblbug.com/docent_official" target="_blank">
-                    <button className="share" onClick={handleShare}>후원하기</button>
+                    <button className="share">후원하기</button>
                 </a>
 
             </div>

@@ -195,6 +195,21 @@ strong {
         margin-bottom: 30px;
         border: 1px solid #72bd72;
     }
+    .main .content .section .godButton{
+        padding: 15px 45px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(120, 24, 215);
+        margin-right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-bottom: 30px;
+        border: 1px solid #72bd72;
+    }
     .main .header {
         padding: 2vw; /* 헤더의 패딩을 늘립니다. */
     }
@@ -211,7 +226,11 @@ strong {
         font-size: 1.6vw; /* 버튼의 폰트 크기를 늘립니다. */
         padding: 1.2vw 2vw; /* 버튼의 패딩을 늘립니다. */
     }
-
+    .main .jelly{
+        display: flex;
+        width: 400px;
+        margin: 10px auto;
+    }
     .content {
         padding-top: 12vw; /* 콘텐츠의 패딩을 늘립니다. */
         width: 100vw;
@@ -270,6 +289,26 @@ strong {
         margin-right: 15px;
         margin-bottom: 30px;
         border: 1px solid #72bd72;
+    }
+    .main .content .section .godButton{
+        padding: 15px 45px;
+        border: none;
+        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
+        background-color: rgb(120, 24, 215);
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-right: 15px;
+        margin-bottom: 30px;
+        border: 1px solid #72bd72;
+    }
+    .main .jelly{
+        display: flex;
+        width: 400px;
+        margin: 10px auto;
     }
     .main .header {
         padding: 26px; /* 헤더의 패딩을 고정합니다. */

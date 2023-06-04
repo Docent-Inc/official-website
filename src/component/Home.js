@@ -52,14 +52,19 @@ const HomePage = () => {
                         <p >당신의 아침을 함께할,</p>
                         <p>도슨트입니다.</p>
                     </div>
-                    <button className="button" onClick={() => handleButtonClick("/createDream")}>
-                        체험하기
-                    </button>
-                    <a className="" href="https://tumblbug.com/docent_official" target="_blank">
-                        <button className="button">
-                            후원하기
+                    <div className="buttonZip">
+                        <button className="button" onClick={() => handleButtonClick("/createdream")}>
+                            체험하기
                         </button>
-                    </a>
+                        <a className="" href="https://tumblbug.com/docent_official" target="_blank">
+                            <button className="button">
+                                후원하기
+                            </button>
+                        </a>
+                    </div>
+                    <button className="godButton" onClick={() => handleButtonClick("/experience")}>
+                        갓침 챌린지 도전!!
+                    </button>
                     <img className="jelly" src={jelly} alt="jelly" data-aos="fade-up"/>
                     <div id="scroll-arrow" onClick={handleScrollClick}>
                         <i className="arrow down"></i>
@@ -106,6 +111,7 @@ const HomePage = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 

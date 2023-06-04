@@ -116,3 +116,25 @@ export const getDiary = async (diaryId) => {
         console.error('Error fetching Diary Read:', error);
     }
 }
+
+// 다른 사람의 다이어리 읽기
+export async function randomDiary(){
+    try {
+        const response = await fetch('/api/mvp/random', {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+            }
+        });
+        const data = await response.json();
+        console.log('data:', data);
+        if (response.ok) {
+            return data.data;
+        }
+        else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        console.error('Error fetching Random Diary:', error);
+    }
+}

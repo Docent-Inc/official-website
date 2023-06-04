@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import { getDiary } from "../services/apiService";
+import { getDiary, randomDiary } from "../services/apiService";
 import logo3 from "../image/newLogo.png";
 import '../css/DiaryRead.css';
 
@@ -27,6 +27,18 @@ function DiaryRead() {
         fetchDiary();
     }, [id]);
 
+
+    const randomDiaryRead = async () => {
+        const fetchDiary = async () => {
+            try {
+                const diaryData = await randomDiary();
+                setDiary(diaryData);
+            } catch (error) {
+                console.error('Error fetching Diary Read:', error);
+            }
+        };
+        fetchDiary();
+    }
 
     const handleShare = useCallback(() => {
         navigator.clipboard.writeText(window.location.href)
@@ -82,7 +94,8 @@ function DiaryRead() {
             <footer>
                 <div className="diary-read-footer">
                     <button className="nvi-draw" onClick={() => navigate('/')}>HOME</button>
-                    <button className="share" onClick={handleShare}>인스타 공유하기</button>
+                    <button className="share" onClick={handleShare}>공유하기</button>
+                    <button className="nvi-draw" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
                 </div>
             </footer>
 

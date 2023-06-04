@@ -94,7 +94,7 @@ function DiaryRead() {
             <footer>
                 <div className="diary-read-footer">
                     <button className="nvi-draw" onClick={() => navigate('/')}>HOME</button>
-                    <button className="share" onClick={handleShare}>공유하기</button>
+                    <button className="nvi-draw" onClick={handleShare}>공유하기</button>
                     <button className="nvi-draw" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
                 </div>
             </footer>

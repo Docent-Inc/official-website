@@ -130,6 +130,11 @@ const CreateDream = () => {
         return () => clearInterval(interval);
     }, []);
 
+    function randomDiaryRead() {
+        const randomDiary = Math.floor(Math.random() * 300) + 1;
+        navigate(`/diary/${randomDiary}`, { state: { id: randomDiary } });
+    }
+
     return (
         <div className="createDream">
             {loading ? ( // 로딩 중인 경우
@@ -194,6 +199,7 @@ const CreateDream = () => {
                                 >
                                     꿈 그리기
                                 </button>
+                                <button className="draw-btn" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
                             </div>
 
 

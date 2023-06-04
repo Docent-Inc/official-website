@@ -9,8 +9,17 @@ function DiaryRead() {
     const [diary, setDiary] = useState(null);
     const [isOpen, setIsOpen] = useState(false); // 토글 상태
     const location = useLocation();
-    const { id } = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
+
+    const randomDiaryRead = useCallback(async () => {
+        try {
+            const diaryData = await randomDiary();
+            setDiary(diaryData);
+        } catch (error) {
+            console.error('Error fetching Diary Read:', error);
+        }
+    }, []);
 
     useEffect(() => {
         const ad = document.querySelector('.kakao_ad_area');
@@ -22,23 +31,14 @@ function DiaryRead() {
                 setDiary(diaryData);
             } catch (error) {
                 console.error('Error fetching Diary Read:', error);
+                if (error.message.includes('has been deleted')) { // includes를 사용해 일부만 일치해도 실행되도록 함
+                    randomDiaryRead();
+                }
             }
         };
         fetchDiary();
-    }, [id]);
+    }, [id, randomDiaryRead]);
 
-
-    const randomDiaryRead = async () => {
-        const fetchDiary = async () => {
-            try {
-                const diaryData = await randomDiary();
-                setDiary(diaryData);
-            } catch (error) {
-                console.error('Error fetching Diary Read:', error);
-            }
-        };
-        fetchDiary();
-    }
 
     const handleShare = useCallback(() => {
         navigator.clipboard.writeText(window.location.href)

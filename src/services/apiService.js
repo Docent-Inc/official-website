@@ -114,8 +114,10 @@ export const getDiary = async (diaryId) => {
         }
     } catch (error) {
         console.error('Error fetching Diary Read:', error);
+        throw error; // Error를 다시 던져서 상위 함수에서 처리할 수 있도록 합니다.
     }
 }
+
 
 // 다른 사람의 다이어리 읽기
 export async function randomDiary(){

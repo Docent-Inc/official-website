@@ -73,28 +73,8 @@
     width: 100%;
     color: black;
 }
-.nvi-draw{
-    margin-bottom: 10px;
-    width: 100px;
-    height: 40px;
-    margin-top: 10px;
-    border: 1px solid #72bd72;
-    background-color: #ffffff;
-    border-radius: 30px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
-    margin-right: 10px;
-}
-.share{
-    margin-bottom: 10px;
-    width: 100px;
-    height: 40px;
-    margin-top: 10px;
-    background-color: #ffffff;
-    border-radius: 30px;
-    margin-right: 10px;
-    border: 1px solid #72bd72;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
-}
+
+
 .pText{
     display: flex;
     align-items: center;

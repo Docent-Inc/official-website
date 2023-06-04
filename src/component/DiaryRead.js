@@ -109,7 +109,7 @@ function DiaryRead() {
                 <footer>
                     <div className="diary-read-footer">
                         <button className="nvi-draw" onClick={handleHomeOrMyDiaries}>
-                            {isLoggedIn ? '내 꿈 목록' : 'HOME'}
+                            {isLoggedIn ? '꿈 목록' : 'HOME'}
                         </button>
                         <button className="nvi-draw" onClick={handleShare}>공유하기</button>
                         <button className="nvi-draw" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>

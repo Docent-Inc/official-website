@@ -1,0 +1,172 @@
+
+
+.gdcreateDream {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(108, 90, 120, 1) 80%, rgba(133, 135, 137, 1) 90%, rgba(150, 160, 147, 1) 100%);
+}
+
+.gdcreateDream .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* 필요에 따라 조정 */
+    max-width: 500px;
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.gdcreateDream .container .header {
+    display: flex;
+    width: 100%; /* 필요에 따라 조정 */
+    margin: 0px 0px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #d3d3d3; /* 밑줄 추가 */
+}
+
+.gdcreateDream .logo {
+    width: 150px;
+    margin: 10px auto;
+}
+
+.gdcreateDream .main{
+    width: 100%;
+    align-items: center;
+}
+
+.text_field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* 필요에 따라 조정 */
+    margin-top: 20px;
+}
+
+.input-field {
+    width: 80%;
+    height: 160px;
+    border-radius: 15px;
+    border: 1px solid #72bd72;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    position: relative;
+    font-size: 18px;
+    resize: none; /* 사용자가 텍스트 영역의 크기를 변경하는 것을 방지합니다 */
+    padding: 10px; /* 텍스트가 상단에서 시작하도록 패딩을 추가합니다 */
+}
+
+.voice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 60px auto;
+    padding: 0px 20px;
+}
+
+.n_recording{
+    width: 70px;
+    margin: 10px auto;
+}
+
+.recording{
+    width: 120px;
+    margin: 0px auto;
+}
+
+.gdcreateDream .draw-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    margin: 50px auto;
+    background-color: rgb(114, 189, 114);
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+}
+
+.gdcreateDream .draw-btn:disabled{
+    background-color: #ddd;
+    color: #aaa;
+    border: none; /* 버튼이 들어간 것처럼 보이게 */
+}
+
+.gdcreateDream .draw-btn.enabled {
+    background-color: rgb(114, 189, 114); /* 활성화 배경색 */
+    color: #fff; /* 활성화 텍스트 색상 */
+    border: 2px solid rgb(114, 189, 114); /* 버튼이 나온 것처럼 보이게 */
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+}
+
+.loading-effect{
+    Width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fun-fact {
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    width: 290px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-top: 15px;
+}
+
+.dream_load_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 768px) {
+    /* 화면 크기가 768px 이상일 때 적용될 스타일 */
+    .gdcreateDream .draw-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 40px;
+        margin: 50px auto;
+        background-color: rgb(114, 189, 114);
+        border-radius: 3px;
+        border: none;
+        color: #ffffff;
+    }
+    .gdcreateDream .logo {
+        width: 200px;
+    }
+    .n_recording{
+        width: 100px;
+    }
+    .recording{
+        width: 180px;
+    }
+    .fun-fact {
+        font-size: 22px;
+        width: 400px;
+    }
+    .dream_load_text {
+        font-size: 24px;
+    }
+    .input-field {
+        font-size: 22px;
+        height: 300px;
+    }
+    .gdcreateDream .draw-btn {
+        padding: 20px 50px;
+    }
+}

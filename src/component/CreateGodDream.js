@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDream, dreamChecklist, createDiary, dreamResolution } from "../services/apiService";
+import { createGodDream, createGodDiary, dreamGodResolution } from "../services/apiService";
 import logo2 from '../image/newLogo.png';
 import voiceJelly from '../image/voiceJelly.png';
 import mikeRecordingBtn from '../image/jellyVideo.gif';
 import BackButton from './BackButton';
 
-import '../css/createDream.css';
+import '../css/CreateGodDream.css';
 import annyang from "annyang";
 
 const funFacts = [
@@ -20,7 +20,7 @@ const funFacts = [
 ];
 
 
-const CreateDream = () => {
+const CreateGodDream = () => {
     const navigate = useNavigate();
     const [dreamText, setDreamText] = useState('');
     const [dreamData, setDreamData] = useState(null);
@@ -35,25 +35,31 @@ const CreateDream = () => {
     const [isPromptVisible, setIsPromptVisible] = useState(false);
 
     const handleButtonClick = async () => {
-        if (dreamText.length < 10) {
+        if (dreamText.length < 10) { // 꿈의 텍스트가 10자 미만인 경우 반환하여 API 호출을 막습니다.
             return;
         }
-        navigate("/createDream");
+        navigate("/creategoddream");
         setLoading(true);
 
-        const [result, resolutionResult] = await Promise.all([
-            createDream(dreamText),
-            dreamResolution(dreamText)
-        ]);
+        // 꿈 생성 및 해석 API 동시 호출
+        try {
+            const [dreamResult, resolutionResult] = await Promise.all([
+                createGodDream(dreamText),
+                dreamGodResolution(dreamText)
+            ]);
 
-        setDreamData(result);
-        setDreamResolutionData(resolutionResult);
+            setDreamData(dreamResult);
+            setDreamResolutionData(resolutionResult);
+        } catch (error) {
+            console.error(error);
+        }
 
         setLoading(false);
 
         // checklist에 "checklist" 문자열을 넣어줍니다.
         setChecklistData({ today_checklist: "checklist" });
     };
+
 
 
     useEffect(() => {
@@ -82,7 +88,7 @@ const CreateDream = () => {
             is_public: true
         };
         console.log('dreamDataToSave:', dreamDataToSave);
-        const response = await createDiary(dreamDataToSave);
+        const response = await createGodDiary(dreamDataToSave);
         if (response && response.id) {
             // DiaryRead 페이지로 이동하면서 id를 전달합니다.
             navigate(`/diary/${response.id}`, { state: { id: response.id } });
@@ -137,15 +143,10 @@ const CreateDream = () => {
         return () => clearInterval(interval);
     }, []);
 
-    function randomDiaryRead() {
-        const randomDiary = Math.floor(Math.random() * 300) + 1;
-        navigate(`/diary/${randomDiary}`, { state: { id: randomDiary } });
-    }
-
     return (
-        <div className="createDream">
-            <backButton />
+        <div className="gdcreateDream">
             {loading ? ( // 로딩 중인 경우
+
                 <div className="loading-effect">
                     <div className="header">
                         <img className="logo" src={logo2} alt="logo" />
@@ -167,16 +168,16 @@ const CreateDream = () => {
                             <div className="main">
                                 <div className="text_field">
                                     <p className="textNum">{dreamText.length}/200</p> {/* 현재 글자 수를 표시 */}
-                                     <textarea
-                                         type="text"
-                                         className="input-field"
-                                         value={dreamText}
-                                         onChange={handleInputChange}
-                                         minLength={10}
-                                         maxLength={200} // 글자 수를 300자로 제한
-                                         placeholder="10자 이상 작성해주시면 그리기 버튼이 활성화 됩니다.
+                                    <textarea
+                                        type="text"
+                                        className="input-field"
+                                        value={dreamText}
+                                        onChange={handleInputChange}
+                                        minLength={10}
+                                        maxLength={200} // 글자 수를 300자로 제한
+                                        placeholder="10자 이상 작성해주시면 그리기 버튼이 활성화 됩니다.
                                          아래의 젤리를 누르면 음성으로 기록이 가능합니다."
-                                     >
+                                    >
                                     </textarea>
 
                                 </div>
@@ -207,7 +208,6 @@ const CreateDream = () => {
                                 >
                                     꿈 그리기
                                 </button>
-                                <button className="draw-btn" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
                             </div>
 
 
@@ -220,4 +220,4 @@ const CreateDream = () => {
     );
 };
 
-export default CreateDream;
+export default CreateGodDream;

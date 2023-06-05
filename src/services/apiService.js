@@ -318,3 +318,47 @@ export const getMyDiaryList = async (page) => {
         console.error('Error fetching mydiary list:', error);
     }
 };
+
+export const getUserCount = async () => {
+    try {
+        const response = await fetch(`/api/mvp/user/count`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+            }
+        });
+        const data = await response.json();
+        console.log('data:', data);
+
+        if (!response.ok) {
+            console.error('Error response from server:', data);
+            throw new Error(data.message || 'Unknown error');
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching user count:', error);
+    }
+}
+
+export const getDiaryCount = async () => {
+    try {
+        const response = await fetch(`/api/mvp/diary/count`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+            }
+        });
+        const data = await response.json();
+        console.log('data:', data);
+
+        if (!response.ok) {
+            console.error('Error response from server:', data);
+            throw new Error(data.message || 'Unknown error');
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching user count:', error);
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDream, dreamChecklist, createDiary, dreamResolution } from "../services/apiService";
+import { createDream, getDiaryCount, createDiary, dreamResolution } from "../services/apiService";
 import logo2 from '../image/newLogo.png';
 import voiceJelly from '../image/voiceJelly.png';
 import mikeRecordingBtn from '../image/jellyVideo.gif';
@@ -33,6 +33,7 @@ const CreateDream = () => {
     const [showContainer, setShowContainer] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 비활성화 상태를 관리할 새로운 state
     const [isPromptVisible, setIsPromptVisible] = useState(false);
+    const [diaryCount, setDiaryCount] = useState(null);
 
     const handleButtonClick = async () => {
         if (dreamText.length < 10) {
@@ -55,6 +56,13 @@ const CreateDream = () => {
         setChecklistData({ today_checklist: "checklist" });
     };
 
+    useEffect(() => {
+        const fetchCounts = async () => {
+            const diaryCount = await getDiaryCount();
+            setDiaryCount(diaryCount);
+        };
+        fetchCounts();
+    }, []);
 
     useEffect(() => {
         // 모든 데이터가 도착하면 createDiary를 호출합니다.
@@ -199,20 +207,24 @@ const CreateDream = () => {
                                     }
                                     {isPromptVisible && <p>꿈을 말씀해주세요</p>}
                                 </div>
-
-                                <button
-                                    onClick={handleButtonClick}
-                                    className={`draw-btn ${isButtonDisabled ? 'disabled' : 'enabled'}`}
-                                    disabled={isButtonDisabled}
-                                >
-                                    꿈 그리기
-                                </button>
-                                <button className="draw-btn" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
+                                <div className="fun-fact-container">
+                                    <button
+                                        onClick={handleButtonClick}
+                                        className={`draw-btn ${isButtonDisabled ? 'disabled' : 'enabled'}`}
+                                        disabled={isButtonDisabled}
+                                    >
+                                        꿈 그리기
+                                    </button>
+                                    <button className="draw-btn" onClick={() => randomDiaryRead()}>다른 꿈 보기</button>
+                                </div>
                             </div>
-
-
-
+                            <div className="dreamNum">
+                                <p> 지금까지 꿈이</p>
+                                <p>{diaryCount}개</p>
+                                <p>그려졌어요.</p>
+                            </div>
                         </div>
+
                     </>
                 )
             )}

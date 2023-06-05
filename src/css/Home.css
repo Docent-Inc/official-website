@@ -41,7 +41,7 @@
 }
 
 .content {
-    padding-top: 100px;
+    padding-top: 60px;
 
 }
 .content2{
@@ -70,6 +70,22 @@ body {
     font-weight: bold; /* 첫 번째 문단을 굵게 만들어 강조 효과를 줍니다 */
     margin: 0px;
 }
+.userNum {
+    font-weight: 900;  /* 텍스트를 굵게 만듭니다. */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    color: #72bd72;
+    font-family: Arial, sans-serif;  /* 글꼴을 변경합니다. 원하는 글꼴로 바꾸세요. */
+    font-size: 30px;
+    text-shadow: 2px 2px 0px #65c58c;  /* 텍스트에 검은색 테두리를 추가합니다. */
+    line-height: 1;  /* p 태그 사이의 거리를 좁힙니다. 값을 조절하여 원하는 거리를 설정하세요. */
+    margin: 25px;
+}
+
+.userNum .p{
+    margin: 0px;
+}
 
 .main .content .section .button{
     padding: 15px 30px;
@@ -80,9 +96,7 @@ body {
     font-weight: bold;
     color: white;
     cursor: pointer;
-    margin-top: 20px;
-    margin-right: 15px;
-    margin-bottom: 30px;
+    margin: 20px 5px;
     border: 1px solid #72bd72;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
 }
@@ -95,7 +109,6 @@ body {
     font-weight: bold;
     color: white;
     cursor: pointer;
-    margin-right: 15px;
     margin-bottom: 30px;
 
     box-shadow: 0px 15px 10px 0px rgba(0,0,0,0.2);

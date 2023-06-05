@@ -335,7 +335,7 @@ export const getUserCount = async () => {
             throw new Error(data.message || 'Unknown error');
         }
 
-        return data;
+        return data.data;
     } catch (error) {
         console.error('Error fetching user count:', error);
     }
@@ -357,7 +357,7 @@ export const getDiaryCount = async () => {
             throw new Error(data.message || 'Unknown error');
         }
 
-        return data;
+        return data.data;
     } catch (error) {
         console.error('Error fetching user count:', error);
     }

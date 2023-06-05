@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -12,9 +12,11 @@ import main from '../image/mainimage.png';
 import intro from '../image/introduce.png';
 import outtro from '../image/outtro.png';
 import image1 from '../image/1327.png';
+import { getUserCount} from "../services/apiService";
 
 const HomePage = () => {
     const navigate = useNavigate();
+    const [userCount, setUserCount] = useState(null);
 
     const handleButtonClick = (route) => {
         navigate(route);
@@ -32,6 +34,13 @@ const HomePage = () => {
             duration : 2000
         });
     }, []);
+    useEffect(() => {
+        const fetchCounts = async () => {
+            const userCount = await getUserCount();
+            setUserCount(userCount);
+        };
+        fetchCounts();
+    }, []);
 
     return (
         <div className="main">
@@ -48,8 +57,8 @@ const HomePage = () => {
             <div className="content">
                 <div className="section" id="introduction" data-aos="fade-up">
                     <div className="p">
-                        <p >꿈 기록을 쉽고 재밌게</p>
-                        <p >당신의 아침을 함께할,</p>
+                        <p>꿈 기록을 쉽고 재밌게</p>
+                        <p>당신의 아침을 함께할,</p>
                         <p>도슨트입니다.</p>
                     </div>
                     <div className="buttonZip">
@@ -65,11 +74,16 @@ const HomePage = () => {
                     <button className="godButton" onClick={() => handleButtonClick("/experience")}>
                         갓침 챌린지 도전!!
                     </button>
+                    <div className="userNum">
+                        <p>지금까지 {userCount}명이 도전 중!!!</p>
+                    </div>
                     <img className="jelly" src={jelly} alt="jelly" data-aos="fade-up"/>
                     <div id="scroll-arrow" onClick={handleScrollClick}>
                         <i className="arrow down"></i>
                     </div>
+
                 </div>
+
                 <img className="mainImage" src={main} alt="main" data-aos="fade-up"/>
                 <div className="content2">
                     <img src={flow1} alt="Flow 1" data-aos="fade-up"/>

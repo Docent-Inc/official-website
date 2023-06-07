@@ -72,10 +72,10 @@ const HomePage = () => {
                         </a>
                     </div>
                     <button className="godButton" onClick={() => handleButtonClick("/experience")}>
-                        갓침 챌린지 도전!!
+                        내 꿈 보관하기
                     </button>
                     <div className="userNum">
-                        <p>지금까지 {userCount}명이 도전 중!!!</p>
+                        <p>지금까지 {userCount}명이 보관 중!!!</p>
                     </div>
                     <img className="jelly" src={jelly} alt="jelly" data-aos="fade-up"/>
                     <div id="scroll-arrow" onClick={handleScrollClick}>

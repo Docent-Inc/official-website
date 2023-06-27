@@ -13,9 +13,10 @@ jobs:
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.DMZ_GCP }}
-          username: ${{ secrets.DMZ_GCP_USER }}
-          key: ${{ secrets.DMZ_GCP_KEY }}
+          host: ${{ secrets.NCP_HOST }}
+          username: ${{ secrets.NCP_USER }}
+          password: ${{ secrets.NCP_PASSWORD }}
+          key: ${{ secrets.NCP_KEY }}
           envs: GITHUB_SHA
           script: |
             # 서버에서 작업할 디렉토리 설정
@@ -26,12 +27,6 @@ jobs:
 
             # 저장소 클론
             git clone https://github.com/HypeDMZ/Docent-MVP.git
-
-            # 저장소 디렉토리로 이동
-            cd Docent-MVP
-
-            # 필요한 경우 추가 설정 작업 수행
-            # 예: npm install, pip install 등
 
             # Nginx 재시작
             sudo systemctl restart nginx

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://34.64.33.205:3306/test</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="docent@db-h4kbh.pub-cdb.ntruss.com" uuid="b7178c69-aa98-4bde-875d-89acf312348e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://db-h4kbh.pub-cdb.ntruss.com:3306/docent</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

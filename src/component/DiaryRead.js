@@ -100,8 +100,8 @@ function DiaryRead() {
             <div className="pText">
                 <p>재밌으셨다면 인스타에 공유 해주세요!!</p>
                 <p>@_docent_official</p>
-                <a className={""} href="https://tumblbug.com/docent_official" target="_blank">
-                    <button className="share">후원하기</button>
+                <a className={""} href="https://docs.google.com/forms/d/e/1FAIpQLSeLgNnhMPEcFo07G9eVjVUlpNcU9JZglnFGNGvgH5jIj9VnQg/viewform" target="_blank">
+                    <button className="share">사전등록 하기</button>
                 </a>
 
             </div>

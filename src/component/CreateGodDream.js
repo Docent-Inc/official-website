@@ -85,7 +85,7 @@ const CreateGodDream = () => {
             image_url: dreamData.image_url,
             resolution: dreamResolutionData.dream_resolution,
             checklist: checklistData.today_checklist,
-            is_public: true
+            is_public: true,
         };
         console.log('dreamDataToSave:', dreamDataToSave);
         const response = await createGodDiary(dreamDataToSave);

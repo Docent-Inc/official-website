@@ -1,372 +1,384 @@
-
-.main .header {
-    display: flex;
-    justify-content: space-between; /* 로고와 버튼을 양쪽으로 정렬 */
-    position: fixed;
-    padding: 10px;
-    background-color: white;
-    z-index: 100;
-    width: 100%;
-    border-bottom: 1px solid #d3d3d3; /* 밑줄 추가 */
+/* 공통 스타일 */
+.main {
+    margin: 0;
+    padding: 0;
 }
 
-.main .logo {
-    height: 30px;
-    width: auto;
-    margin: 5px; /* 상단 마진 제거 */
-}
-
-.button-group {
-    display: flex;
-    align-items: center; /* 버튼을 중앙에 정렬 */
-
-}
-
-.main .button_register {
-
-    padding:10px 15px;
-    border: none;
-    border-radius: 30px; /* 버튼의 모서리를 둥글게 만듭니다 */
-    background-color: rgb(114, 189, 114);
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin-left: 2px;
-}
-
-
-.button:hover {
-    background-color: #27a0dc;
-}
-
-.content {
-    padding-top: 60px;
-
-}
-.content2{
-    max-width: 1100px;
-    align-items: center;
-    margin: 0 auto;
-}
-img {
-    width: 100%;
-    height: auto;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-.main .content .section {
-    padding: 20px; /* 섹션 주위에 공간을 만들어 줍니다 */
-    text-align: center; /* 텍스트를 중앙에 위치시킵니다 */
+.pageView{
     height: 100vh;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(240, 253, 230, 1) 30%, rgba(237, 253, 227, 1) 30%);
+    background: linear-gradient(rgba(255, 255, 255, 0.66) 1%, rgba(44, 44, 44, 0) 100%), url('../image/background2.png') no-repeat center center;
+    background-size: cover;
 }
 
-.section .p{
-    font-size: 24px; /* 첫 번째 문단의 글자 크기를 늘립니다 */
-    font-weight: bold; /* 첫 번째 문단을 굵게 만들어 강조 효과를 줍니다 */
-    margin: 0px;
-}
-.userNum {
-    font-weight: 900;  /* 텍스트를 굵게 만듭니다. */
-    margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: center; /* 텍스트를 가운데 정렬합니다. */
-    color: #72bd72;
-    font-family: Arial, sans-serif;  /* 글꼴을 변경합니다. 원하는 글꼴로 바꾸세요. */
-    font-size: 22px;
-    text-shadow: 2px 2px 0px #65c58c;  /* 텍스트에 검은색 테두리를 추가합니다. */
-    line-height: 1;  /* p 태그 사이의 거리를 좁힙니다. 값을 조절하여 원하는 거리를 설정하세요. */
-    margin: 25px;
-}
-
-.userNum .p{
-    margin: 0px;
-}
-
-.main .content .section .button{
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px; /* 버튼의 모서리를 둥글게 만듭니다 */
-    background-color: rgb(114, 189, 114);
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin: 20px 5px;
-    border: 1px solid #72bd72;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
-}
-.main .content .section .godButton{
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px; /* 버튼의 모서리를 둥글게 만듭니다 */
-    background-color: rgb(120, 24, 215);
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 30px;
-
-    box-shadow: 0px 15px 10px 0px rgba(0,0,0,0.2);
-}
-.mainImage {
+.header {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 6vw;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 5vh 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.main .jelly{
+.logo {
+    width: 70px;
+    height: 45px;
+}
+.menu-group{
     display: flex;
-    width: 250px;
-    margin: 10px auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 5vh;
+}
+.p-menu{
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    padding-top: 14px;
+    color: rgba(101, 103, 197, 0.6);
+}
+.home_content{
+    margin-top: 130px;
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+}
+.home_a{
+    color: black;
+}
+.home_a:hover{
+    color: rgb(39, 160, 220);
+}
+
+
+ .home_p h1{
+     font-size: 62px;
+     color: #000000;
+     font-weight: 700;
+     text-decoration: none;
+     text-align: center;
+     line-height: 1.4;
+     letter-spacing: -0.02em;
+     word-break: keep-all;
+     word-wrap: break-word;
+     white-space: pre-wrap;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+.button-group{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    /*margin-right: 25px;*/
+
+}
+
+.home_button {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: rgba(0, 134, 0, 0.87);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home_button:hover {
+    background-color: #1c63cd;
+}
+
+.home_button:active {
+    background-color: #1C63CD;
 }
 #scroll-arrow {
-    cursor: pointer;
-    position: relative;
+    position: fixed;
+    bottom: 5vh;
+    left: 47.8%;
+    z-index: 2;
+    background-color: rgba(94, 190, 94, 0.62);
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+#scroll-arrow:hover {
+    background-color: rgb(39, 160, 220);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 10px;
-    margin-top: 20px;
-    animation: arrow-animation 2s infinite;
+    color: #000;
+    font-size: 25px;
+}
+/***********pageView2***********/
+.pageView2 {
+    height: 100vh;
+    box-sizing: border-box;
+    background:linear-gradient(rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+    display: flex;
+    justify-content: center;
+}
+.pageView2-i, .pageView2-p {
+    flex: 1;
+
 }
 
-.down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-}
-
-@keyframes arrow-animation {
-    0% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
-    50% { transform: rotate(45deg) translate(0px, 20px); opacity: 0; }
-    100% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
-}
-
-
-.section1, .section2, .section3 {
-    align-items: center;
-    margin: 30px 20px;
-}
-
-.p {
-    margin-top: 0;
-    font-size: 24px; /* Increase the font size */
-    font-weight: 500; /* Make the font semi-bold */
-    line-height: 1.6; /* Increase the line-height */
-}
-
-.mainImage, .introImage, .image1, .outroImage {
-    display: block;
-    width: 100%;
+.pageView2-i .pageView2-img {
+    width: 150%;
     height: auto;
-}
+    margin-left: 30vh;
+    z-index: 1;
 
-strong {
-    font-weight: 700; /* Make the strong text bold */
 }
-
-.centered-text {
+.pageView2-i {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
+.pageView2-p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
 
-@media (min-width: 768px) and (max-width: 1300px){
-    /* 여기에 태블릿 및 데스크톱 디바이스에 적용할 CSS를 작성합니다. */
-    .main .button_register {
-        padding:10px 15px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 14px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-left: 2px;
-    }
-    .main .content .section .button{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        margin-right: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
-    }
-    .main .content .section .godButton{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(120, 24, 215);
-        margin-right: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
-    }
-    .main .header {
-        padding: 2vw; /* 헤더의 패딩을 늘립니다. */
-    }
+.pageView2-p h2 {
+    font-size: 50px; /* 기본 크기보다 2배 크게 */
+    font-weight: 700;
+    line-height: 1.4;
+}
+.pageView2-p p{
+    font-size: 2em; /* 기본 크기보다 2배 크게 */
+    font-weight: 500;
+}
+/***********pageView3***********/
+.pageView3 {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
 
-    .main .logo {
-        height: 6vw; /* 로고의 크기를 늘립니다. */
-    }
+}
+.pageView3-l, .pageView3-r {
+    flex: 1;
+    display: flex;
 
-    .button-group {
-        margin-left: 1vw; /* 버튼 그룹의 마진을 늘립니다. */
-    }
-
-    .main .button_register {
-        font-size: 1.6vw; /* 버튼의 폰트 크기를 늘립니다. */
-        padding: 1.2vw 2vw; /* 버튼의 패딩을 늘립니다. */
-    }
-    .main .jelly{
-        display: flex;
-        width: 400px;
-        margin: 10px auto;
-    }
-    .content {
-        padding-top: 12vw; /* 콘텐츠의 패딩을 늘립니다. */
-        width: 100vw;
-    }
-
-    .section .p {
-        font-size:4vw; /* 문단의 폰트 크기를 늘립니다. */
-        margin: 3vw auto;
-    }
-
-    .main .content .section .button {
-        font-size: 2.4vw; /* 버튼의 폰트 크기를 늘립니다. */
-        padding: 1.5vw 4vw; /* 버튼의 패딩을 늘립니다. */
-    }
-
-    .arrow {
-        border: solid black;
-        border-width: 0 0.3vw 0.3vw 0;
-        display: inline-block;
-        padding: 1vw;
-        width: 1.5vw;
-        margin-top: 2vw;
-        animation: arrow-animation 2s infinite;
-    }
-    .section1, .section2, .section3 {
-        margin: 3vw 2vw;
-        font-size: 3vw; /* 화면의 너비에 따른 폰트 크기 설정 */
-    }
-
+}
+.pageView3-l{
+    height: 100%;
+    background: rgb(144, 156, 145);
+    background: url('../image/pageView3_back.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    justify-content: right;
+    text-align: center;
 
 
 }
-@media (min-width: 1301px){
-    .main .button_register {
-        padding:10px 15px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 14px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-left: 2px;
-    }
-    .main .content .section .button{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: 15px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
-    }
-    .main .content .section .godButton{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(120, 24, 215);
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: 15px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
-    }
-    .main .jelly{
-        display: flex;
-        width: 400px;
-        margin: 10px auto;
-    }
-    .main .header {
-        padding: 26px; /* 헤더의 패딩을 고정합니다. */
-    }
-
-    .main .logo {
-        height: 78px; /* 로고의 크기를 고정합니다. */
-    }
-
-    .button-group {
-        margin-left: 13px; /* 버튼 그룹의 마진을 고정합니다. */
-    }
-
-    .main .button_register {
-        font-size: 21px; /* 버튼의 폰트 크기를 고정합니다. */
-        padding: 16px 26px; /* 버튼의 패딩을 고정합니다. */
-    }
-
-    .content {
-        padding-top: 156px; /* 콘텐츠의 패딩을 고정합니다. */
-    }
-
-    .section .p {
-        font-size: 52px; /* 문단의 폰트 크기를 고정합니다. */
-        margin: 39px auto;
-    }
-
-    .main .content .section .button {
-        font-size: 31px; /* 버튼의 폰트 크기를 고정합니다. */
-        padding: 20px 52px; /* 버튼의 패딩을 고정합니다. */
-    }
-
-    .arrow {
-        border: solid black;
-        border-width: 0 3.9px 3.9px 0;
-        display: inline-block;
-        padding: 13px;
-        width: 20px;
-        margin-top: 26px;
-        animation: arrow-animation 2s infinite;
-    }
-    .section1, .section2, .section3 {
-        margin: 39px 26px;
-        font-size: 39px; /* 폰트 크기를 고정합니다 */
-    }
+.pageView3-l h2 {
+    background: rgba(144, 156, 145, 0.49);
+    backdrop-filter: blur(10px);  /* 배경 블러 효과 추가 */
+    height: 210px;
+    margin-top: 50px;
+    font-size: 45px; /* 기본 크기보다 2배 크게 */
+    font-weight: 700;
+    line-height: 1.4;
+    border-radius: 50px 0 0 50px;  /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 그림자 효과 추가 */
+    padding: 10px;
 }
 
+.pageView3-i img{
+    position: absolute;
+    z-index: -1;
+    top: 5%;
+    left: -40%;
+    width: 130%;
+    height: 130%;
+}
+.pageView3-r{
+    height: 100vh;
+    justify-content: center;
+    background: rgba(144, 156, 145, 0.49);
 
+}
+.pageView3-p1 {
+    margin-top: 30px;
+    align-items: center;
+    height: 800px;
+    text-align: left;
+    padding:30px;
+    border: 1px solid #dcdcdc; /* 테두리 속성 추가 */
+    border-radius: 15px; /* 모서리 둥글게 만드는 속성 추가 */
+    box-shadow: 0 20px 30px 0 rgba(0,0,0,0.3); /* 그림자 효과 속성 추가 */
+
+}
+ .pageView3-r p{
+     font-size: 22px;
+     font-family: Arial, sans-serif;
+     line-height: 1.8;
+     font-weight: 600;
+     color: rgb(0, 0, 0);
+ }
+/***********pageView4***********/
+.pageView4 {
+    height: 100vh;
+    box-sizing: border-box;
+    background:linear-gradient( rgb(160, 185, 159), rgb(121, 118, 124) 10%, rgb(105, 96, 117) 15%);
+    display: flex;
+    justify-content: center;
+}
+
+/* 가로 크기가 600px 이하인 장치를 위한 스타일 */
+@media (max-width: 768px) {
+    .pageView{
+        height: 100vh;
+        background: linear-gradient(rgba(255, 255, 255, 0.51) 1%, rgba(44, 44, 44, 0) 100%), url('../image/background2.png') no-repeat center center;
+        background-size: cover;
+
+    }
+    .header {
+        width: 100%;
+        padding: 3vh 4vh;
+        flex-direction: column;
+
+    }
+
+    .logo {
+        width: 80px;
+        height: 60px;
+        justify-content: center;
+    }
+
+    .menu-group{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .p-menu{
+        font-size: 18px;
+        gap: 30px;
+        padding-top: 25px;
+    }
+
+    .home_content{
+        margin-top: 150px;
+    }
+
+    .home_p h1{
+        margin-top: 100px;
+        font-size: 34px;
+    }
+
+    .button-group{
+        display: flex;
+        gap: 30px;
+    }
+
+    .home_button {
+        padding: 14px 18px;
+        font-size: 16px;
+    }
+    #scroll-arrow {
+    display: none;
+    }
+    .pageView2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pageView2-i, .pageView2-p {
+        flex: none;
+        width: 90%;
+    }
+
+    .pageView2-i .pageView2-img {
+        width: 100%;
+        height: auto;
+        margin-left: 40px;
+    }
+
+    .pageView2-i {
+        text-align: center;
+    }
+
+    .pageView2-p {
+        text-align: center;
+    }
+
+    .pageView2-p h2 {
+        font-size: 30px;
+    }
+
+    .pageView2-p p {
+        font-size: 1em;
+    }
+    .pageView2 {
+        flex-direction: column;
+    }
+    .pageView2-i, .pageView2-p {
+        width: 100%;
+    }
+    .pageView2-p h2, .pageView2-p p{
+        font-size: 1.5em;
+    }
+    .pageView3 {
+        flex-direction: column;
+    }
+    .pageView3-l, .pageView3-r {
+        width: 100%;
+    }
+    .pageView3-l h2 {
+        font-size: 30px;
+        height: auto;
+        margin-top: 20px;
+    }
+    .pageView3-i img{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+    .pageView3-r{
+        height: auto;
+    }
+    .pageView3-p1 {
+        margin-top: 15px;
+        height: auto;
+    }
+    .pageView3-r p{
+        font-size: 11.5px;
+    }
+}

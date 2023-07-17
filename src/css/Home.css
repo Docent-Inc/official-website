@@ -1,118 +1,125 @@
+.home_main {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
 
-.main .header {
-    display: flex;
-    justify-content: space-between; /* 로고와 버튼을 양쪽으로 정렬 */
+/************** Header **************/
+
+.h_nv_bar {
     position: fixed;
-    padding: 10px;
-    background-color: white;
-    z-index: 100;
     width: 100%;
-    border-bottom: 1px solid #d3d3d3; /* 밑줄 추가 */
+    height: 70px;
+    z-index: 101;
+    border-bottom: 1px solid transparent;
+    background-color: #fff;
+    top:0;
 }
-
-.main .logo {
-    height: 30px;
-    width: auto;
-    margin: 5px; /* 상단 마진 제거 */
+.h_header_default{
+    max-width: 1140px;
 }
-
-.button-group {
+.h_header{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.h_header_inner{
     display: flex;
-    align-items: center; /* 버튼을 중앙에 정렬 */
-
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    max-width: 1140px;
 }
 
-.main .button_register {
+.h_logo {
+    width: auto;
+    height: 40px;
+    align-items: center; /* 로고를 수직으로 정렬 */
+}
 
-    padding:10px 15px;
+.h_btn_group {
+    display: flex;
+    gap:10px
+
+}
+.h_btn_reg, .h_btn_dStore{
+    width: 100px;
+    height: 40px;
     border: none;
-    border-radius: 30px; /* 버튼의 모서리를 둥글게 만듭니다 */
     background-color: rgb(114, 189, 114);
     font-size: 14px;
     font-weight: bold;
     color: white;
     cursor: pointer;
-    margin-left: 2px;
+    border-radius: 5px;
 }
 
 
-.button:hover {
+.h_btn_reg:hover, .h_btn_dStore:hover {
     background-color: #27a0dc;
 }
-
-.content {
-    padding-top: 60px;
-
+/************** content **************/
+.h_content{
+    display: block;
 }
-.content2{
-    max-width: 1100px;
-    align-items: center;
-    margin: 0 auto;
-}
-img {
+/************** section **************/
+.h_section{
+    position: relative;
     width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 20%, rgba(240, 253, 230, 1) 40%, rgba(237, 253, 227, 1) 30%);
+
+}
+.h_section_g{
+    margin-top: 150px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.h_section_h1{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: rgb(0, 0, 0);
+}
+.h_section_btnG{
+    display: flex;
+    gap: 30px;
+    height: auto;
+    margin: 10px auto;
+}
+.h_kakao{
+    width: 100px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(44, 44, 44, 0.68);
     height: auto;
 }
 
-body {
-    overflow-x: hidden;
+.h_line{
+    width: 100px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(44, 44, 44, 0.68);
+    height: auto;
+}
+.h_section_jelly{
+    display: flex;
+    width: 300px;
+    height: auto;
+    margin: 10px auto;
+
 }
 
-.main .content .section {
-    padding: 20px; /* 섹션 주위에 공간을 만들어 줍니다 */
-    text-align: center; /* 텍스트를 중앙에 위치시킵니다 */
-    height: 100vh;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(240, 253, 230, 1) 30%, rgba(237, 253, 227, 1) 30%);
-}
-
-.section .p{
-    font-size: 24px; /* 첫 번째 문단의 글자 크기를 늘립니다 */
-    font-weight: bold; /* 첫 번째 문단을 굵게 만들어 강조 효과를 줍니다 */
-    margin: 0px;
-}
-.userNum {
-    font-weight: 900;  /* 텍스트를 굵게 만듭니다. */
-    margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: center; /* 텍스트를 가운데 정렬합니다. */
-    color: #72bd72;
-    font-family: Arial, sans-serif;  /* 글꼴을 변경합니다. 원하는 글꼴로 바꾸세요. */
-    font-size: 30px;
-    text-shadow: 2px 2px 0px #65c58c;  /* 텍스트에 검은색 테두리를 추가합니다. */
-    line-height: 1;  /* p 태그 사이의 거리를 좁힙니다. 값을 조절하여 원하는 거리를 설정하세요. */
-    margin: 25px;
-}
-
-.userNum .p{
-    margin: 0px;
-}
-
-.main .content .section .button{
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px; /* 버튼의 모서리를 둥글게 만듭니다 */
-    background-color: rgb(114, 189, 114);
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin: 20px 5px;
-    border: 1px solid #72bd72;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
-}
-.main .content .section .godButton{
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px; /* 버튼의 모서리를 둥글게 만듭니다 */
-    background-color: rgb(120, 24, 215);
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 30px;
-
-    box-shadow: 0px 15px 10px 0px rgba(0,0,0,0.2);
-}
 .mainImage {
     width: 100%;
     height: 100%;
@@ -152,221 +159,433 @@ body {
     50% { transform: rotate(45deg) translate(0px, 20px); opacity: 0; }
     100% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
 }
+/************** section2 **************/
 
-
-.section1, .section2, .section3 {
-    align-items: center;
-    margin: 30px 20px;
-}
-
-.p {
-    margin-top: 0;
-    font-size: 24px; /* Increase the font size */
-    font-weight: 500; /* Make the font semi-bold */
-    line-height: 1.6; /* Increase the line-height */
-}
-
-.mainImage, .introImage, .image1, .outroImage {
-    display: block;
+.h_section2{
+    height: 100vh;
     width: 100%;
-    height: auto;
+    overflow: hidden;
+}
+.h_section2_container{
+    height: 100%;
+    display: flex;
 }
 
-strong {
-    font-weight: 700; /* Make the strong text bold */
+.h_section2_img,.h_section2_text{
+    flex: 1;
+}
+.h_section2_img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.h_section2_text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.centered-text {
-    text-align: center;
+.h_section2_h2{
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #191f28;
+
 }
 
-@media (min-width: 768px) and (max-width: 1300px){
-    /* 여기에 태블릿 및 데스크톱 디바이스에 적용할 CSS를 작성합니다. */
-    .main .button_register {
-        padding:10px 15px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 14px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-left: 2px;
+.h_section2_img {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+.h_draw_img {
+    width: 700px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
+    height: auto; /* 이미지의 세로 크기를 가로 크기에 맞춰 자동으로 조정합니다. */
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0); /* 이미지 주위에 그림자를 추가합니다. 필요에 따라 그림자의 크기와 색상을 조정할 수 있습니다. */
+    border: 10px outset #ffffff; /* 이미지 주위에 흰색 테두리를 추가합니다. 필요에 따라 테두리의 색상과 두께를 조정할 수 있습니다. */
+    margin: 10px; /* 이미지 주위의 여백을 추가합니다. 필요에 따라 여백의 크기를 조정할 수 있습니다. */
+}
+
+/* 공통 스타일 */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
+    z-index: 100; /* 다른 요소 위에 보이게 함 */
+    opacity: 0.3; /* 투명도 설정 */
+    transition: opacity 0.3s; /* 투명도에 대한 전환 효과 */
+}
+
+.carousel-arrow:hover {
+    opacity: 100; /* 마우스를 올렸을 때 투명도 변경 */
+    background-color: #72bd72;
+}
+
+/* 왼쪽 화살표 */
+.carousel-arrow-left {
+    left: 1%;
+}
+
+.carousel-arrow-left::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.carousel-arrow-left::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+/* 오른쪽 화살표 */
+.carousel-arrow-right {
+    right: 1%;
+}
+
+.carousel-arrow-right::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+.carousel-arrow-right::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+/************** section3 **************/
+.h_section3{
+    height: 100vh;
+}
+.h_section3_prod {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flow-arrow {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
+    z-index: 100; /* 다른 요소 위에 보이게 함 */
+    opacity: 0.3; /* 투명도 설정 */
+    transition: opacity 0.3s; /* 투명도에 대한 전환 효과 */
+}
+
+.flow-arrow:hover {
+    opacity: 100; /* 마우스를 올렸을 때 투명도 변경 */
+    background-color: #72bd72;
+}
+
+/* 왼쪽 화살표 */
+.flow-arrow-left {
+    left: 10%;
+}
+
+.flow-arrow-left::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.flow-arrow-left::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+/* 오른쪽 화살표 */
+.flow-arrow-right {
+    right: 13%;
+}
+
+.flow-arrow-right::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+.flow-arrow-right::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.h_section_flow {
+    width: 1000px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.h_section_flow_large {
+    width: 1070px; /* 키울 이미지 크기를 정의하십시오 */
+}
+.h_section_flow.active {
+    opacity: 1;
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1180px){
+    /************** Header **************/
+    .h_btn_reg, .h_btn_dStore{
+        border-radius: 15px;
     }
-    .main .content .section .button{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        margin-right: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
+    /************** section **************/
+    .h_section_h1{
+        font-size: 44px;
+    }
+    .h_section_btnG{
+        margin: 25px auto;
+    }
+    .h_kakao{
+        width: 80px;
+        border-radius: 15px;
+    }
+
+    .h_line{
+        width: 80px;
+        border-radius: 15px;
+    }
+
+    .h_section_jelly{
+        width: 200px;
+        height: auto;
+        margin: 60px auto;
+    }
+    /************** section2 **************/
+    .h_section2_h2 {
+        font-size: 34px;
+    }
+    .h_draw_img {
+        width: 450px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
+        height: auto;
+    }
+
+    /* 공통 스타일 */
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    /************** section3 **************/
+    .h_section_flow {
+        width: 700px;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .h_section_flow_large {
+        width: 730px; /* 키울 이미지 크기를 정의하십시오 */
+    }
+    .h_section_flow.active {
+        opacity: 1;
+    }
+    .flow-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    .flow-arrow-left {
+        top: 50%;
+        left: 1%;
+    }
+
+    .flow-arrow-right {
+        right: 1%;
+        top: 50%;
+    }
+
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    /************** Header **************/
+    .h_nv_bar {
+        height: 50px;
+    }
+    .h_header .h_logo {
+        width: auto;
+        height: 30px;
+        align-items: center; /* 로고를 수직으로 정렬 */
+    }
+    .h_btn_reg, .h_btn_dStore{
+        width: 70px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 30px;
+    }
+    /************** section **************/
+    .h_section_h1{
+        font-size: 28px;
+    }
+    .h_section_btnG{
+        margin: 25px auto;
+    }
+    .h_kakao{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(246, 225, 75);
+    }
+
+    .h_line{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(92, 200, 86);
+    }
+
+    .h_section_jelly{
+        width: 200px;
+        height: auto;
+        margin: 60px auto;
+    }
+    /************** section2 **************/
+    .h_section2_container{
+        height: 100%;
+        display: block;
+        padding: 100px 0;
+        background: linear-gradient(to bottom,  rgba(237, 253, 227, 1) 60%, rgba(46, 40, 59, 0.8) 90%, rgba(46, 40, 59, 0.86) 95%);
+
+    }
+    .h_section2_h2 {
+        font-size: 28px;
         margin-top: 30px;
-        margin-bottom: 30px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
+        margin-bottom: 100px;
     }
-    .main .content .section .godButton{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(120, 24, 215);
-        margin-right: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
-    }
-    .main .header {
-        padding: 2vw; /* 헤더의 패딩을 늘립니다. */
+    .h_draw_img {
+        width: 300px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
+        height: auto;
     }
 
-    .main .logo {
-        height: 6vw; /* 로고의 크기를 늘립니다. */
+    /* 공통 스타일 */
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    .carousel-arrow-left {
+        top: 50%;
+        left: 1%;
     }
 
-    .button-group {
-        margin-left: 1vw; /* 버튼 그룹의 마진을 늘립니다. */
+    .carousel-arrow-right {
+        right: 1%;
+        top: 50%;
     }
-
-    .main .button_register {
-        font-size: 1.6vw; /* 버튼의 폰트 크기를 늘립니다. */
-        padding: 1.2vw 2vw; /* 버튼의 패딩을 늘립니다. */
+    /************** section3 **************/
+    .h_section3{
+        height: 80vh;
+        background-color: rgba(46, 40, 59, 0.86);
     }
-    .main .jelly{
-        display: flex;
+    .h_section_flow {
         width: 400px;
-        margin: 10px auto;
+        margin-bottom: 150px;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
     }
-    .content {
-        padding-top: 12vw; /* 콘텐츠의 패딩을 늘립니다. */
-        width: 100vw;
+    .h_section_flow_large {
+        width: 400px; /* 키울 이미지 크기를 정의하십시오 */
+        margin-bottom: 150px;
+        border-radius: 40px;
     }
-
-    .section .p {
-        font-size:4vw; /* 문단의 폰트 크기를 늘립니다. */
-        margin: 3vw auto;
+    .h_section_flow.active {
+        opacity: 1;
     }
-
-    .main .content .section .button {
-        font-size: 2.4vw; /* 버튼의 폰트 크기를 늘립니다. */
-        padding: 1.5vw 4vw; /* 버튼의 패딩을 늘립니다. */
+    .flow-arrow {
+        width: 35px;
+        height: 35px;
     }
-
-    .arrow {
-        border: solid black;
-        border-width: 0 0.3vw 0.3vw 0;
-        display: inline-block;
-        padding: 1vw;
-        width: 1.5vw;
-        margin-top: 2vw;
-        animation: arrow-animation 2s infinite;
-    }
-    .section1, .section2, .section3 {
-        margin: 3vw 2vw;
-        font-size: 3vw; /* 화면의 너비에 따른 폰트 크기 설정 */
+    .flow-arrow-left {
+        top: 50%;
+        left: 1%;
+        opacity: 0;
     }
 
-
+    .flow-arrow-right {
+        right: 1%;
+        top: 50%;
+        opacity: 0;
+    }
 
 }
-@media (min-width: 1301px){
-    .main .button_register {
-        padding:10px 15px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 14px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-left: 2px;
+@media (min-height: 300px) and (max-height: 700px) {
+    /************** Header **************/
+    .h_nv_bar {
+        height: 50px;
     }
-    .main .content .section .button{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(114, 189, 114);
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: 15px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
+    .h_header .h_logo {
+        width: auto;
+        height: 30px;
+        align-items: center; /* 로고를 수직으로 정렬 */
     }
-    .main .content .section .godButton{
-        padding: 15px 45px;
-        border: none;
-        border-radius: 3px; /* 버튼의 모서리를 둥글게 만듭니다 */
-        background-color: rgb(120, 24, 215);
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: 15px;
-        margin-bottom: 30px;
-        border: 1px solid #72bd72;
+    .h_btn_reg, .h_btn_dStore{
+        width: 70px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 30px;
     }
-    .main .jelly{
-        display: flex;
-        width: 400px;
-        margin: 10px auto;
+    /************** section **************/
+    .h_section_h1{
+        font-size: 28px;
     }
-    .main .header {
-        padding: 26px; /* 헤더의 패딩을 고정합니다. */
+    .h_section_btnG{
+        margin: 15px auto;
+    }
+    .h_kakao{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(246, 225, 75);
     }
 
-    .main .logo {
-        height: 78px; /* 로고의 크기를 고정합니다. */
+    .h_line{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(92, 200, 86);
     }
 
-    .button-group {
-        margin-left: 13px; /* 버튼 그룹의 마진을 고정합니다. */
-    }
-
-    .main .button_register {
-        font-size: 21px; /* 버튼의 폰트 크기를 고정합니다. */
-        padding: 16px 26px; /* 버튼의 패딩을 고정합니다. */
-    }
-
-    .content {
-        padding-top: 156px; /* 콘텐츠의 패딩을 고정합니다. */
-    }
-
-    .section .p {
-        font-size: 52px; /* 문단의 폰트 크기를 고정합니다. */
-        margin: 39px auto;
-    }
-
-    .main .content .section .button {
-        font-size: 31px; /* 버튼의 폰트 크기를 고정합니다. */
-        padding: 20px 52px; /* 버튼의 패딩을 고정합니다. */
-    }
-
-    .arrow {
-        border: solid black;
-        border-width: 0 3.9px 3.9px 0;
-        display: inline-block;
-        padding: 13px;
-        width: 20px;
-        margin-top: 26px;
-        animation: arrow-animation 2s infinite;
-    }
-    .section1, .section2, .section3 {
-        margin: 39px 26px;
-        font-size: 39px; /* 폰트 크기를 고정합니다 */
+    .h_section_jelly{
+        width: 160px;
+        height: auto;
+        margin: 15px auto;
     }
 }
-
 

@@ -1,383 +1,591 @@
-/* 공통 스타일 */
-.main {
+.home_main {
     margin: 0;
     padding: 0;
-}
-
-.pageView{
-    height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.66) 1%, rgba(44, 44, 44, 0) 100%), url('../image/background2.png') no-repeat center center;
-    background-size: cover;
-}
-
-.header {
-    width: 100%;
-    height: 6vw;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0);
-    padding: 5vh 10vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    overflow-x: hidden;
 }
 
-.logo {
-    width: 70px;
-    height: 45px;
-}
-.menu-group{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5vh;
-}
-.p-menu{
-    font-size: 15px;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    padding-top: 14px;
-    color: rgba(101, 103, 197, 0.6);
-}
-.home_content{
-    margin-top: 130px;
-    margin-bottom: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    height: 100%;
+/************** Header **************/
+
+.h_nv_bar {
+    position: fixed;
     width: 100%;
+    height: 70px;
+    z-index: 101;
+    border-bottom: 1px solid transparent;
+    background-color: #fff;
+    top:0;
 }
-.home_a{
-    color: black;
+.h_header_default{
+    max-width: 1140px;
 }
-.home_a:hover{
-    color: rgb(39, 160, 220);
+.h_header{
+    width: 100%;
+    height: 100%;
+    margin: auto;
 }
-
-
- .home_p h1{
-     font-size: 62px;
-     color: #000000;
-     font-weight: 700;
-     text-decoration: none;
-     text-align: center;
-     line-height: 1.4;
-     letter-spacing: -0.02em;
-     word-break: keep-all;
-     word-wrap: break-word;
-     white-space: pre-wrap;
-     width: 100%;
-     height: 100%;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
- }
-.button-group{
+.h_header_inner{
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    max-width: 1140px;
+}
+
+.h_logo {
+    width: auto;
+    height: 40px;
+    align-items: center; /* 로고를 수직으로 정렬 */
+}
+
+.h_btn_group {
+    display: flex;
+    gap:10px
+
+}
+.h_btn_reg, .h_btn_dStore{
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: rgb(114, 189, 114);
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.h_btn_reg:hover, .h_btn_dStore:hover {
+    background-color: #27a0dc;
+}
+/************** content **************/
+.h_content{
+    display: block;
+}
+/************** section **************/
+.h_section{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 20%, rgba(240, 253, 230, 1) 40%, rgba(237, 253, 227, 1) 30%);
+
+}
+.h_section_g{
+    margin-top: 150px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.h_section_h1{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: rgb(0, 0, 0);
+}
+.h_section_btnG{
+    display: flex;
+    gap: 30px;
+    height: auto;
+    margin: 10px auto;
+}
+.h_kakao{
+    width: 100px;
+    border-radius: 5px;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
-    /*margin-right: 25px;*/
+    background-color: rgba(44, 44, 44, 0.68);
+    height: auto;
+}
+
+.h_line{
+    width: 100px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(44, 44, 44, 0.68);
+    height: auto;
+}
+.h_section_jelly{
+    display: flex;
+    width: 300px;
+    height: auto;
+    margin: 10px auto;
 
 }
 
-.home_button {
-    width: 150px;
-    height: 50px;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    background-color: rgba(0, 134, 0, 0.87);
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.mainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.home_button:hover {
-    background-color: #1c63cd;
-}
-
-.home_button:active {
-    background-color: #1C63CD;
+.main .jelly{
+    display: flex;
+    width: 250px;
+    margin: 10px auto;
 }
 #scroll-arrow {
-    position: fixed;
-    bottom: 5vh;
-    left: 47.8%;
-    z-index: 2;
-    background-color: rgba(94, 190, 94, 0.62);
-    width: 8vh;
-    height: 8vh;
-    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
-}
-#scroll-arrow:hover {
-    background-color: rgb(39, 160, 220);
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
+    margin: 20px auto;
 }
 
 .arrow {
-    color: #000;
-    font-size: 25px;
-}
-.pageView2 {
-    height: 100vh;
-    box-sizing: border-box;
-    background:linear-gradient(rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
-    display: flex;
-    justify-content: center;
-}
-.pageView2-i, .pageView2-p {
-    flex: 1;
-
-}
-
-.pageView2-i .pageView2-img {
-    width: 150%;
-    height: auto;
-    margin-left: 30vh;
-    z-index: 1;
-
-}
-.pageView2-i {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.pageView2-p {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-}
-
-.pageView2-p h2 {
-    font-size: 50px; /* 기본 크기보다 2배 크게 */
-    font-weight: 700;
-    line-height: 1.4;
-}
-.pageView2-p p{
-    font-size: 2em; /* 기본 크기보다 2배 크게 */
-    font-weight: 500;
-}
-/***********pageView3***********/
-.pageView3 {
-    height: 100vh;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-}
-.pageView3-l, .pageView3-r {
-    flex: 1;
-    display: flex;
-
-}
-.pageView3-l{
-    height: 100%;
-    background: rgb(144, 156, 145);
-    background: url('../image/pageView3_back.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    justify-content: right;
-    text-align: center;
-
-
-}
-.pageView3-l h2 {
-    background: rgba(144, 156, 145, 0.49);
-    backdrop-filter: blur(10px);  /* 배경 블러 효과 추가 */
-    height: 210px;
-    margin-top: 50px;
-    font-size: 45px; /* 기본 크기보다 2배 크게 */
-    font-weight: 700;
-    line-height: 1.4;
-    border-radius: 50px 0 0 50px;  /* 모서리 둥글게 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 그림자 효과 추가 */
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
     padding: 10px;
+    margin-top: 20px;
+    animation: arrow-animation 2s infinite;
 }
 
-.pageView3-i img{
-    position: absolute;
-    z-index: -1;
-    top: 5%;
-    left: -40%;
-    width: 130%;
-    height: 130%;
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
-.pageView3-r{
+
+@keyframes arrow-animation {
+    0% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
+    50% { transform: rotate(45deg) translate(0px, 20px); opacity: 0; }
+    100% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
+}
+/************** section2 **************/
+
+.h_section2{
     height: 100vh;
-    justify-content: center;
-    background: rgba(144, 156, 145, 0.49);
-
+    width: 100%;
+    overflow: hidden;
 }
-.pageView3-p1 {
-    margin-top: 30px;
-    align-items: center;
-    height: 800px;
-    text-align: left;
-    padding:30px;
-    border: 1px solid #dcdcdc; /* 테두리 속성 추가 */
-    border-radius: 15px; /* 모서리 둥글게 만드는 속성 추가 */
-    box-shadow: 0 20px 30px 0 rgba(0,0,0,0.3); /* 그림자 효과 속성 추가 */
-
+.h_section2_container{
+    height: 100%;
+    display: flex;
 }
- .pageView3-r p{
-     font-size: 22px;
-     font-family: Arial, sans-serif;
-     line-height: 1.8;
-     font-weight: 600;
-     color: rgb(0, 0, 0);
- }
-/***********pageView4***********/
-.pageView4 {
-    height: 100vh;
-    box-sizing: border-box;
-    background:linear-gradient( rgb(160, 185, 159), rgb(121, 118, 124) 10%, rgb(105, 96, 117) 15%);
+
+.h_section2_img,.h_section2_text{
+    flex: 1;
+}
+.h_section2_img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.h_section2_text{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-/* 가로 크기가 600px 이하인 장치를 위한 스타일 */
-@media (max-width: 768px) {
-    .pageView{
-        height: 100vh;
-        background: linear-gradient(rgba(255, 255, 255, 0.51) 1%, rgba(44, 44, 44, 0) 100%), url('../image/background2.png') no-repeat center center;
-        background-size: cover;
+.h_section2_h2{
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #191f28;
 
+}
+
+.h_section2_img {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+.h_draw_img {
+    width: 700px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
+    height: auto; /* 이미지의 세로 크기를 가로 크기에 맞춰 자동으로 조정합니다. */
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0); /* 이미지 주위에 그림자를 추가합니다. 필요에 따라 그림자의 크기와 색상을 조정할 수 있습니다. */
+    border: 10px outset #ffffff; /* 이미지 주위에 흰색 테두리를 추가합니다. 필요에 따라 테두리의 색상과 두께를 조정할 수 있습니다. */
+    margin: 10px; /* 이미지 주위의 여백을 추가합니다. 필요에 따라 여백의 크기를 조정할 수 있습니다. */
+}
+
+/* 공통 스타일 */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
+    z-index: 100; /* 다른 요소 위에 보이게 함 */
+    opacity: 0.3; /* 투명도 설정 */
+    transition: opacity 0.3s; /* 투명도에 대한 전환 효과 */
+}
+
+.carousel-arrow:hover {
+    opacity: 100; /* 마우스를 올렸을 때 투명도 변경 */
+    background-color: #72bd72;
+}
+
+/* 왼쪽 화살표 */
+.carousel-arrow-left {
+    left: 1%;
+}
+
+.carousel-arrow-left::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.carousel-arrow-left::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+/* 오른쪽 화살표 */
+.carousel-arrow-right {
+    right: 1%;
+}
+
+.carousel-arrow-right::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+.carousel-arrow-right::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+/************** section3 **************/
+.h_section3{
+    height: 100vh;
+}
+.h_section3_prod {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flow-arrow {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
+    z-index: 100; /* 다른 요소 위에 보이게 함 */
+    opacity: 0.3; /* 투명도 설정 */
+    transition: opacity 0.3s; /* 투명도에 대한 전환 효과 */
+}
+
+.flow-arrow:hover {
+    opacity: 100; /* 마우스를 올렸을 때 투명도 변경 */
+    background-color: #72bd72;
+}
+
+/* 왼쪽 화살표 */
+.flow-arrow-left {
+    left: 10%;
+}
+
+.flow-arrow-left::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.flow-arrow-left::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+/* 오른쪽 화살표 */
+.flow-arrow-right {
+    right: 13%;
+}
+
+.flow-arrow-right::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(-45deg);
+}
+
+.flow-arrow-right::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transform: rotate(45deg);
+}
+
+.h_section_flow {
+    width: 1000px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.h_section_flow_large {
+    width: 1070px; /* 키울 이미지 크기를 정의하십시오 */
+}
+.h_section_flow.active {
+    opacity: 1;
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1180px){
+    /************** Header **************/
+    .h_btn_reg, .h_btn_dStore{
+        border-radius: 15px;
     }
-    .header {
-        width: 100%;
-        padding: 3vh 4vh;
-        flex-direction: column;
-
+    /************** section **************/
+    .h_section_h1{
+        font-size: 44px;
     }
-
-    .logo {
+    .h_section_btnG{
+        margin: 25px auto;
+    }
+    .h_kakao{
         width: 80px;
-        height: 60px;
-        justify-content: center;
+        border-radius: 15px;
     }
 
-    .menu-group{
-        flex-direction: column;
-        gap: 20px;
+    .h_line{
+        width: 80px;
+        border-radius: 15px;
     }
 
-    .p-menu{
-        font-size: 18px;
-        gap: 30px;
-        padding-top: 25px;
+    .h_section_jelly{
+        width: 200px;
+        height: auto;
+        margin: 60px auto;
     }
-
-    .home_content{
-        margin-top: 150px;
-    }
-
-    .home_p h1{
-        margin-top: 100px;
+    /************** section2 **************/
+    .h_section2_h2 {
         font-size: 34px;
     }
-
-    .button-group{
-        display: flex;
-        gap: 30px;
-    }
-
-    .home_button {
-        padding: 14px 18px;
-        font-size: 16px;
-    }
-    #scroll-arrow {
-    display: none;
-    }
-    .pageView2 {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .pageView2-i, .pageView2-p {
-        flex: none;
-        width: 90%;
-    }
-
-    .pageView2-i .pageView2-img {
-        width: 100%;
-        height: auto;
-        margin-left: 40px;
-    }
-
-    .pageView2-i {
-        text-align: center;
-    }
-
-    .pageView2-p {
-        text-align: center;
-    }
-
-    .pageView2-p h2 {
-        font-size: 30px;
-    }
-
-    .pageView2-p p {
-        font-size: 1em;
-    }
-    .pageView2 {
-        flex-direction: column;
-    }
-    .pageView2-i, .pageView2-p {
-        width: 100%;
-    }
-    .pageView2-p h2, .pageView2-p p{
-        font-size: 1.5em;
-    }
-    .pageView3 {
-        flex-direction: column;
-    }
-    .pageView3-l, .pageView3-r {
-        width: 100%;
-    }
-    .pageView3-l h2 {
-        font-size: 30px;
-        height: auto;
-        margin-top: 20px;
-    }
-    .pageView3-i img{
-        top: 0;
-        left: 0;
-        width: 100%;
+    .h_draw_img {
+        width: 450px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
         height: auto;
     }
-    .pageView3-r{
+
+    /* 공통 스타일 */
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    /************** section3 **************/
+    .h_section_flow {
+        width: 700px;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .h_section_flow_large {
+        width: 730px; /* 키울 이미지 크기를 정의하십시오 */
+    }
+    .h_section_flow.active {
+        opacity: 1;
+    }
+    .flow-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    .flow-arrow-left {
+        top: 50%;
+        left: 1%;
+    }
+
+    .flow-arrow-right {
+        right: 1%;
+        top: 50%;
+    }
+
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    /************** Header **************/
+    .h_nv_bar {
+        height: 50px;
+    }
+    .h_header .h_logo {
+        width: auto;
+        height: 30px;
+        align-items: center; /* 로고를 수직으로 정렬 */
+    }
+    .h_btn_reg, .h_btn_dStore{
+        width: 70px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 30px;
+    }
+    /************** section **************/
+    .h_section_h1{
+        font-size: 28px;
+    }
+    .h_section_btnG{
+        margin: 25px auto;
+    }
+    .h_kakao{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(246, 225, 75);
+    }
+
+    .h_line{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(92, 200, 86);
+    }
+
+    .h_section_jelly{
+        width: 200px;
+        height: auto;
+        margin: 60px auto;
+    }
+    /************** section2 **************/
+    .h_section2_container{
+        height: 100%;
+        display: block;
+        padding: 100px 0;
+        background: linear-gradient(to bottom,  rgba(237, 253, 227, 1) 60%, rgba(46, 40, 59, 0.8) 90%, rgba(46, 40, 59, 0.86) 95%);
+
+    }
+    .h_section2_h2 {
+        font-size: 28px;
+        margin-top: 30px;
+        margin-bottom: 100px;
+    }
+    .h_draw_img {
+        width: 300px; /* 이미지의 가로 크기를 조정합니다. 필요한 비율에 맞게 변경 가능합니다. */
         height: auto;
     }
-    .pageView3-p1 {
-        margin-top: 15px;
-        height: auto;
+
+    /* 공통 스타일 */
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
     }
-    .pageView3-r p{
-        font-size: 11.5px;
+    .carousel-arrow-left {
+        top: 50%;
+        left: 1%;
+    }
+
+    .carousel-arrow-right {
+        right: 1%;
+        top: 50%;
+    }
+    /************** section3 **************/
+    .h_section3{
+        height: 80vh;
+        background-color: rgba(46, 40, 59, 0.86);
+    }
+    .h_section_flow {
+        width: 400px;
+        margin-bottom: 150px;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.18); /* 그림자 효과 */
+    }
+    .h_section_flow_large {
+        width: 400px; /* 키울 이미지 크기를 정의하십시오 */
+        margin-bottom: 150px;
+        border-radius: 40px;
+    }
+    .h_section_flow.active {
+        opacity: 1;
+    }
+    .flow-arrow {
+        width: 35px;
+        height: 35px;
+    }
+    .flow-arrow-left {
+        top: 50%;
+        left: 1%;
+        opacity: 0;
+    }
+
+    .flow-arrow-right {
+        right: 1%;
+        top: 50%;
+        opacity: 0;
+    }
+
+}
+@media (min-height: 300px) and (max-height: 700px) {
+    /************** Header **************/
+    .h_nv_bar {
+        height: 50px;
+    }
+    .h_header .h_logo {
+        width: auto;
+        height: 30px;
+        align-items: center; /* 로고를 수직으로 정렬 */
+    }
+    .h_btn_reg, .h_btn_dStore{
+        width: 70px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 30px;
+    }
+    /************** section **************/
+    .h_section_h1{
+        font-size: 28px;
+    }
+    .h_section_btnG{
+        margin: 15px auto;
+    }
+    .h_kakao{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(246, 225, 75);
+    }
+
+    .h_line{
+        width: 80px;
+        border-radius: 30px;
+        background-color: rgb(92, 200, 86);
+    }
+
+    .h_section_jelly{
+        width: 160px;
+        height: auto;
+        margin: 15px auto;
     }
 }
+

@@ -557,7 +557,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 50px;
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
 }
@@ -568,7 +568,7 @@
 }
 
 .h_btn_member {
-    width: 140px;
+    width: 100px;
     height: 30px;
     font-size: 15px;
     border-radius: 30px;

@@ -174,7 +174,7 @@ const HomePage = () => {
                 <p><strong>도슨트와 함께할 멤버를 찾고 있습니다!</strong></p>
                 <a className={""} href="https://docentinc.notion.site/c706d99f1aab46f7b23dc4f69bfce005?pvs=4" target="_blank">
                     <button className="h_btn_member">
-                        멤버 모집 바로가기
+                        멤버모집
                     </button>
                 </a>
             </div>

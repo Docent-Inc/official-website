@@ -21,7 +21,7 @@ function Callback() {
                 // const token = localStorage.getItem("access_token");
                 //
                 // console.log('callbacktoken:', token);
-                navigate("/godmorning");
+                navigate("/creategoddream");
             } else {
                 // 로그인 실패
                 alert("로그인에 실패했습니다. 다시 시도해주세요.");

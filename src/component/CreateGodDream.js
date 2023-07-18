@@ -33,19 +33,48 @@ const CreateGodDream = () => {
     const [showContainer, setShowContainer] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 비활성화 상태를 관리할 새로운 state
     const [isPromptVisible, setIsPromptVisible] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleOptionChange = (e) => {
+        const value = e.target.value;
+        let selectedValue;
+
+        if (value === "dalle2") {
+            selectedValue = 1;
+        } else if (value === "stabledeffusion") {
+            selectedValue = 2;
+        } else if (value === "karlo2") {
+            selectedValue = 3;
+        }
+
+        setSelectedOption(e.target.value);
+    };
 
     const handleButtonClick = async () => {
-        if (dreamText.length < 10) { // 꿈의 텍스트가 10자 미만인 경우 반환하여 API 호출을 막습니다.
+        if (dreamText.length < 10 || !selectedOption) {
+            // 꿈의 텍스트가 10자 미만이거나 체크박스가 선택되지 않은 경우 반환하여 API 호출을 막습니다.
             return;
         }
+
         navigate("/creategoddream");
         setLoading(true);
 
+        let selectedValue;
         // 꿈 생성 및 해석 API 동시 호출
+        if (selectedOption === "dalle2") {
+            selectedValue = 1;
+        }
+        else if (selectedOption === "stabledeffusion") {
+            selectedValue = 2;
+        }
+        else if (selectedOption === "karlo2") {
+            selectedValue = 3;
+        }
+
         try {
             const [dreamResult, resolutionResult] = await Promise.all([
-                createGodDream(dreamText),
-                dreamGodResolution(dreamText)
+                createGodDream(selectedValue, dreamText), // 선택된 체크박스 값을 createGodDream 함수에 전달
+                dreamGodResolution(dreamText),
             ]);
 
             setDreamData(dreamResult);
@@ -59,6 +88,7 @@ const CreateGodDream = () => {
         // checklist에 "checklist" 문자열을 넣어줍니다.
         setChecklistData({ today_checklist: "checklist" });
     };
+
 
 
 
@@ -181,6 +211,38 @@ const CreateGodDream = () => {
                                     </textarea>
 
                                 </div>
+                                <div className="checkbox-group">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="checkbox"
+                                            value="dalle2"
+                                            checked={selectedOption === "dalle2"}
+                                            onChange={handleOptionChange}
+                                        />
+                                        DALL-E2
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="checkbox"
+                                            value="stabledeffusion"
+                                            checked={selectedOption === "stabledeffusion"}
+                                            onChange={handleOptionChange}
+                                        />
+                                        StableDaffusion
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="checkbox"
+                                            value="karlo2"
+                                            checked={selectedOption === "karlo2"}
+                                            onChange={handleOptionChange}
+                                        />
+                                        Karlo2.0
+                                    </label>
+                                </div>
 
                                 <div className="voice">
 
@@ -209,6 +271,7 @@ const CreateGodDream = () => {
                                     꿈 그리기
                                 </button>
                             </div>
+
 
 
 

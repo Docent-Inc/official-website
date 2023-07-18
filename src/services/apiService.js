@@ -124,7 +124,7 @@ export const getDiary = async (diaryId) => {
 export async function kakaoLogin() {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
-        const response = await fetch("/api/auth/kakao", {
+        const response = await fetch("/api/auth/kakao/test", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -147,7 +147,7 @@ export async function getAccessToken(code) {
     try {
         // TODO: test용으로 임시로 작성한 코드 /test 제외 후 빌드 필요
         console.log("code: ", code);
-        const response = await fetch(`/api/auth/kakao/callback?code=${code}`, {
+        const response = await fetch(`/api/auth/kakao/callback/test?code=${code}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -178,11 +178,12 @@ export async function getAccessToken(code) {
     }
 }
 // 꿈 일기 생성
-export async function createGodDream(dText) {
+export async function createGodDream(modelNum, dText) {
     try {
         const accessToken = localStorage.getItem('access_token');
         console.log('accessToken:', accessToken);
         console.log('dText:', dText);
+        console.log('modelNum:', modelNum);
         const response = await fetch(`/api/generate/dream`, {
             method: "POST",
             headers: {
@@ -190,7 +191,7 @@ export async function createGodDream(dText) {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ text: dText })  // 요청 본문을 JSON 형식으로 전송
+            body: JSON.stringify({ image_model: modelNum, text: dText })  // 요청 본문을 JSON 형식으로 전송
         });
 
         const Dream = await response.json();

@@ -43,13 +43,6 @@ const HomePage = () => {
             duration : 2000
         });
     }, []);
-    useEffect(() => {
-        const fetchCounts = async () => {
-            const userCount = await getUserCount();
-            setUserCount(userCount);
-        };
-        fetchCounts();
-    }, []);
     const nextSlide = () => {
         setCurrentImageIndex((currentImageIndex + 1) % images.length);
     }

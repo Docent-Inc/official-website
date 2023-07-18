@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import {getAccessToken, kakaoLogin, kakaoRedirect} from "../services/apiService";
+import React, {useEffect, useState} from "react";
+import {getAccessToken, getUserCount, kakaoLogin, kakaoRedirect} from "../services/apiService";
 import { useNavigate } from "react-router-dom";
 import logo from "../image/newLogo.png";
 import kakaoLogo from "../image/kakao_login_large_narrow.png";
@@ -9,6 +9,15 @@ import BackButton from './BackButton';
 
 function LoginPage() {
     const navigate = useNavigate();
+    const [userCount, setUserCount] = useState(null);
+
+    useEffect(() => {
+        const fetchCounts = async () => {
+            const userCount = await getUserCount();
+            setUserCount(userCount);
+        };
+        fetchCounts();
+    }, []);
 
     const handleKakaoLogin = async () => {
         try {
@@ -40,6 +49,9 @@ function LoginPage() {
                     alt="kakao-logo"
                 />
             </button>
+            <div className="login-footer">
+                <p><strong>지금까지 {userCount}명이 가입했어요!</strong></p>
+            </div>
         </div>
     );
 }

@@ -1,0 +1,13 @@
+.myDiaryButton .Button {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 45px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border: 1px solid #72bd72;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+    margin-top: 20px;
+    position: absolute;
+    top: -2px;
+    right: 3%;
+}

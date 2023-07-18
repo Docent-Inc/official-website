@@ -3,6 +3,7 @@ import { getMyDiaryList } from '../services/apiService';
 import '../css/Mypage.css';
 import logo2 from "../image/newLogo.png";
 import BackButton from './BackButton';
+import CreateButton from "./CreateButton";
 
 export default function MyPage() {
     const [diaries, setDiaries] = useState([]);
@@ -40,6 +41,7 @@ export default function MyPage() {
 
         <div className="myDiary">
             <BackButton />
+            <CreateButton />
             <div className="myHeader">
 
                 <img className="myLogo" src={logo2} alt="logo" />

@@ -88,7 +88,7 @@ const HomePage = () => {
                                 </button>
                             </a>
                             <button className="h_btn_dStore" onClick={() => handleButtonClick("/loginpage")}>
-                                꿈 보관하기
+                                보관하기
                             </button>
                         </div>
 
@@ -116,72 +116,69 @@ const HomePage = () => {
                 <div className="h_section2" id="flow">
                     <div className="h_section2_container">
                         <div className="h_section2_text">
-                            <h2 className="h_section2_h2">나만의 꿈 전시관,<br></br>도슨트 AI가 꿈 내용을 토대로<br></br>그림을 그려드려요.</h2>
+                            <h2 className="h_section2_h2">나만의 꿈 전시관,<br></br>도슨트 AI가 꿈 내용으로<br></br>그림을 그려드려요.</h2>
                         </div>
                         <div className="h_section2_img">
-                            <FaArrowCircleLeft onClick={prevSlide} className="carousel-arrow carousel-arrow-left" />
-                            <img src={images[currentImageIndex]} alt="h_draw_img" className="h_draw_img"/>
-                            <FaArrowCircleRight onClick={nextSlide} className="carousel-arrow carousel-arrow-right"/>
+                            {/*<FaArrowCircleLeft onClick={prevSlide} className="carousel-arrow carousel-arrow-left" />*/}
+                            <img src={h_draw_img1} alt="h_draw_img" className="h_draw_img"/>
+                            {/*<FaArrowCircleRight onClick={nextSlide} className="carousel-arrow carousel-arrow-right"/>*/}
 
                         </div>
                     </div>
                 </div>
                 <div className="h_section3"
-                     onTouchStart={handleTouchStart}
-                     onTouchMove={handleTouchMove}
-                     onTouchEnd={handleTouchEnd}
+                     // onTouchStart={handleTouchStart}
+                     // onTouchMove={handleTouchMove}
+                     // onTouchEnd={handleTouchEnd}
                 >
-                    <div className="slide-indicator">
-                        옆으로 슬라이드
-                    </div>
                     <div className="h_section3_prod">
-                        <FaArrowCircleLeft onClick={prevSlide} className="flow-arrow flow-arrow-left" />
-                        {flow.map((flow, index) => (
-                            <img
-                                key={index}
-                                src={flow}
-                                alt="Flow"
-                                className={`h_section_flow ${currentImageIndex === index ? 'active' : ''} ${index === 0 ? 'h_section_flow_large' : ''}`}
-                            />
-                        ))}
-                        <FaArrowCircleRight onClick={nextSlide} className="flow-arrow flow-arrow-right"/>
+                        <img src={flow1}/>
+                        <img src={flow2}/>
+                        <img src={flow3}/>
                     </div>
 
                 </div>
-            {/*    <div className="h_section4" id="flow">*/}
-            {/*        <div className="story1" id="ourTeam" >*/}
-            {/*            <div className="centered-text">*/}
-            {/*                <p>*/}
-            {/*                    저희는 <strong>창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</strong>*/}
-            {/*                </p>*/}
-            {/*                <p>개인의 창의성이 중요해지는 현대 사회</p>*/}
-            {/*                <p>우리는 <strong>문득</strong> 이런 생각을 했습니다.</p>*/}
-            {/*                <p><strong>"재미있는 꿈을 오래오래 기억할 수는 없을까?"</strong></p>*/}
-            {/*            </div>*/}
-            {/*            <p></p>*/}
-            {/*            <div className="centered-text">*/}
-            {/*                <p><strong>"꿈 속 장면이 그림으로 그려지면 좋겠다"</strong></p>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*        <div className="story2" id="ourService" >*/}
-            {/*            <p>도슨트는 <strong>당신의 꿈을 음성으로 기록해주고,</strong></p>*/}
-            {/*            <p><strong>그 꿈을 해몽해드립니다.</strong></p>*/}
-            {/*            <p> 당신이 무엇을 상상하고 있는지, </p>*/}
-            {/*            <p>그 꿈이 당신에게 무엇을 말해주고 있는지 알려드리며,</p>*/}
-            {/*            <p><strong>하루의 운세를 제공해드립니다.</strong></p>*/}
-            {/*        </div>*/}
-            {/*        <div className="story3" id="ourVision" >*/}
-            {/*            <p>*/}
-            {/*                도슨트는 <strong>당신의 이야기를 그림으로 그려드릴게요.</strong>*/}
-            {/*            </p>*/}
-            {/*            <p>도슨트와 함께하는 꿈의 세계는 언제나 특별하고,</p>*/}
-            {/*            <p>현실과 차별화된 즐거움을 선사합니다.</p>*/}
-            {/*            <p><strong>꿈을 통해 하루를 성찰하고 의미있게 남겨보세요.</strong></p>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
+                <div className="h_section4" id="flow">
+                    <div className="story1" id="ourTeam" >
+                        <div className="centered-text">
+                            <p>
+                                저희는 <strong>창의성을 추구하고, 꿈을 사랑하는 사람들입니다.</strong>
+                            </p>
+                            <p>개인의 창의성이 중요해지는 현대 사회</p>
+                            <p>우리는 <strong>문득</strong> 이런 생각을 했습니다.</p>
+                            <p><strong>"재미있는 꿈을 오래오래 기억할 수는 없을까?"</strong></p>
+                        </div>
+                        <p></p>
+                        <div className="centered-text">
+                            <p><strong>"꿈 속 장면이 그림으로 그려지면 좋겠다"</strong></p>
+                        </div>
+                    </div>
+                    <div className="story2" id="ourService" >
+                        <p>도슨트는 <strong>당신의 꿈을 음성으로 기록해주고,</strong></p>
+                        <p><strong>그 꿈을 해몽해드립니다.</strong></p>
+                        <p> 당신이 무엇을 상상하고 있는지, </p>
+                        <p>그 꿈이 당신에게 무엇을 말해주고 있는지 알려드리며,</p>
+                        <p><strong>하루의 운세를 제공해드립니다.</strong></p>
+                    </div>
+                    <div className="story3" id="ourVision" >
+                        <p>
+                            도슨트는 <strong>당신의 이야기를 그림으로 그려드릴게요.</strong>
+                        </p>
+                        <p>도슨트와 함께하는 꿈의 세계는 언제나 특별하고,</p>
+                        <p>현실과 차별화된 즐거움을 선사합니다.</p>
+                        <p><strong>꿈을 통해 하루를 성찰하고 의미있게 남겨보세요.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div className="h_footer">
+                <p><strong>도슨트와 함께할 멤버를 찾고 있습니다!</strong></p>
+                <a className={""} href="https://docentinc.notion.site/c706d99f1aab46f7b23dc4f69bfce005?pvs=4" target="_blank">
+                    <button className="h_btn_member">
+                        멤버 모집 바로가기
+                    </button>
+                </a>
             </div>
         </div>
-
     );
 };
 

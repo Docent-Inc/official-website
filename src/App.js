@@ -6,7 +6,6 @@ import DiaryRead from "./component/DiaryRead";
 import Experience from "./component/Experience";
 import LoginPage from "./component/LoginPage";
 import Callback from "./component/Callback";
-import GodMorning from "./component/GodMorning";
 import CreateGodDream from "./component/CreateGodDream";
 import MyPage from "./component/Mypage";
 
@@ -20,7 +19,6 @@ function App() {
                 <Route path="/experience" element={<Experience /> } />
                 <Route path="/loginpage" element={<LoginPage /> } />
                 <Route path="/kakao" element={<Callback />} />
-                <Route path="/godmorning" element={<GodMorning />} />
                 <Route path="/creategoddream" element={<CreateGodDream />} />
                 <Route path="/myPage" element={<MyPage />} />
             </Routes>

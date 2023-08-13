@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         "/api",
         createProxyMiddleware({
-            target: "https://bmongsmong.com",
+            target: "https://docent.zip",
             changeOrigin: true,
         })
     )

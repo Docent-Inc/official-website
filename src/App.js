@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router,  Route, Routes} from 'react-router-dom';
 import Home from './component/Home';
 import DiaryRead from "./component/DiaryRead";
-import Experience from "./component/Experience";
 import LoginPage from "./component/LoginPage";
 import Callback from "./component/Callback";
 import CreateGodDream from "./component/CreateGodDream";
@@ -16,7 +15,6 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                  <Route path="/createDream" element={<CreateDream />} />
                 <Route path="/diary/:id" element={<DiaryRead /> } />
-                <Route path="/experience" element={<Experience /> } />
                 <Route path="/loginpage" element={<LoginPage /> } />
                 <Route path="/kakao" element={<Callback />} />
                 <Route path="/creategoddream" element={<CreateGodDream />} />
